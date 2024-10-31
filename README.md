@@ -1,8 +1,9 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Lộc - Trang chủ, Về chúng tôi, Dịch vụ, Đăng nhập
 
-Currently, two official plugins are available:
+Phát - Home, File Upload, Chọn máy in và xác nhận in, Mua trang in
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Nhi - Printing log, Thông tin tài khoản, Watch document in library
+
+Deadline task 1 : 7/11
