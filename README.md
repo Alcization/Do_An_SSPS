@@ -6,4 +6,4 @@ Phát - Home, File Upload, Chọn máy in và xác nhận in, Mua trang in
 
 Nhi - Printing log, Thông tin tài khoản, Watch document in library
 
-
+Deadline task 1 : 7/11
