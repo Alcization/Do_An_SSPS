@@ -1,6 +1,6 @@
 # React + Vite
 
-Lộc - Trang chủ, Về chúng tôi, Dịch vụ, Đăng nhập
+Lộc - Trang chủ, Về chúng tôi, Dịch vụ, Đăng nhập, Design router
 
 Phát - Home, File Upload, Chọn máy in và xác nhận in, Mua trang in
 
