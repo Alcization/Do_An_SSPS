@@ -1,0 +1,14 @@
+.home {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    padding-top: 40px;
+  }
+  
+  @media (max-width: 991px) {
+    .home {
+      padding-top: 20px;
+    }
+  }

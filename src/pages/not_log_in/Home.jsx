@@ -1,10 +1,17 @@
-import './Home.css'
-import React from 'react'
+import React from 'react';
+import Header from './Header';
+import MainContent from './MainContent';
+import Footer from './Footer';
+import './Home.css';
 
-export default function Home() {
+function Home() {
     return (
         <div className="home">
-            <h1>Home</h1>
+          <Header />
+          <MainContent />
+          <Footer />
         </div>
-    )
+    );
 }
+
+export default Home;

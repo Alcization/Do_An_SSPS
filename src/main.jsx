@@ -1,17 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import {
-  createBrowserRouter,
-  RouterProvider,
+import {createBrowserRouter,RouterProvider,
 } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { HelmetProvider } from 'react-helmet-async'
 import './index.css'
-import App from './App.jsx'
-
+//import App from './App.jsx'
+import Home from './pages/not_log_in/Home.jsx'
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />, // Change to pages that you want to render
+    element: <Home />, // Change to pages that you want to render
   },
 ]);
 
