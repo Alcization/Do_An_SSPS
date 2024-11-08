@@ -11,7 +11,10 @@ import MainContent from './pages/not_log_in/Main/MainContent.jsx';
 import AboutContent from './pages/not_log_in/About/AboutContent.jsx';
 import ServiceContent from './pages/not_log_in/Service/ServiceContent.jsx';
 import Login from './pages/not_log_in/Login/Login.jsx';
-
+import PrintingLog from './pages/layout/blank/PrintingLog/myTable.jsx';
+import StudentAccount from './pages/layout/blank/StudentAccount/studentAccount.jsx';
+import Library from './pages/layout/blank/Library/library.jsx';
+import WatchDocument from './pages/layout/blank/Library/watchDocument.jsx';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -39,21 +42,41 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login />,
-      }
+      },
+      
 
-      /*
+      
       {
         path: '/',
-        element: <StudentLayout />,
+        // element: <StudentLayout />,
+        element: <Root/>,
         errorElement: <Error />,
         children: [
+          // {
+          //   path: 'student_home',
+          //   element: <StudentHome />,
+          // },
           {
-            path: 'student_home'
-            element: <StudentHome />,
+            path: 'printingLog',
+            element: <PrintingLog />,
           },
+          {
+            path: 'student_account',
+            element: <StudentAccount/>
+
+          },
+          {
+            path:'library',
+            element: <Library/>
+          },
+          {
+            path:'watch_document',
+            element: <WatchDocument/>
+          }
+
         ],
       },
-
+        /*
       {
         path: '/',
         element: <AdminLayout />,

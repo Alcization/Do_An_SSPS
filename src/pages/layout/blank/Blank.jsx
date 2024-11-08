@@ -6,6 +6,7 @@ function Blank() {
     return (
         <div className="blank">
           <Outlet/>
+        
         </div>
     );
 }
