@@ -1,15 +1,15 @@
 import React from 'react';
 import { Button, Container, Row, Col, Card } from 'react-bootstrap';
 // import LibraryContent from './libraryContent.json';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 
 function watchDocument() {
     // const { fileId } = useParams();
-    const history = useHistory();
+    // const history = useHistory();
 
-    const handleBack = () => {
-        history.push('/library');
-    };
+    // const handleBack = () => {
+    //     history.push('/library');
+    // };
     return (
         <Container fluid className="p-4" style={{ fontSize: '1.2rem', height:'70vh' }}>
             
@@ -30,17 +30,17 @@ function watchDocument() {
                 </Col>
 
                 {/* Document Details */}
-                <Col md={6}>
+                <Col md={6} style={{padding:'6vh'}}>
                     <h3>Đề thi giữa kỳ 241</h3>
                     <p><strong>Mã môn học:</strong> MT1003</p>
                     <p><strong>Môn học:</strong> Giải tích 1</p>
                     <p><strong>Mô tả:</strong> Đề siêu khó</p>
 
                     {/* Action Buttons */}
-                    <div className="mt-4">
-                        <Button variant="primary" className="me-2" onClick={handleBack}>Quay lại</Button>
-                        <Button variant="success" className="me-2">Tải về</Button>
-                        <Button variant="danger">In</Button>
+                    <div className="mt-4" style={{padding:"4vh"}}>
+                        <Button variant="primary" className="me-2 p-2 " >Quay lại</Button>
+                        <Button variant="success" className="me-2 p-2 ">Tải về</Button>
+                        <Button variant="danger" className='p-2'>In</Button>
                     </div>
                 </Col>
             </Row>
