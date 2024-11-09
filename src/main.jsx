@@ -11,6 +11,7 @@ import MainContent from './pages/not_log_in/Main/MainContent.jsx';
 import AboutContent from './pages/not_log_in/About/AboutContent.jsx';
 import ServiceContent from './pages/not_log_in/Service/ServiceContent.jsx';
 import Login from './pages/not_log_in/Login/Login.jsx';
+import AdminHome from './pages/layout/admin/Admin.jsx';
 
 const router = createBrowserRouter([
   {
@@ -39,7 +40,11 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login />,
-      }
+      },
+      {
+        path: 'admin_home',
+        element: <AdminHome />,
+      },
 
       /*
       {
