@@ -1,0 +1,82 @@
+.allocationBody {
+  padding: 6em 4em 0 2em;
+  border-left: 2px solid black;
+}
+
+.trigger-filterResults,
+.trigger-addCalendar {
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+}
+
+.trigger-filterResults {
+  border: 1px solid rgba(0, 0, 0, 0.275);
+}
+
+.trigger-addCalendar {
+  background-color: #4b9cfc;
+  color: white;
+}
+
+.trigger-addCalendar .trigger-link {
+  color: white;
+}
+
+.trigger-link {
+  color: black;
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  width: 9vw;
+  height: 6vh;
+  padding: 0;
+}
+
+.trigger-link p {
+  margin: 0;
+}
+
+.trigger-link i {
+  margin-right: 0.5em;
+}
+
+.trigger-filterResults i {
+  transform: translateY(-0.8em);
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.table-info {
+  margin-top: 1.5em;
+  width: auto;
+  height: auto;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.table {
+  margin: 0;
+}
+
+.changeTable {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 20vw;
+  margin-top: 2.5em;
+  transform: translateX(-9em);
+}
+
+.changeTable i {
+  font-size: 3.5vh;
+}
+
+.lastTable,
+.nextTable {
+  width: 6vw;
+}

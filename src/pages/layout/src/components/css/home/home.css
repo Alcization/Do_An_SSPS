@@ -1,0 +1,54 @@
+.container {
+  position: relative;
+}
+
+.home-block .link {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Home {
+  position: absolute;
+  top: 3em;
+}
+
+.printingDocument-logo__img {
+  width: 50%;
+  height: 50%;
+}
+
+.library-logo__img {
+  width: 88%;
+  height: 88%;
+}
+
+.buyPrintingPaper-logo__img {
+  width: 44%;
+  height: 44%;
+}
+
+.printingHistory-logo__img {
+  width: 50%;
+  height: 50%;
+}
+
+.link {
+  background-color: #D2ECFF;
+  color: black;
+  border-radius: 15px;
+}
+
+.link p {
+  font-weight: 15px;
+}
+
+.link .img {
+  padding-top: 1em;
+}
+
+.library-nav-link, .printingHistory-nav-link {
+  transform: translateY(10em);
+}

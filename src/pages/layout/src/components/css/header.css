@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 20vh;
+  position: relative;
+}
+
+.header_admin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 14vh;
+  border: 2px solid black;
+}
