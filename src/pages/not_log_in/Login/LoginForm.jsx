@@ -24,7 +24,7 @@ const LoginForm = () => {
       {/* <button type="submit" className="loginButton">
         Login
       </button> */}
-      <NavLink to={'login'}>
+      <NavLink to={'/student/student_home'}>
         <button className="loginButton">Login as student</button>
       </NavLink>
       <NavLink to={"/admin_home"}>

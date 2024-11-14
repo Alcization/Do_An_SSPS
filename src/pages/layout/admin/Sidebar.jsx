@@ -7,7 +7,7 @@ import slider from '../../../assets/sliders.png';
 import chart from '../../../assets/bar-chart-2.png';
 import clipboard from '../../../assets/clipboard.png';
 import book from '../../../assets/book.png';
-import user from '../../../assets/user.png';
+import user from '../../../assets/user_icon.png';
 
 const navItems = [
   { icon_: {home}, label_: "Trang chủ", centered: true},

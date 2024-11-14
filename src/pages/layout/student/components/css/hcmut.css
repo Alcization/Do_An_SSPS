@@ -2,8 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 13%;
-  height: 13%;
+  width: 100px;
+  height: 100px;
+  margin-left: 2.5em;
 }
 
 .HCMUT-logo__img {
@@ -27,13 +28,15 @@
   align-items: left;
   flex-direction: column;
   justify-content: center;
+  font-size: 1.5em;
+  margin-left: 0.5em;
 }
 .HCMUT-slogan-nav-link {
   text-decoration: none;
 }
 
 .HCMUT-slogan-nav-link .line1 {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .HCMUT-slogan-nav-link p {

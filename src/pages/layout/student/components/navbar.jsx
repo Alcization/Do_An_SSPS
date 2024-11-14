@@ -15,7 +15,7 @@ function Setting() {
         <p>100</p>
       </div>
       <div className="setting-block logo AccountInfo">
-        <NavLink to="/" className="setting-block-link">
+        <NavLink to={'/student/student_account'} className="setting-block-link">
           <i class="bx bx-user"></i>
           <p>Thông tin tài khoản</p>
         </NavLink>

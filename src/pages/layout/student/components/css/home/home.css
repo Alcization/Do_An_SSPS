@@ -1,5 +1,6 @@
 .container {
   position: relative;
+  margin-top: 7em;
 }
 
 .home-block .link {
@@ -13,6 +14,12 @@
 .Home {
   position: absolute;
   top: 3em;
+}
+
+.homeblocktitle {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #000000;
 }
 
 .printingDocument-logo__img {

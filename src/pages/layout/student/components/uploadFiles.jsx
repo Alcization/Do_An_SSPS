@@ -230,13 +230,13 @@ function PrintingInfo({ setPrintingData }) {
 function Trigger({ printingData, fileData }) {
   return (
     <div className="trigger">
-      <NavLink to="/user" className="trigger-link">
+      <NavLink to={'/student/student_home'} className="trigger-link">
         <button type="button" className="trigger-btn trigger-btn-cancel">
           Hủy bỏ
         </button>
       </NavLink>
       <NavLink
-        to="/user/uploadFiles/confirmPrinting"
+        to={'/student/confirm_printing'}
         state={{ printingData, fileData }}
         className="trigger-link-continue"
       >
