@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './Login.css';
 import InputField from './InputField';
 import email from '../../../assets/email.png'
@@ -20,9 +21,16 @@ const LoginForm = () => {
         alt="Password icon"
         showPasswordToggle
       />
-      <button type="submit" className="loginButton">
+      {/* <button type="submit" className="loginButton">
         Login
-      </button>
+      </button> */}
+      <NavLink to={'/student/student_home'}>
+        <button className="loginButton">Login as student</button>
+      </NavLink>
+      <NavLink to={"/admin_home"}>
+        <button className="loginButton">Login as admin</button>
+      </NavLink>
+
     </form>
   );
 };

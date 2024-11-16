@@ -1,9 +1,13 @@
 .student-info{
-    margin-top: 2vh;
-   
+    margin-top: 1vh;
     padding: 1vh;
-    
+    font-size: 1.5em;
 }
+
+.container_student_info {
+    margin-top: 0px;
+}
+
 .student-label{
     padding-left: 2vw;
 }
@@ -42,9 +46,8 @@
 
 .main-page-detail{
     position: relative;
-  
-
     
+
 }
 .avatar{
     

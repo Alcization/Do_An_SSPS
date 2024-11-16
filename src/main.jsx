@@ -4,17 +4,29 @@ import { createBrowserRouter,RouterProvider } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'
-import Root from './pages/layout/not_login/Root.jsx'
+
 import Blank from './pages/layout/blank/Blank.jsx'
 import Error from './pages/ErrorPage.jsx'
+// import for not login pages
+import Root from './pages/layout/not_login/Root.jsx'
+
 import MainContent from './pages/not_log_in/Main/MainContent.jsx';
 import AboutContent from './pages/not_log_in/About/AboutContent.jsx';
 import ServiceContent from './pages/not_log_in/Service/ServiceContent.jsx';
 import Login from './pages/not_log_in/Login/Login.jsx';
+// import for student pages
+import Student from './pages/layout/student/student.jsx';
+
+import StudentHome from './pages/layout/student/components/home.jsx';
+import UploadFile from './pages/layout/student/components/uploadFiles.jsx';
+import ConfirmPrinting from './pages/layout/student/components/confirmPrinting.jsx';
+import BuyPrintingPaper from './pages/layout/student/components/buyPrintingPaper.jsx';
 import PrintingLog from './pages/layout/blank/PrintingLog/myTable.jsx';
 import StudentAccount from './pages/layout/blank/StudentAccount/studentAccount.jsx';
 import Library from './pages/layout/blank/Library/library.jsx';
 import WatchDocument from './pages/layout/blank/Library/watchDocument.jsx';
+// import for admin pages
+import AdminHome from './pages/layout/admin/Admin.jsx';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -43,19 +55,26 @@ const router = createBrowserRouter([
         path: 'login',
         element: <Login />,
       },
-      
-
-      
       {
-        path: '/',
-        // element: <StudentLayout />,
-        element: <Root/>,
-        errorElement: <Error />,
+        path: 'student',
+        element: <Student />,
         children: [
-          // {
-          //   path: 'student_home',
-          //   element: <StudentHome />,
-          // },
+          {
+            path: 'student_home',
+            element: <StudentHome />,
+          },
+          {
+            path: 'upload_file',
+            element: <UploadFile />,
+          },
+          {
+            path: 'confirm_printing',
+            element: <ConfirmPrinting />,
+          },
+          {
+            path: 'buy_printing_paper',
+            element: <BuyPrintingPaper />,
+          },
           {
             path: 'printingLog',
             element: <PrintingLog />,
@@ -63,7 +82,6 @@ const router = createBrowserRouter([
           {
             path: 'student_account',
             element: <StudentAccount/>
-
           },
           {
             path:'library',
@@ -73,22 +91,12 @@ const router = createBrowserRouter([
             path:'watch_document',
             element: <WatchDocument/>
           }
-
-        ],
+        ]
       },
-        /*
       {
-        path: '/',
-        element: <AdminLayout />,
-        errorElement: <Error />,
-        children: [
-          {
-            path: 'admin_home'
-            element: <AdminHome />,
-          },
-        ],
+        path: 'admin_home',
+        element: <AdminHome />,
       },
-      */
      
     ],
   },

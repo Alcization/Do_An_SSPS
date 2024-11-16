@@ -55,6 +55,10 @@
     gap: 30px;
     margin-top: 38px;
   }
+
+  input:focus{
+    outline: none;
+}
   
   .inputWrapper {
     border-radius: 8px;
