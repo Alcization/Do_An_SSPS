@@ -2,16 +2,22 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import Sidebar from './Sidebar';
-import './Admin.css';
+import './Admin.css'; // Sử dụng file CSS để tùy chỉnh giao diện
 
 function MainComponent() {
     return (
         <div>
             <Header />
-            <Sidebar />
-            <Outlet />
+            <div className="d-flex" style={{ height: 'calc(100vh - 70px)' }}>
+                <div className="sidebar" style={{ width: '250px', margin: 0, padding: 0 }}>
+                    <Sidebar />
+                </div>
+                <div className="content flex-grow-1" style={{ margin: 0, padding: 0, overflowY: 'auto' }}>
+                    <Outlet />
+                </div>
+            </div>
         </div>
     );
-};
+}
 
 export default MainComponent;

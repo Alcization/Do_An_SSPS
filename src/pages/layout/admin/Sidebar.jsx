@@ -10,27 +10,43 @@ import book from '../../../assets/book.png';
 import user from '../../../assets/user_icon.png';
 
 const navItems = [
-  { icon_: {home}, label_: "Trang chủ", centered: true},
-  { icon_: {printer}, label_: "Máy in", centered: true},
-  { icon_: {slider}, label_: "Cấu hình", centered: true },
-  { icon_: {chart}, label_: "Báo cáo", centered: true },
-  { icon_: {clipboard}, label_: "Lịch sử", centered: true },
-  { icon_: {book}, label_: "Thư viện", marginTop: true },
-  { icon_: {user}, label_: "Người dùng", marginTop: true }
+  { icon_: home, label_: "Trang chủ", path_: "admin_home/home", centered: true },
+  { icon_: printer, label_: "Máy in", path_: "admin_home/printer", centered: true },
+  { icon_: slider, label_: "Cấu hình", path_: "admin_home/settings", centered: true },
+  { icon_: chart, label_: "Báo cáo", path_: "admin_home/reports", centered: true },
+  { icon_: clipboard, label_: "Lịch sử", path_: "admin_home/history", centered: true },
+  { icon_: book, label_: "Thư viện", path_: "admin_home/library", marginTop: true },
+  { icon_: user, label_: "Người dùng", path_: "admin_home/users", marginTop: true }
 ];
 
 const LeftSidebar = () => {
+  
   return (
+    // <nav className="Sidebar">
+    //   {navItems.map((item, index) => (
+
+    //     <NavLink key={index}  to={`/${item.path_}`} className="nav_Item"
+    //      activeclassname="active"
+    //     >
+    //       <img src={Object.values(item.icon_)} alt={item.label_} />
+    //       <span>{item.label_}</span>
+    //     </NavLink>
+
+    //   ))}
+    // </nav>
     <nav className="Sidebar">
-      {navItems.map((item, index) => (
-
-        <NavLink key={index} to={`/${item.label_}`} className="nav_Item">
-          <img src={Object.values(item.icon_)} alt={item.label_} />
-          <span>{item.label_}</span>
-        </NavLink>
-
-      ))}
-    </nav>
+    {navItems.map((item, index) => (
+      <NavLink
+        key={index}
+        to={`/${item.path_}`}
+        className="nav_Item"
+        activeclassname="active"
+      >
+        <img src={item.icon_} alt={item.label_} />
+        <span>{item.label_}</span>
+      </NavLink>
+    ))}
+  </nav>
   );
 };
 

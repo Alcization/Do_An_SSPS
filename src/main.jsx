@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter,RouterProvider } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import './index.css'
 
 import Blank from './pages/layout/blank/Blank.jsx'
@@ -27,6 +28,14 @@ import Library from './pages/layout/blank/Library/library.jsx';
 import WatchDocument from './pages/layout/blank/Library/watchDocument.jsx';
 // import for admin pages
 import AdminHome from './pages/layout/admin/Admin.jsx';
+import AdminPrintHis from './pages/layout/admin/AdminPrintHis/AdminPrintHis.jsx';
+import AdminPayment from './pages/layout/admin/AdminPayment/AdminPayment.jsx';
+import AdminLibrary from './pages/layout/admin/AdminLibrary/AdminLibrary.jsx';
+import AddDocumnet from './pages/layout/admin/AdminLibrary/AddDocument.jsx';
+import UpdateDocumnet from './pages/layout/admin/AdminLibrary/UpdateDocument';
+import AddUser from './pages/layout/admin/AdminUser/AddUser';
+import AdminListUser from './pages/layout/admin/AdminUser/AdminListUser';
+import UpdateUser from './pages/layout/admin/AdminUser/UpdateUser.jsx';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -86,6 +95,7 @@ const router = createBrowserRouter([
           {
             path:'library',
             element: <Library/>
+            
           },
           {
             path:'watch_document',
@@ -96,6 +106,44 @@ const router = createBrowserRouter([
       {
         path: 'admin_home',
         element: <AdminHome />,
+        children: [
+          // add admin pages here
+          {
+            path: 'history',
+            element: <AdminPrintHis />
+          },
+          {
+            path:'admin_payment',
+            element: <AdminPayment/>
+          },
+          {
+            path: 'library',
+            element: <AdminLibrary/>,
+            
+          },
+          {
+            path: 'library/add_document',
+            element: <AddDocumnet/>,
+          },
+          {
+            path: 'library/update_document',
+            element: <UpdateDocumnet/>,
+          },
+          {
+            path: 'users',
+            element: <AdminListUser/>,
+          },
+          {
+            path: 'users/add_user',
+            element: <AddUser/>,
+          },
+          {
+            path: 'users/update_user',
+            element: <UpdateUser/>,
+          }
+
+          
+        ]
       },
      
     ],
