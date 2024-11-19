@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter,RouterProvider } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './index.css'
 
 import Blank from './pages/layout/blank/Blank.jsx'
 import Error from './pages/ErrorPage.jsx'
@@ -26,7 +25,15 @@ import StudentAccount from './pages/layout/blank/StudentAccount/studentAccount.j
 import Library from './pages/layout/blank/Library/library.jsx';
 import WatchDocument from './pages/layout/blank/Library/watchDocument.jsx';
 // import for admin pages
-import AdminHome from './pages/layout/admin/Admin.jsx';
+import Admin from './pages/layout/admin/Admin.jsx';
+
+import AdminHome from './pages/admin/admin_home/admin_home.jsx';
+import PrinterStatus from './pages/admin/printer_operation_status/printer_status.jsx';
+import PrinterInfo from './pages/admin/printer_info/printer_info.jsx';
+import PrinterDetail from './pages/admin/printer_info/printer_detail.jsx';
+import AddPrinter from './pages/admin/printer_info/add_printer.jsx';
+import UpdatePrinter from './pages/admin/printer_info/update_printer.jsx';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -94,10 +101,35 @@ const router = createBrowserRouter([
         ]
       },
       {
-        path: 'admin_home',
-        element: <AdminHome />,
+        path: 'admin',
+        element: <Admin />,
+        children: [
+          {
+            path: 'admin_home',
+            element: <AdminHome />,
+          },
+          {
+            path: 'printer_status',
+            element: <PrinterStatus />,
+          },
+          {
+            path: 'printer_info',
+            element: <PrinterInfo />,
+          },
+          {
+            path: 'printer_detail',
+            element: <PrinterDetail />,
+          }
+        ]
       },
-     
+      {
+        path: 'add_printer',
+        element: <AddPrinter />,
+      },
+      {
+        path: 'update_printer',
+        element: <UpdatePrinter />,
+      }
     ],
   },
 

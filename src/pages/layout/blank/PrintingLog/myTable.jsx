@@ -45,8 +45,8 @@ function MyTable() {
 
     return (
         <div className='d-flex flex-column justify-content-center align-items-center m-2 p-2' style={{ height: '84vh', width: '198vh'}}>
-       <div> <h1 className='text-primary'>Printing Log</h1></div>
-       <Search/>
+        <div> <h1 className='text-primary'>Printing Log</h1></div>
+        <Search/>
             <div className='w-100 bg-white p-4 rounded ' style={{ borderRadius: '20px', overflow: 'hidden' }}>
                 <Table bordered hover className='mb-0 ' style={{ borderRadius: '20px', overflow: 'hidden', fontSize: '1.3rem'  }}>
                     <thead>
