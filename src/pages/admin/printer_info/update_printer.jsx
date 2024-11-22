@@ -68,7 +68,7 @@ function UpdatePrinter() {
 
                     <div className='d-flex flex-column mt-3'>
                         <label htmlFor="">Mô tả</label>
-                        <textarea defaultValue={info.description} className='rounded' name="description" id="" rows={10} maxLength = {200} style={{height: '15rem', paddingLeft: '1rem', paddingRight: '1rem', paddingTop: '0.5rem'}}></textarea>
+                        <textarea defaultValue={info.description} className='rounded' name="description" id="" rows={10} maxLength = {200} style={{height: '10rem', paddingLeft: '1rem', paddingRight: '1rem', paddingTop: '0.5rem'}}></textarea>
                     </div>
                     <Button type='button' className='btn btn-danger' style={{margin: '3rem', marginLeft: '3rem'}} onClick={() => toCancel()}>Hủy bỏ</Button>
                     <Button type='submit' className='btn btn-primary' style={{margin: '3rem', marginLeft: '3rem'}}>Chỉnh sửa</Button>

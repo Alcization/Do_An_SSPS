@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter,RouterProvider } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 import Blank from './pages/layout/blank/Blank.jsx'
 import Error from './pages/ErrorPage.jsx'
@@ -33,6 +34,21 @@ import PrinterInfo from './pages/admin/printer_info/printer_info.jsx';
 import PrinterDetail from './pages/admin/printer_info/printer_detail.jsx';
 import AddPrinter from './pages/admin/printer_info/add_printer.jsx';
 import UpdatePrinter from './pages/admin/printer_info/update_printer.jsx';
+
+import Report from './pages/layout/student/components/admin/report.jsx'
+import Allocation from "./pages/layout/student/components/admin/allocation.jsx";
+import AddCalendar from "./pages/layout/student/components/admin/addCalendar.jsx";
+import FileType from "./pages/layout/student/components/admin/fileType.jsx";
+
+
+import AdminPrintHis from './pages/layout/admin/AdminPrintHis/AdminPrintHis.jsx';
+import AdminPayment from './pages/layout/admin/AdminPayment/AdminPayment.jsx';
+import AdminLibrary from './pages/layout/admin/AdminLibrary/AdminLibrary.jsx';
+import AddDocumnet from './pages/layout/admin/AdminLibrary/AddDocument.jsx';
+import UpdateDocumnet from './pages/layout/admin/AdminLibrary/UpdateDocument';
+import AddUser from './pages/layout/admin/AdminUser/AddUser';
+import AdminListUser from './pages/layout/admin/AdminUser/AdminListUser';
+import UpdateUser from './pages/layout/admin/AdminUser/UpdateUser.jsx';
 
 const router = createBrowserRouter([
   {
@@ -117,18 +133,67 @@ const router = createBrowserRouter([
             element: <PrinterInfo />,
           },
           {
+            path: 'add_printer',
+            element: <AddPrinter />,
+          },
+          {
+            path: 'update_printer',
+            element: <UpdatePrinter />,
+          },
+          {
             path: 'printer_detail',
             element: <PrinterDetail />,
+          },
+          {
+            path: 'allocation',
+            element: <Allocation />,
+          },
+          {
+            path: 'add_calendar',
+            element: <AddCalendar />,
+          },
+          {
+            path: 'file_type',
+            element: <FileType />,
+          },
+          {
+            path: 'report',
+            element: <Report />,
+          },
+          {
+            path: 'history',
+            element: <AdminPrintHis />
+          },
+          {
+            path:'admin_payment',
+            element: <AdminPayment/>
+          },
+          {
+            path: 'library',
+            element: <AdminLibrary/>,
+            
+          },
+          {
+            path: 'library/add_document',
+            element: <AddDocumnet/>,
+          },
+          {
+            path: 'library/update_document',
+            element: <UpdateDocumnet/>,
+          },
+          {
+            path: 'users',
+            element: <AdminListUser/>,
+          },
+          {
+            path: 'add_user',
+            element: <AddUser/>,
+          },
+          {
+            path: 'update_user',
+            element: <UpdateUser/>,
           }
         ]
-      },
-      {
-        path: 'add_printer',
-        element: <AddPrinter />,
-      },
-      {
-        path: 'update_printer',
-        element: <UpdatePrinter />,
       }
     ],
   },

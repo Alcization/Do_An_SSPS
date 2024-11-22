@@ -38,13 +38,13 @@ function MyTable() {
 
     const navigate = useNavigate();
     const toAddPrinter = () => {
-        navigate('/add_printer');
+        navigate('/admin/add_printer');
     }
     const toPrinterDetail = (id_printer) => {
         navigate('/admin/printer_detail',{state:{id: id_printer}});
     }
     const toUpdatePrinter = (id_printer) => {
-        navigate('/update_printer',{state:{id: id_printer}});
+        navigate('/admin/update_printer',{state:{id: id_printer}});
     }
     const toDeletePrinter = (id_printer) => {
         window.alert("Are you sure you want to delete this printer?");
@@ -64,12 +64,12 @@ function MyTable() {
                 <td className="my-sm-5 text-center">
                     <Row>
                         <Col>
-                            <Button variant="outline-light" style={{backgroundColor: '#3AC9D6'}} onClick={() => toPrinterDetail(info.id)}>
+                            <Button variant="info" size="sm-2" style={{backgroundColor: '#3AC9D6'}} onClick={() => toPrinterDetail(info.id)}>
                                 <img src={view_icon} alt=""/>
                             </Button>
                         </Col>
                         <Col>
-                            <Button variant="outline-light" style={{backgroundColor: '#4B9CFC'}} onClick={() => toUpdatePrinter(info.id)}>
+                            <Button variant="outline-light" size='sm-3'  style={{backgroundColor: '#4B9CFC'}} onClick={() => toUpdatePrinter(info.id)}>
                                 <img src={edit_icon} alt=""/>
                             </Button>
                         </Col>

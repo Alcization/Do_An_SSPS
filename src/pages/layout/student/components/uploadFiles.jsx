@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
-import "./css/uploadFiles/uploadFile.css";
+import './css/uploadFiles/uploadFile.css';
 import chooseFile from "./img/chooseFile.png";
 
 function ChooseFile({ setFileData }) {
@@ -80,7 +80,7 @@ function ChooseFile({ setFileData }) {
       <div className="chooseFile-notify col-sm-10">
         <UploadStatus />
         <button onClick={handleDelete}>
-          <i class="bx bx-trash"></i>
+          <i className="bx bx-trash"></i>
         </button>
       </div>
     </div>
@@ -147,7 +147,7 @@ function PrintingInfo({ setPrintingData }) {
     <div className="printingInfo">
       <div className="row">
         <div className="numberOfCopies col">
-          <label for="options" className="numberOfCopies-title">
+          <label htmlFor="options" className="numberOfCopies-title">
             Số bản
           </label>
           <select
@@ -163,7 +163,7 @@ function PrintingInfo({ setPrintingData }) {
           </select>
         </div>
         <div className="paperSize col">
-          <label for="options" className="paperSize-title">
+          <label htmlFor="options" className="paperSize-title">
             Khổ giấy
           </label>
           <select
@@ -191,7 +191,7 @@ function PrintingInfo({ setPrintingData }) {
       </div>
       <div className="row">
         <div className="printingOption col">
-          <label for="options" className="printingOption-title">
+          <label htmlFor="options" className="printingOption-title">
             Tùy chọn in
           </label>
           <select
@@ -206,7 +206,7 @@ function PrintingInfo({ setPrintingData }) {
           </select>
         </div>
         <div className="Direction col">
-          <label for="options" className="Direction-title">
+          <label htmlFor="options" className="Direction-title">
             Khổ
           </label>
           <select
@@ -220,7 +220,7 @@ function PrintingInfo({ setPrintingData }) {
             <option value="Ngang">Ngang</option>
           </select>
         </div>
-        <div class="col"></div>
+        <div className="col"></div>
       </div>
     </div>
   );
@@ -260,7 +260,7 @@ function UploadFile() {
     file: null,
   });
   return (
-    <div className="uploadFile">
+    <div className='uploadFile1' style={{marginTop: '5rem'}}>
       <ChooseFile setFileData={setFileData} />
       <PrintingInfo setPrintingData={setPrintingData} />
       <Trigger printingData={printingData} fileData={fileData} />

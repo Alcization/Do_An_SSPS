@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import "./css/uploadFiles/confirmPrinting.css";
+import './css/uploadFiles/confirmPrinting.css';
 import Printer from "./img/multifunction-printer.png";
+import { color } from "chart.js/helpers";
+
+const title = {
+  fontSize: "2.2vh",
+  color: "black",
+}
 
 function ConfirmPrinting() {
   const location = useLocation();
@@ -38,7 +44,7 @@ function ConfirmPrinting() {
   return (
     <div className="confirmPrinting">
       <div className="confirmPrinting-body row">
-        <div className="confirmPrinting-infor col-8">
+        <div className="confirmPrinting-infor col-8" style={{marginTop: '5rem'}}>
           <div className="confirmPrinting-infor_choosePrinter row">
             <div className="building col">
               <label for="options" className="building-title">
@@ -70,13 +76,13 @@ function ConfirmPrinting() {
             <div className="confirmPrinting-infor_showInfor__DocInfor">
               <div className="row">
                 <div className="numberOfCopies col">
-                  <p className="title">Số bản</p>
+                  <p className={title}>Số bản</p>
                   <p className="detail">
                     {printingData?.numberOfCopies || "Không có dữ liệu"}
                   </p>
                 </div>
                 <div className="paperSize col">
-                  <p className="title">Khổ giấy</p>
+                  <p className={title}>Khổ giấy</p>
                   <p className="detail">
                     {printingData?.paperSize || "Không có dữ liệu"}
                   </p>
@@ -84,13 +90,13 @@ function ConfirmPrinting() {
               </div>
               <div className="row">
                 <div className="PrintOption col">
-                  <p className="title">Tùy chọn in</p>
+                  <p className={title}>Tùy chọn in</p>
                   <p className="detail">
                     {printingData?.printingOption || "Không có dữ liệu"}
                   </p>
                 </div>
                 <div className="Direction col">
-                  <p className="title">Khổ</p>
+                  <p className={title}>Khổ</p>
                   <p className="detail">
                     {printingData?.direction || "Không có dữ liệu"}
                   </p>
@@ -98,7 +104,7 @@ function ConfirmPrinting() {
               </div>
               <div className="row">
                 <div className="pageNumber col-6">
-                  <p className="title">Số trang in</p>
+                  <p className={title}>Số trang in</p>
                   <p className="detail">
                     {printingData?.pageNumber || "Không có dữ liệu"}
                   </p>
@@ -110,8 +116,7 @@ function ConfirmPrinting() {
           <button
             type="button"
             className="confirmPrinting-link__trigger"
-            onClick={handleClick}
-          >
+            onClick={handleClick} style={{color: 'white'}}>
             Xác nhận in
           </button>
           {showOTP && (
@@ -120,7 +125,7 @@ function ConfirmPrinting() {
             </div>
           )}
         </div>
-        <img src={Printer} alt="Máy in" className="printer-img col-4" />
+        <img src={Printer} alt="Máy in" className="printer-img col-4" style={{marginTop: '5rem'}}/>
       </div>
     </div>
   );
