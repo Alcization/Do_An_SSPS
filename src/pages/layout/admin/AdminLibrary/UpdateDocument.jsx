@@ -47,7 +47,7 @@ const UpdateDocumnet = () => {
         <div className="col-md-6">
           <div className="card">
             <div className="card-body">
-              <h3 className="text-center mb-4">Thêm tài liệu mới</h3>
+              <h3 className="text-center mb-4">Sửa tài liệu</h3>
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label className="form-label">Mã số (ID)</label>
