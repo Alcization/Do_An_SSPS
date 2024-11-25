@@ -13,7 +13,7 @@ function BuyPrintingPaperBody() {
   };
 
   return (
-    <div className="container">
+    <div className="container1">
       <div className="row">
         <div className="col-12 d-flex justify-content-center align-items-center">
           <form className="buyPrintingPaper__body">
@@ -31,16 +31,16 @@ function BuyPrintingPaperBody() {
             </div>
             <div className="buyPrintingPaper-detail">
               <div className="paperSum">
-                <p className="title">Tổng số trang</p>
+                <p className="title1">Tổng số trang</p>
                 {paperNo && <p className="number">{paperNo}</p>}
               </div>
               <div className="PriceSum">
-                <p className="title">Đơn giá</p>
+                <p className="title1">Đơn giá</p>
                 <p className="number">{paperPrice}</p>
               </div>
             </div>
             <div className="buyPrintingPaper-conclude">
-              <p className="title">Tổng cộng</p>
+              <p className="title1">Tổng cộng</p>
               <p className="price">{paperNo * paperPrice} VND</p>
             </div>
             <input type="submit" value="Thanh toán" className="transaction" />

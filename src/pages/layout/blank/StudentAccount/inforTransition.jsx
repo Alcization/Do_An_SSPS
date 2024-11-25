@@ -32,19 +32,16 @@ function InforTransition() {
     const DisplayData = currentItems.map((info) => {
         return (
             <tr key={info.id}>
-                <td className="my-sm-5 text-center">{info.datetime}</td>
-                <td className="my-sm-5 text-center">{info.pages}</td>
-                <td className="my-sm-5 text-center">{info.total_cost}</td>
+                <td className="my-sm-4 text-center">{info.datetime}</td>
+                <td className="my-sm-4 text-center">{info.pages}</td>
+                <td className="my-sm-4 text-center">{info.total_cost}</td>
             </tr>
         );
     });
 
     return (
-        <div  style={{ height: '50vh', width: '90vh', marginLeft: '700px', padding:'3vh' }}>
-            <div>
-                <h1>Thông tin giao dịch</h1>
-            </div>
-            <div className="w-100 bg-white p-4 rounded" style={{ borderRadius: '20px', overflow: 'hidden' }}>
+        <div  style={{ height: '30vh', width: '90vh', marginLeft: '700px' }}>
+            <div className="w-100 m-2 bg-white rounded" style={{ overflow: 'hidden' }}>
                 <Table bordered hover className="mb-0" style={{ borderRadius: '20px', overflow: 'hidden', fontSize: '1.3rem' }}>
                     <thead>
                         <tr>
