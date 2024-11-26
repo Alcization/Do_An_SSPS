@@ -17,10 +17,6 @@ const LoginForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault(); // Prevent default form submission
 
-    // Debugging
-    console.log("Submitted Email:", login.user);
-    console.log("Submitted Password:", login.password);
-
     // Authentication logic
     if (login.user.trim() === "admin@hcmut.edu.vn" && login.password === "admin") {
       navigate("/admin/admin_home");
@@ -30,6 +26,25 @@ const LoginForm = () => {
       console.log("Wrong credentials");
       alert("Invalid email or password.");
     }
+  
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   try {
+  //     const response = await axios.post('/api/auth/login', 
+  //     {
+  //       username: login.user,
+  //       password: login.password,
+  //     });
+  //     // Handle successful login
+  //     console.log('Login successful:', response.data);
+  //   } catch (err) {
+  //     // Handle login error
+  //     setError('Login failed. Please check your username and password.');
+  //     console.error('Login error:', err);
+  //   }
+  // };
+
+
   };
 
   return (
