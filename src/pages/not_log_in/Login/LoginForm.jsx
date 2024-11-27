@@ -27,22 +27,25 @@ const LoginForm = () => {
       alert("Invalid email or password.");
     }
   
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   try {
-  //     const response = await axios.post('/api/auth/login', 
-  //     {
-  //       username: login.user,
-  //       password: login.password,
-  //     });
-  //     // Handle successful login
-  //     console.log('Login successful:', response.data);
-  //   } catch (err) {
-  //     // Handle login error
-  //     setError('Login failed. Please check your username and password.');
-  //     console.error('Login error:', err);
-  //   }
-  // };
+  const handleSubmitDB = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post('/api/auth/login', 
+      {
+        username: login.user,
+        password: login.password,
+      })
+      .then(reponse => console.log(response.data))
+      .catch(err => console.log(err))
+      ;
+      // Handle successful login
+      console.log('Login successful:', response.data);
+    } catch (err) {
+      // Handle login error
+      setError('Login failed. Please check your username and password.');
+      console.error('Login error:', err);
+    }
+  };
 
 
   };
