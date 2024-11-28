@@ -40,3 +40,8 @@ a.nav_Item:hover {
     flex-grow: 1;
     width: 153px;
 }
+.nav_Item.active {
+    background-color: #0d99ff;
+    color: white;
+    border-radius: 5px;
+  }

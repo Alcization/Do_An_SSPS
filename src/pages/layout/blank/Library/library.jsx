@@ -1,77 +1,96 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, ListGroup, Collapse } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import { Link } from 'react-router-dom';
-import LibraryContent from './libraryContent.json';
+import axios from 'axios';
+// import LibraryContent from './libraryContent.json';
 
 function Library() {
     const [openItems, setOpenItems] = useState({});
-    const subjects = LibraryContent;
-
+    const [LibraryContent, setLibraryContent] = useState([]);
+    // Toggle open state for items
     const toggleOpen = (id) => {
         setOpenItems((prevState) => ({ ...prevState, [id]: !prevState[id] }));
     };
 
+    // Reusable styles
+    const styles = {
+        container: {
+            height: '70vh',
+            fontSize: '1.2rem',
+            marginTop: '2vh',
+        },
+        subjectItem: {
+            background: 'rgb(199, 206, 199)',
+        },
+        fileItem: {
+            background: 'rgb(160, 250, 160)',
+            marginLeft: '3vh',
+            width: '90%',
+        },
+    };
+
+    // Fetch library content from be
+    //TODO: Take library content Method GET: /library: chua thong nhat vs Hanh :(
+    useEffect(() => {
+        const fetchLibraryContent = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/library'); // chua dung api
+                setLibraryContent(response.data);
+            } catch (err) {
+                console.log('Error fetching data', err);
+            }
+        };
+        fetchLibraryContent();
+    },[])
+
     return (
-        <div className="container p-3" style={{height: "70vh", fontSize: '1.2rem', marginTop:'2vh'}}>
-            <h4>Danh sách môn học</h4>
+        <div className="container p-3" style={styles.container}>
+            <h4>Danh sách tài liệu</h4>
             <div className="row">
-                {subjects.map((subject) => (
-                    <div key={subject.id} className="col-md-6 mb-3">
+                {LibraryContent.map((document, index) => (
+                    <div key={index} className="col-md-6 mb-3">
                         <ListGroup variant="flush">
+                            {/* Document Item */}
                             <ListGroup.Item
-                                style={{ background: 'rgb(199, 206, 199'}}
+                                style={styles.subjectItem}
                                 action
-                                onClick={() => toggleOpen(subject.id)}
-                                aria-controls={`collapse-subtopics-${subject.id}`}
-                                aria-expanded={openItems[subject.id] || false}
+                                onClick={() => toggleOpen(index)}
+                                aria-controls={`collapse-files-${index}`}
+                                aria-expanded={openItems[index] || false}
                             >
-                                {subject.title}
+                                {document.title} - {document.category}
                             </ListGroup.Item>
-                            <Collapse in={openItems[subject.id]}>
-                                <div id={`collapse-subtopics-${subject.id}`}>
-                                    <ListGroup variant="flush" className="ml-3">
-                                        {subject.subTopics.map((subTopic, index) => (
-                                            <div key={index}>
-                                                <ListGroup.Item
-                                                 style={{ background: 'rgba(164, 217, 255, 1)', marginLeft:'3vh', width:'90%', marginTop: '0'}}
-                                                    action
-                                                    onClick={() => toggleOpen(`${subject.id}-${index}`)}
-                                                    aria-controls={`collapse-files-${subject.id}-${index}`}
-                                                    aria-expanded={openItems[`${subject.id}-${index}`] || false}
+                            {/* Document Details Collapse */}
+                            <Collapse in={openItems[index]}>
+                                <div id={`collapse-files-${index}`}>
+                                    <ListGroup variant="flush">
+                                        <ListGroup.Item style={styles.fileItem}>
+                                            <strong>Mô tả:</strong> {document.description}
+                                        </ListGroup.Item>
+                                        <ListGroup.Item style={styles.fileItem}>
+                                            <strong>Tổng số trang:</strong> {document.totalPages}
+                                        </ListGroup.Item>
+                                        <ListGroup.Item style={styles.fileItem}>
+                                            <strong>Trạng thái:</strong> {document.status}
+                                        </ListGroup.Item>
+                                        <ListGroup.Item style={styles.fileItem}>
+                                            <strong>Chi phí mỗi trang:</strong> {document.printSettings.costPerPage} VND
+                                        </ListGroup.Item>
+                                        <ListGroup.Item style={styles.fileItem}>
+                                            <strong>Kích thước giấy:</strong> {document.printSettings.allowedPaperSizes.join(', ')}
+                                        </ListGroup.Item>
+                                        {document.fileUrl && (
+                                            <ListGroup.Item style={styles.fileItem}>
+                                                <Button
+                                                    variant="link"
+                                                    href={document.fileUrl}
+                                                    target="_blank"
+                                                    className="text-decoration-none"
                                                 >
-                                                    {subTopic.name} - {subTopic.courseCode} ({subTopic.semester})
-                                                </ListGroup.Item>
-                                                <Collapse in={openItems[`${subject.id}-${index}`]}>
-                                                    <div id={`collapse-files-${subject.id}-${index}`}>
-                                                        <p className="m-0">{subTopic.description}</p>
-                                                        <ListGroup variant="flush" className="ml-3">
-                                                            {subTopic.subFiles.map((file, fileIndex) => (
-                                                                <ListGroup.Item
-                                                                style={{ background: 'rgb(160, 250, 160)', marginLeft:'8vh', width:'80%', marginTop: '0'}}
-                                                                    key={fileIndex}
-                                                                    className="d-flex justify-content-between align-items-center"
-                                                                >
-                                                                        {/* <Link to={`/watch_document`} className="text-decoration-none"> */}
-                                                                         {file.name}: {file.description}
-                                                                         {/* </Link> */}
-                                                                    {file.pdfUrl && (
-                                                                        <Button
-                                                                            variant="link"
-                                                                            href={file.pdfUrl}
-                                                                            target="_blank"
-                                                                            className="text-decoration-none"
-                                                                        >
-                                                                            Xem PDF
-                                                                        </Button>
-                                                                    )}
-                                                                </ListGroup.Item>
-                                                            ))}
-                                                        </ListGroup>
-                                                    </div>
-                                                </Collapse>
-                                            </div>
-                                        ))}
+                                                    Xem tài liệu
+                                                </Button>
+                                            </ListGroup.Item>
+                                        )}
                                     </ListGroup>
                                 </div>
                             </Collapse>

@@ -25,7 +25,20 @@ const navItems = [
 ];
 
 const LeftSidebar = () => {
+  
   return (
+    // <nav className="Sidebar">
+    //   {navItems.map((item, index) => (
+
+    //     <NavLink key={index}  to={`/${item.path_}`} className="nav_Item"
+    //      activeclassname="active"
+    //     >
+    //       <img src={Object.values(item.icon_)} alt={item.label_} />
+    //       <span>{item.label_}</span>
+    //     </NavLink>
+
+    //   ))}
+    // </nav>
     <nav className="Sidebar">
       {navItems.map((item, index) => (
 

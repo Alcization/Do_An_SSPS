@@ -1,43 +1,67 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Upload from '../../../../assets/upload.svg'
-const AddDocumnet = () => {
+import Upload from '../../../../assets/upload.svg';
+
+const AddDocument = () => {
   const [formData, setFormData] = useState({
-    id: '0357',
+    id: '0',
     courseCode: '',
     semester: '',
     documentName: '',
-    file: null
+    file: null,
   });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleFileChange = (e) => {
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
-      file: e.target.files[0]
+      file: e.target.files[0],
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Xử lý logic upload tại đây
-    console.log('Form data:', formData);
+
+    // Prepare form data for sending via Axios
+    const data = new FormData();
+    data.append('id', formData.id);
+    data.append('courseCode', formData.courseCode);
+    data.append('semester', formData.semester);
+    data.append('documentName', formData.documentName);
+    if (formData.file) {
+      data.append('file', formData.file);
+    }
+
+    try {
+      // Replace `your-api-endpoint` with the actual API URL
+      const response = await axios.post('your-api', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log('Response:', response.data);
+      alert('Tài liệu đã được thêm thành công!');
+    } catch (error) {
+      console.error('Error uploading document:', error);
+      alert('Có lỗi xảy ra khi thêm tài liệu.');
+    }
   };
 
   const handleCancel = () => {
     setFormData({
-      id: '0357',
+      id: '0',
       courseCode: '',
       semester: '',
       documentName: '',
-      file: null
+      file: null,
     });
   };
 
@@ -99,7 +123,7 @@ const AddDocumnet = () => {
                   <div className="border rounded p-3 text-center">
                     <div className="mb-3">
                       <img
-                      src={Upload}
+                        src={Upload}
                         alt="Upload icon"
                         style={{ width: '64px', height: '64px' }}
                       />
@@ -134,4 +158,4 @@ const AddDocumnet = () => {
   );
 };
 
-export default AddDocumnet;
+export default AddDocument;
