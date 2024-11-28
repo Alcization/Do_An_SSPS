@@ -16,13 +16,15 @@ import delete_icon from '../../../assets/delete.png';
 
 function MyTable() {
 
-    // TODO: Implement GetDataDB, transfer data to replace Contentjson
+
+
+    // TODO: Implement GetDataDB, transfer data to dataPrinter replace Contentjson
+    const [dataPrinter, setData] = useState(null);
     const GetDataDB = async (event) => {
         event.preventDefault();
         try {
             const response = await axios.get('/printer')
-            .then(reponse => console.log(response.data))
-            .catch(err => console.log(err))
+            setData(response.data);
         } catch (error) {
             console.log(error);
         }
@@ -45,11 +47,14 @@ function MyTable() {
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
+    
     // Get the items for the current page
     const currentItems = Contentjson.slice(indexOfFirstItem, indexOfLastItem);
+    // ! const currentItems = dataPrinter.slice(indexOfFirstItem, indexOfLastItem);
 
     // Calculate the total number of pages
     const totalPages = Math.ceil(Contentjson.length / itemsPerPage);
+    // ! const totalPages = Math.ceil(dataPrinter.length / itemsPerPage);
 
     // Create the pagination items
     const paginationItems = [];
@@ -75,18 +80,22 @@ function MyTable() {
     }
     const toDeletePrinter = (id_printer) => {
         window.alert("Are you sure you want to delete this printer?");
-        // connect to backend
-        // delete printer with id_printer
+        // DeletePrinter(id_printer);
     }
 
     const DisplayData = currentItems.map((info) => {
         return (
             <tr key={info.id}>
                 <td className="my-sm-3 text-center">{info.id}</td>
+
                 <td className="my-sm-5 text-center">{info.manufacturer}</td>
                 <td className="my-sm-3 text-center">{info.model}</td>
+                // ! <td className="my-sm-3 text-center">{info.printerName}</td>
+                // ! <td className="my-sm-3 text-center">{info.campusName}</td>
                 <td className="my-sm-3 text-center">{info.description}</td>
+                // ! <td className="my-sm-5 text-center">{info.desc}</td>
                 <td className="my-sm-5 text-center">{info.building}</td>
+                // ! <td className="my-sm-5 text-center">{info.buildingName}</td>
                 <td className="my-sm-5 text-center">{info.room}</td>
                 <td className="my-sm-5 text-center">
                     <Row>
@@ -130,6 +139,8 @@ function MyTable() {
                                 <th className="my-sm-3 bg-info text-center">ID</th>
                                 <th className="my-sm-5 bg-info text-center">Hãng</th>
                                 <th className="my-sm-3 bg-info text-center">Mẫu mã</th>
+                                // ! <th className="my-sm-5 bg-info text-center">Tên máy in</th>
+                                // ! <th className="my-sm-5 bg-info text-center">Cơ sở</th>
                                 <th className="my-sm-3 bg-info text-center">Mô tả</th>
                                 <th className="my-sm-5 bg-info text-center">Tòa</th>
                                 <th className="my-sm-5 bg-info text-center">Phòng</th>
