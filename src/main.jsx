@@ -50,6 +50,8 @@ import AddUser from './pages/layout/admin/AdminUser/AddUser';
 import AdminListUser from './pages/layout/admin/AdminUser/AdminListUser';
 import UpdateUser from './pages/layout/admin/AdminUser/UpdateUser.jsx';
 
+
+import AdminSPSO from './pages/admin/admin_home/admin_home.jsx';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -109,6 +111,7 @@ const router = createBrowserRouter([
           {
             path:'library',
             element: <Library/>
+            
           },
           {
             path:'watch_document',

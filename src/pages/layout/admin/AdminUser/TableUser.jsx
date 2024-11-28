@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+
+
+
+
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
 import Pagination from 'react-bootstrap/Pagination';
@@ -13,23 +17,24 @@ import FilterForm from './FilterLibrary';
 
 // Dữ liệu mẫu
 
-  const documents = [
-    { id: "0000001", name: "Admin", email: "admin.spso@hcmut.edu.vn", phone: "035266xxxx", role: "Admin" },
-    { id: "2211927", name: "Nguyễn Khánh Lộc", email: "loc.nguyenkhanh@hcmut.edu.vn", phone: "034949xxxx", role: "Sinh viên" },
-    { id: "2211928", name: "Trần Văn An", email: "an.tranvan@hcmut.edu.vn", phone: "034556xxxx", role: "Sinh viên" },
-    { id: "2211929", name: "Lê Thị Thanh", email: "thanh.lethithanh@hcmut.edu.vn", phone: "035667xxxx", role: "Sinh viên" },
-    { id: "2211930", name: "Phạm Quốc Bảo", email: "bao.phamquoc@hcmut.edu.vn", phone: "036778xxxx", role: "Giáo viên" },
-    { id: "2211931", name: "Ngô Thị Hạnh", email: "hanh.ngothi@hcmut.edu.vn", phone: "037889xxxx", role: "Sinh viên" },
-    { id: "2211932", name: "Vũ Minh Quân", email: "quan.vuminh@hcmut.edu.vn", phone: "038990xxxx", role: "Sinh viên" },
-    { id: "2211933", name: "Phạm Thị Hòa", email: "hoa.phamthi@hcmut.edu.vn", phone: "039101xxxx", role: "Sinh viên" },
-    { id: "2211934", name: "Đinh Văn Tài", email: "tai.dinhvan@hcmut.edu.vn", phone: "032233xxxx", role: "Sinh viên" },
-    { id: "2211935", name: "Trần Ngọc Phúc", email: "phuc.tranngoc@hcmut.edu.vn", phone: "033344xxxx", role: "Sinh viên" },
-    { id: "2211936", name: "Nguyễn Văn Tiến", email: "tien.nguyenvan@hcmut.edu.vn", phone: "034455xxxx", role: "Sinh viên" },
-    { id: "2211937", name: "Lê Minh Huy", email: "huy.leminh@hcmut.edu.vn", phone: "035566xxxx", role: "Sinh viên" },
-    { id: "2211938", name: "Trần Thị Thu", email: "thu.tranthi@hcmut.edu.vn", phone: "036677xxxx", role: "Giáo viên" },
-    { id: "2211939", name: "Ngô Văn Hoàng", email: "hoang.ngovan@hcmut.edu.vn", phone: "037788xxxx", role: "Sinh viên" },
-    { id: "2211940", name: "Nguyễn Thị Ngọc", email: "ngoc.nguyenthi@hcmut.edu.vn", phone: "038899xxxx", role: "Admin" }
-  ];
+const documents = [
+  { studentCode: "0000001", givenName: "Admin", email: "admin.spso@hcmut.edu.vn", phoneNumber: "035266xxxx", address: "HCMUT Campus", admin: "Yes" },
+  { studentCode: "2211927", givenName: "Nguyễn Khánh Lộc", email: "loc.nguyenkhanh@hcmut.edu.vn", phoneNumber: "034949xxxx", address: "District 1, HCMC", admin: "No" },
+  { studentCode: "2211928", givenName: "Trần Văn An", email: "an.tranvan@hcmut.edu.vn", phoneNumber: "034556xxxx", address: "District 3, HCMC", admin: "No" },
+  { studentCode: "2211929", givenName: "Lê Thị Thanh", email: "thanh.lethithanh@hcmut.edu.vn", phoneNumber: "035667xxxx", address: "District 5, HCMC", admin: "No" },
+  { studentCode: "2211930", givenName: "Phạm Quốc Bảo", email: "bao.phamquoc@hcmut.edu.vn", phoneNumber: "036778xxxx", address: "District 10, HCMC", admin: "No" },
+  { studentCode: "2211931", givenName: "Ngô Thị Hạnh", email: "hanh.ngothi@hcmut.edu.vn", phoneNumber: "037889xxxx", address: "District 7, HCMC", admin: "No" },
+  { studentCode: "2211932", givenName: "Vũ Minh Quân", email: "quan.vuminh@hcmut.edu.vn", phoneNumber: "038990xxxx", address: "Thu Duc City, HCMC", admin: "No" },
+  { studentCode: "2211933", givenName: "Phạm Thị Hòa", email: "hoa.phamthi@hcmut.edu.vn", phoneNumber: "039101xxxx", address: "Binh Thanh, HCMC", admin: "No" },
+  { studentCode: "2211934", givenName: "Đinh Văn Tài", email: "tai.dinhvan@hcmut.edu.vn", phoneNumber: "032233xxxx", address: "Tan Binh, HCMC", admin: "No" },
+  { studentCode: "2211935", givenName: "Trần Ngọc Phúc", email: "phuc.tranngoc@hcmut.edu.vn", phoneNumber: "033344xxxx", address: "Phu Nhuan, HCMC", admin: "No" },
+  { studentCode: "2211936", givenName: "Nguyễn Văn Tiến", email: "tien.nguyenvan@hcmut.edu.vn", phoneNumber: "034455xxxx", address: "District 6, HCMC", admin: "No" },
+  { studentCode: "2211937", givenName: "Lê Minh Huy", email: "huy.leminh@hcmut.edu.vn", phoneNumber: "035566xxxx", address: "District 8, HCMC", admin: "No" },
+  { studentCode: "2211938", givenName: "Trần Thị Thu", email: "thu.tranthi@hcmut.edu.vn", phoneNumber: "036677xxxx", address: "District 9, HCMC", admin: "No" },
+  { studentCode: "2211939", givenName: "Ngô Văn Hoàng", email: "hoang.ngovan@hcmut.edu.vn", phoneNumber: "037788xxxx", address: "District 4, HCMC", admin: "No" },
+  { studentCode: "2211940", givenName: "Nguyễn Thị Ngọc", email: "ngoc.nguyenthi@hcmut.edu.vn", phoneNumber: "038899xxxx", address: "District 11, HCMC", admin: "Yes" }
+];
+
   
 
 
@@ -79,14 +84,34 @@ function MyTable() {
       }
     }
   };
+  
+// TODO: take api Method GET: /user of minh 
+
+
+  useEffect(()=>{
+    const takeUsers = async () =>{
+      try{
+      const res = await axios.get('http://localhost:5000/user'); // chua dung api
+      console.log(res.data);
+      setDocumentsList(res.data);
+      }
+      catch(err){
+        console.log('Error fetching data',err);
+    }
+  };
+  takeUsers();
+},[]);
+
+
 
   const DisplayData = currentItems.map((info) => (
     <tr key={info.id}>
-      <td className="text-center">{info.id}</td>
-      <td className="text-center">{info.name}</td>
+      <td className="text-center">{info.studentCode}</td>
+      <td className="text-center">{info.givenName}</td>
       <td className="text-center">{info.email}</td>
-      <td className="text-center">{info.phone}</td>
-      <td className="text-center">{info.role}</td>
+      <td className="text-center">{info.phoneNumber}</td>
+      <td className="text-center">{info.address}</td>
+      <td className="text-center">{info.admin}</td>
       <td className="text-center">
         <Button variant="primary" className="me-2" onClick={handleUpdateClick}>
           <i className="bi bi-pencil"></i>
@@ -120,6 +145,7 @@ function MyTable() {
                 <th className="my-sm-3 bg-info text-center">Họ tên</th>
                 <th className="my-sm-3 bg-info text-center">Email</th>
                 <th className="my-sm-3 bg-info text-center">SDT</th>
+                <th className="my-sm-3 bg-info text-center">Địa chỉ</th>
                 <th className="my-sm-3 bg-info text-center">Vai trò</th>
                 <th className="my-sm-3 bg-info text-center">Hành động</th>
               </tr>

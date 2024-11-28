@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import Sidebar from './Sidebar';
-import './Admin.css';
+import './Admin.css'; // Sử dụng file CSS để tùy chỉnh giao diện
 
 function MainComponent() {
     return (
@@ -15,6 +15,6 @@ function MainComponent() {
 
         </div>
     );
-};
+}
 
 export default MainComponent;

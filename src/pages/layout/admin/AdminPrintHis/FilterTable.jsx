@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import Pagination from 'react-bootstrap/Pagination';
 import Button from 'react-bootstrap/Button';
@@ -6,11 +6,12 @@ import Modal from 'react-bootstrap/Modal';
 import Contentjson from '../../blank/PrintingLog/contentjson.json';
 import FilterForm from './FilterForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
 
 function MyTable() {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
-
+    const [document,setDocument] = useState(Contentjson); //replace when have api
     // State để quản lý modal
     const [showFilter, setShowFilter] = useState(false);
 
@@ -21,8 +22,8 @@ function MyTable() {
     // Pagination logic
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = Contentjson.slice(indexOfFirstItem, indexOfLastItem);
-    const totalPages = Math.ceil(Contentjson.length / itemsPerPage);
+    const currentItems = document.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(document.length / itemsPerPage);
 
     const paginationItems = [];
     for (let number = 1; number <= totalPages; number++) {
@@ -36,15 +37,26 @@ function MyTable() {
             </Pagination.Item>
         );
     }
-
+//TODO: Take all user Printing history: studentName, printingID, printingTime, fileName, paperSize  
+useEffect(()=>{
+    const fetchHistoryPrint = async ()=>{
+        try{
+            const response = await axios.get('http://localhost:5000/printing'); //ch dung api
+            setDocument(response.data);
+        }catch(err){
+            console.log('Error fetching data',err);
+        }
+        fetchHistoryPrint();
+    }
+    },[]);
     const DisplayData = currentItems.map((info) => (
         <tr key={info.id}>
-            <td className="my-sm-3 text-center">{info.id}</td>
+            
             <td className="my-sm-5 text-center">{info.studentName}</td>
             <td className="my-sm-3 text-center">{info.printingID}</td>
             <td className="my-sm-5 text-center">{info.printingTime}</td>
             <td className="my-sm-5 text-center">{info.fileName}</td>
-            <td className="my-sm-5 text-center">{info.numberPage}</td>
+          
             <td className="my-sm-5 text-center">{info.paperSize}</td>
         </tr>
     ));
@@ -65,12 +77,12 @@ function MyTable() {
                     <Table bordered hover className="mb-0" style={{ borderRadius: '20px', overflow: 'hidden', fontSize: '1.3rem' }}>
                         <thead>
                             <tr>
-                                <th className="my-sm-3 bg-info text-center">STT</th>
+       
                                 <th className="my-sm-5 bg-info text-center">Tên sinh viên</th>
                                 <th className="my-sm-3 bg-info text-center">Mã máy in</th>
                                 <th className="my-sm-5 bg-info text-center">Thời gian in</th>
                                 <th className="my-sm-5 bg-info text-center">Tên file</th>
-                                <th className="my-sm-5 bg-info text-center">Số trang</th>
+                                
                                 <th className="my-sm-5 bg-info text-center">Size</th>
                             </tr>
                         </thead>
