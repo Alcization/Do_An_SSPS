@@ -37,7 +37,7 @@ function MyTable() {
             </Pagination.Item>
         );
     }
-//TODO: Take all user Printing history: ID, studentName, printingID, printingTime, fileName, numberPage, paperSize  
+//TODO: Take all user Printing history: studentName, printingID, printingTime, fileName, paperSize  
 useEffect(()=>{
     const fetchHistoryPrint = async ()=>{
         try{
@@ -51,12 +51,12 @@ useEffect(()=>{
     },[]);
     const DisplayData = currentItems.map((info) => (
         <tr key={info.id}>
-            <td className="my-sm-3 text-center">{info.id}</td>
+            
             <td className="my-sm-5 text-center">{info.studentName}</td>
             <td className="my-sm-3 text-center">{info.printingID}</td>
             <td className="my-sm-5 text-center">{info.printingTime}</td>
             <td className="my-sm-5 text-center">{info.fileName}</td>
-            <td className="my-sm-5 text-center">{info.numberPage}</td>
+          
             <td className="my-sm-5 text-center">{info.paperSize}</td>
         </tr>
     ));
@@ -77,12 +77,12 @@ useEffect(()=>{
                     <Table bordered hover className="mb-0" style={{ borderRadius: '20px', overflow: 'hidden', fontSize: '1.3rem' }}>
                         <thead>
                             <tr>
-                                <th className="my-sm-3 bg-info text-center">STT</th>
+       
                                 <th className="my-sm-5 bg-info text-center">Tên sinh viên</th>
                                 <th className="my-sm-3 bg-info text-center">Mã máy in</th>
                                 <th className="my-sm-5 bg-info text-center">Thời gian in</th>
                                 <th className="my-sm-5 bg-info text-center">Tên file</th>
-                                <th className="my-sm-5 bg-info text-center">Số trang</th>
+                                
                                 <th className="my-sm-5 bg-info text-center">Size</th>
                             </tr>
                         </thead>

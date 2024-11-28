@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 const AddUser = () => {
   const [formData, setFormData] = useState({
-    id: '0357',
+    id: '0',
     courseCode: '',
     semester: '',
     documentName: '',
@@ -32,7 +32,7 @@ const AddUser = () => {
 
   const handleCancel = () => {
     setFormData({
-      id: '0357',
+      id: '0',
       courseCode: '',
       semester: '',
       documentName: '',
