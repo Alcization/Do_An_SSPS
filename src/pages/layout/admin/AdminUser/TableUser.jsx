@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+
+
+
+
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
 import Pagination from 'react-bootstrap/Pagination';
@@ -36,7 +40,7 @@ import FilterForm from './FilterLibrary';
 // Hàm chính
 function MyTable() {
   const navigate = useNavigate();
-  const [documentsList, setDocumentsList] = useState(documents); // Manage the documents state
+  const [documentsList, setDocumentsList] = useState([]); // Manage the documents state
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const [showFilter, setShowFilter] = useState(false);
@@ -79,14 +83,34 @@ function MyTable() {
       }
     }
   };
+  
+// TODO: take api Method GET: /user of minh 
+
+
+  useEffect(()=>{
+    const takeUsers = async () =>{
+      try{
+      const res = await axios.get('http://localhost:5000/user'); // chua dung api
+      console.log(res.data);
+      setDocumentsList(res.data);
+      }
+      catch(err){
+        console.log('Error fetching data',err);
+    }
+  };
+  takeUsers();
+},[]);
+
+
 
   const DisplayData = currentItems.map((info) => (
     <tr key={info.id}>
-      <td className="text-center">{info.id}</td>
-      <td className="text-center">{info.name}</td>
+      <td className="text-center">{info.studentCode}</td>
+      <td className="text-center">{info.givenName}</td>
       <td className="text-center">{info.email}</td>
-      <td className="text-center">{info.phone}</td>
-      <td className="text-center">{info.role}</td>
+      <td className="text-center">{info.phoneNumber}</td>
+      <td className="text-center">{info.address}</td>
+      <td className="text-center">{info.admin}</td>
       <td className="text-center">
         <Button variant="primary" className="me-2" onClick={handleUpdateClick}>
           <i className="bi bi-pencil"></i>
@@ -120,6 +144,7 @@ function MyTable() {
                 <th className="my-sm-3 bg-info text-center">Họ tên</th>
                 <th className="my-sm-3 bg-info text-center">Email</th>
                 <th className="my-sm-3 bg-info text-center">SDT</th>
+                <th className="my-sm-3 bg-info text-center">Địa chỉ</th>
                 <th className="my-sm-3 bg-info text-center">Vai trò</th>
                 <th className="my-sm-3 bg-info text-center">Hành động</th>
               </tr>

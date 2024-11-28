@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import Pagination from 'react-bootstrap/Pagination';
 import Button from 'react-bootstrap/Button';
@@ -6,12 +6,13 @@ import Modal from 'react-bootstrap/Modal';
 import Contentjson from './contentjson.json';
 import FilterPayment from './FilterPayment';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
 
 
 function MyTable() {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
-
+    const [document,setDocument] = useState([]);
     // State để quản lý modal
     const [showFilter, setShowFilter] = useState(false);
 
@@ -22,8 +23,8 @@ function MyTable() {
     // Pagination logic
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = Contentjson.slice(indexOfFirstItem, indexOfLastItem);
-    const totalPages = Math.ceil(Contentjson.length / itemsPerPage);
+    const currentItems = document.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(document.length / itemsPerPage);
 
     const paginationItems = [];
     for (let number = 1; number <= totalPages; number++) {
@@ -45,11 +46,23 @@ function MyTable() {
         
             <td className="my-sm-5 text-center">{info.printingTime}</td>
  
-            <td className="my-sm-5 text-center">{info.numberPage} VNĐ</td>
-        
+            <td className="my-sm-5 text-center">{info.numberPage} VNĐ</td> 
+    
         </tr>
     ));
 
+    //TODO: Take user Payment history: ID, studentName, printingTime, MoneyAmount
+useEffect(()=>{
+    const fetchHistoryPrint = async ()=>{
+        try{
+            const response = await axios.get('http://localhost:5000/payment'); //ch dung api
+            setDocument(response.data);
+        }catch(err){
+            console.log('Error fetching data',err);
+        }
+        fetchHistoryPrint();
+    }
+    },[]);
     return (
         <div>
             <div className='d-flex justify-content-start align-items-center p-3 border border-start-0  border-dark rounded-end-3' style={{ width: '27vh'}}>

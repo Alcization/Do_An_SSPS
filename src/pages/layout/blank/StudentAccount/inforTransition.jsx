@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import Pagination from 'react-bootstrap/Pagination';
 import PrintingContent from './printingContent.json';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
 
 function InforTransition() {
+    const [document,setDocument] = useState(PrintingContent);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 4;
 
@@ -13,10 +15,10 @@ function InforTransition() {
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
     // Get the items for the current page
-    const currentItems = PrintingContent.slice(indexOfFirstItem, indexOfLastItem);
+    const currentItems = document.slice(indexOfFirstItem, indexOfLastItem);
 
     // Calculate the total number of pages
-    const totalPages = Math.ceil(PrintingContent.length / itemsPerPage);
+    const totalPages = Math.ceil(document.length / itemsPerPage);
 
     // Create the pagination items
     const paginationItems = [];
@@ -38,6 +40,20 @@ function InforTransition() {
             </tr>
         );
     });
+
+//TODO: Take 1 user report info about : thoi gian giao dich, so trang, so tien
+    useEffect(()=>{
+        const fetchUserData = async ()=>{
+            try{
+                const response = await axios.get('http://localhost:5000/report/id');
+                console.log(response.data);
+                setDocument(response.data);
+            }catch(err){
+                console.log('Error fetching data',err);
+            }  
+            fetchUserData(); 
+        };
+    },[]);
 
     return (
         <div  style={{ height: '30vh', width: '90vh', marginLeft: '700px' }}>

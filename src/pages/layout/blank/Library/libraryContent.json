@@ -1,147 +1,173 @@
 [
     {
-        "id": 1,
-        "title": "Các môn đại cương",
-        "subTopics": [
-            {
-                "name": "Giải tích 1",
-                "courseCode": "MT1003",
-                "semester": "2024",
-                "subFiles": [
-                    {
-                        "name": "Đề thi giữa kỳ 241",
-                        "pdfUrl": "https://drive.google.com/file/d/1mSB4AeaRjbjdhPG2dhf4FzcMiqcHKP5a/view?usp=sharing"
-                    },
-                    {
-                        "name": "Đề thi cuối kỳ 241",
-                        "pdfUrl": "https://drive.google.com/file/d/1-mgklFhJAyAZVZhu6Ztf-eX4_5c1UFQS/view?usp=sharing"
-                    }
-                ]
-            },
-            {
-                "name": "Vật lý 1",
-                "courseCode": "PH1001",
-                "semester": "2024",
-                "subFiles": [
-                    {
-                        "name": "Đề thi giữa kỳ 101",
-                        "pdfUrl": "link-to-physics1-midterm"
-                    },
-                    {
-                        "name": "Đề thi cuối kỳ 101",
-                        "pdfUrl": "link-to-physics1-final"
-                    }
-                ]
-            }
-        ]
+      "title": "Giải tích 1",
+      "description": "Tài liệu và đề thi cho môn Giải tích 1",
+      "category": "Mathematics",
+      "fileName": "de-thi-giua-ky-241.pdf",
+      "fileType": "application/pdf",
+      "fileUrl": "https://drive.google.com/file/d/1mSB4AeaRjbjdhPG2dhf4FzcMiqcHKP5a/view?usp=sharing",
+      "totalPages": 10,
+      "uploadedBy": "64759c3f9f8f3c7e9a4ef901",
+      "status": "active",
+      "printSettings": {
+        "allowedPaperSizes": ["A4", "A5"],
+        "allowColor": true,
+        "maxCopies": 5,
+        "costPerPage": 2000
+      }
     },
     {
-        "id": 2,
-        "title": "Các môn kinh tế - chính trị",
-        "subTopics": [
-            {
-                "name": "Triết học Mác-Lênin",
-                "courseCode": "CO2002",
-                "semester": "2025",
-                "subFiles": [
-                    {
-                        "name": "Đề thi giữa kỳ 301",
-                        "pdfUrl": "link-to-probability-midterm"
-                    },
-                    {
-                        "name": "Đề thi cuối kỳ 301",
-                        "pdfUrl": "link-to-probability-final"
-                    }
-                ]
-            },
-            {
-                "name": "Chủ nghĩa Xã hội Khoa học",
-                "courseCode": "LA2001",
-                "semester": "2025",
-                "subFiles": [
-                    {
-                        "name": "Đề thi giữa kỳ 401",
-                        "pdfUrl": "link-to-linear-algebra-midterm"
-                    },
-                    {
-                        "name": "Đề thi cuối kỳ 401",
-                        "pdfUrl": "link-to-linear-algebra-final"
-                    }
-                ]
-            }
-        ]
+      "title": "Vật lý 1",
+      "description": "Tài liệu và đề thi cho môn Vật lý 1",
+      "category": "Physics",
+      "fileName": "de-thi-cuoi-ky-101.pdf",
+      "fileType": "application/pdf",
+      "fileUrl": "https://drive.google.com/file/d/1-mgklFhJAyAZVZhu6Ztf-eX4_5c1UFQS/view?usp=sharing",
+      "totalPages": 8,
+      "uploadedBy": "64759c3f9f8f3c7e9a4ef901",
+      "status": "active",
+      "printSettings": {
+        "allowedPaperSizes": ["A4"],
+        "allowColor": false,
+        "maxCopies": 10,
+        "costPerPage": 1500
+      }
     },
     {
-        "id": 3,
-        "title": "Các môn cơ sở ngành – chuyên ngành",
-        "subTopics": [
-            {
-                "name": "Mạng máy tính",
-                "courseCode": "CO2002",
-                "semester": "2025",
-                "subFiles": [
-                    {
-                        "name": "Đề thi giữa kỳ 301",
-                        "pdfUrl": "link-to-probability-midterm"
-                    },
-                    {
-                        "name": "Đề thi cuối kỳ 301",
-                        "pdfUrl": "link-to-probability-final"
-                    }
-                ]
-            },
-            {
-                "name": "Hệ thống thông tin",
-                "courseCode": "LA2001",
-                "semester": "2025",
-                "subFiles": [
-                    {
-                        "name": "Đề thi giữa kỳ 401",
-                        "pdfUrl": "link-to-linear-algebra-midterm"
-                    },
-                    {
-                        "name": "Đề thi cuối kỳ 401",
-                        "pdfUrl": "link-to-linear-algebra-final"
-                    }
-                ]
-            }
-        ]
+      "title": "Triết học Mác-Lênin",
+      "description": "Tài liệu và đề thi môn Triết học Mác-Lênin",
+      "category": "Political Science",
+      "fileName": "de-thi-giua-ky-301.pdf",
+      "fileType": "application/pdf",
+      "fileUrl": "link-to-probability-midterm",
+      "totalPages": 12,
+      "uploadedBy": "64759c3f9f8f3c7e9a4ef902",
+      "status": "active",
+      "printSettings": {
+        "allowedPaperSizes": ["A4", "Letter"],
+        "allowColor": true,
+        "maxCopies": 3,
+        "costPerPage": 2500
+      }
     },
-  
     {
-        "id": 4,
-        "title": "Các môn khác",
-        "subTopics": [
-            {
-                "name": "Khởi nghiệp",
-                "courseCode": "CH1001",
-                "semester": "2025",
-                "subFiles": [
-                    {
-                        "name": "Đề thi giữa kỳ 501",
-                        "pdfUrl": "link-to-chemistry-midterm"
-                    },
-                    {
-                        "name": "Đề thi cuối kỳ 501",
-                        "pdfUrl": "link-to-chemistry-final"
-                    }
-                ]
-            },
-            {
-                "name": "Kinh tế học đại cương",
-                "courseCode": "PH1002",
-                "semester": "2025",
-                "subFiles": [
-                    {
-                        "name": "Đề thi giữa kỳ 601",
-                        "pdfUrl": "link-to-physics2-midterm"
-                    },
-                    {
-                        "name": "Đề thi cuối kỳ 601",
-                        "pdfUrl": "link-to-physics2-final"
-                    }
-                ]
-            }
-        ]
+      "title": "Chủ nghĩa Xã hội Khoa học",
+      "description": "Tài liệu và đề thi môn Chủ nghĩa Xã hội Khoa học",
+      "category": "Political Science",
+      "fileName": "de-thi-cuoi-ky-401.pdf",
+      "fileType": "application/pdf",
+      "fileUrl": "link-to-linear-algebra-final",
+      "totalPages": 14,
+      "uploadedBy": "64759c3f9f8f3c7e9a4ef902",
+      "status": "active",
+      "printSettings": {
+        "allowedPaperSizes": ["A3", "A4"],
+        "allowColor": true,
+        "maxCopies": 7,
+        "costPerPage": 3000
+      }
+    },
+    {
+      "title": "Khởi nghiệp",
+      "description": "Tài liệu môn Khởi nghiệp",
+      "category": "Economics",
+      "fileName": "de-thi-giua-ky-501.pdf",
+      "fileType": "application/pdf",
+      "fileUrl": "link-to-entrepreneurship-midterm",
+      "totalPages": 10,
+      "uploadedBy": "64759c3f9f8f3c7e9a4ef903",
+      "status": "active",
+      "printSettings": {
+        "allowedPaperSizes": ["A4"],
+        "allowColor": false,
+        "maxCopies": 4,
+        "costPerPage": 2000
+      }
+    },
+    {
+      "title": "Kinh tế học đại cương",
+      "description": "Tài liệu môn Kinh tế học đại cương",
+      "category": "Economics",
+      "fileName": "de-thi-cuoi-ky-601.pdf",
+      "fileType": "application/pdf",
+      "fileUrl": "link-to-economics-final",
+      "totalPages": 15,
+      "uploadedBy": "64759c3f9f8f3c7e9a4ef903",
+      "status": "inactive",
+      "printSettings": {
+        "allowedPaperSizes": ["A4", "Letter"],
+        "allowColor": true,
+        "maxCopies": 6,
+        "costPerPage": 3000
+      }
+    },
+    {
+      "title": "Mạng máy tính",
+      "description": "Tài liệu môn Mạng máy tính",
+      "category": "Information Technology",
+      "fileName": "de-thi-giua-ky-701.pdf",
+      "fileType": "application/pdf",
+      "fileUrl": "link-to-networking-midterm",
+      "totalPages": 20,
+      "uploadedBy": "64759c3f9f8f3c7e9a4ef904",
+      "status": "active",
+      "printSettings": {
+        "allowedPaperSizes": ["A4"],
+        "allowColor": false,
+        "maxCopies": 10,
+        "costPerPage": 2500
+      }
+    },
+    {
+      "title": "Hệ thống thông tin",
+      "description": "Tài liệu môn Hệ thống thông tin",
+      "category": "Information Technology",
+      "fileName": "de-thi-cuoi-ky-801.pdf",
+      "fileType": "application/pdf",
+      "fileUrl": "link-to-information-systems-final",
+      "totalPages": 18,
+      "uploadedBy": "64759c3f9f8f3c7e9a4ef904",
+      "status": "archived",
+      "printSettings": {
+        "allowedPaperSizes": ["A3", "A4"],
+        "allowColor": true,
+        "maxCopies": 8,
+        "costPerPage": 3000
+      }
+    },
+    {
+      "title": "Toán rời rạc",
+      "description": "Tài liệu môn Toán rời rạc",
+      "category": "Computer Science",
+      "fileName": "de-thi-giua-ky-901.pdf",
+      "fileType": "application/pdf",
+      "fileUrl": "link-to-discrete-math-midterm",
+      "totalPages": 11,
+      "uploadedBy": "64759c3f9f8f3c7e9a4ef905",
+      "status": "active",
+      "printSettings": {
+        "allowedPaperSizes": ["A4", "A5"],
+        "allowColor": false,
+        "maxCopies": 5,
+        "costPerPage": 2000
+      }
+    },
+    {
+      "title": "Kỹ thuật lập trình",
+      "description": "Tài liệu môn Kỹ thuật lập trình",
+      "category": "Computer Science",
+      "fileName": "de-thi-cuoi-ky-1001.pdf",
+      "fileType": "application/pdf",
+      "fileUrl": "link-to-programming-techniques-final",
+      "totalPages": 22,
+      "uploadedBy": "64759c3f9f8f3c7e9a4ef905",
+      "status": "inactive",
+      "printSettings": {
+        "allowedPaperSizes": ["A4", "Letter"],
+        "allowColor": true,
+        "maxCopies": 7,
+        "costPerPage": 2500
+      }
     }
-]
+  ]
+  

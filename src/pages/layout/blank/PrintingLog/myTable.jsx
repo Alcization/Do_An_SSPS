@@ -1,23 +1,25 @@
-import  { useState } from 'react';
+import  { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import Pagination from 'react-bootstrap/Pagination';
 import Contentjson from './contentjson.json';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Search from './search';
+import axios from 'axios';
 
 function MyTable() {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
+    const [document,setDocument] = useState([]);
 
     // Calculate the indices of the first and last items on the current page
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
     // Get the items for the current page
-    const currentItems = Contentjson.slice(indexOfFirstItem, indexOfLastItem);
+    const currentItems = document.slice(indexOfFirstItem, indexOfLastItem);
 
     // Calculate the total number of pages
-    const totalPages = Math.ceil(Contentjson.length / itemsPerPage);
+    const totalPages = Math.ceil(document.length / itemsPerPage);
 
     // Create the pagination items
     const paginationItems = [];
@@ -28,6 +30,18 @@ function MyTable() {
             </Pagination.Item>
         );
     }
+//TODO: Take user Printing history: ID, studentName, printingID, printingTime, fileName, numberPage, paperSize  
+useEffect(()=>{
+const fetchHistoryPrint = async ()=>{
+    try{
+        const response = await axios.get('http://localhost:5000/printing'); //ch dung api
+        setDocument(response.data);
+    }catch(err){
+        console.log('Error fetching data',err);
+    }
+    fetchHistoryPrint();
+}
+},[]);
 
     const DisplayData = currentItems.map((info) => {
         return (
