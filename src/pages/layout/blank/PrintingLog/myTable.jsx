@@ -9,7 +9,7 @@ import axios from 'axios';
 function MyTable() {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
-    const [document,setDocument] = useState([]);
+    const [document,setDocument] = useState(Contentjson); //replace when we have api
 
     // Calculate the indices of the first and last items on the current page
     const indexOfLastItem = currentPage * itemsPerPage;

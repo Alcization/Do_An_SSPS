@@ -1,33 +1,48 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 const AddUser = () => {
   const [formData, setFormData] = useState({
     id: '0',
-    courseCode: '',
-    semester: '',
-    documentName: '',
-    file: null
+    courseCode: '', // This corresponds to the user name
+    semester: '',   // This corresponds to the email
+    documentName: '', // This corresponds to the phone number
+    file: null, // This could be removed if not needed
   });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
 
-  const handleFileChange = (e) => {
-    setFormData(prevState => ({
-      ...prevState,
-      file: e.target.files[0]
-    }));
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Xử lý logic upload tại đây
-    console.log('Form data:', formData);
+
+    // Prepare the data object to send to the API
+    const data = {
+      id: formData.id,
+      username: formData.courseCode,
+      email: formData.semester,
+      phoneNumber: formData.documentName,
+    };
+
+    try {
+      // Replace `your-api-endpoint` with the actual API URL
+      const response = await axios.post('your-api-endpoint', data, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      console.log('Response:', response.data);
+      alert('Người dùng đã được thêm thành công!');
+    } catch (error) {
+      console.error('Error adding user:', error);
+      alert('Có lỗi xảy ra khi thêm người dùng.');
+    }
   };
 
   const handleCancel = () => {
@@ -36,7 +51,7 @@ const AddUser = () => {
       courseCode: '',
       semester: '',
       documentName: '',
-      file: null
+      file: null,
     });
   };
 
@@ -92,8 +107,6 @@ const AddUser = () => {
                     onChange={handleInputChange}
                   />
                 </div>
-
-               
 
                 <div className="d-flex justify-content-center gap-3">
                   <button type="submit" className="btn btn-primary px-4">

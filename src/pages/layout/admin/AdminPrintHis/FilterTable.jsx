@@ -11,7 +11,7 @@ import axios from 'axios';
 function MyTable() {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
-    const [document,setDocument] = useState([]);
+    const [document,setDocument] = useState(Contentjson); //replace when have api
     // State để quản lý modal
     const [showFilter, setShowFilter] = useState(false);
 
