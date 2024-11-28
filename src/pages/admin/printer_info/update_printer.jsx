@@ -5,6 +5,8 @@ import Button from 'react-bootstrap/Button';
 import Select from 'react-select'
 import Contentjson from './contentjson.json';
 
+const axios = require('axios');
+
 function UpdatePrinter() {
     const location = useLocation();
     const navigate = useNavigate();
@@ -21,8 +23,24 @@ function UpdatePrinter() {
         const building = formData.get('building')
         const room = formData.get('room')
         const description = formData.get('description')
-        // await updatePrinter()
+
+        // TODO: Implement UpdatePrinter
+        try {
+            const response = await axios.patch(`/printer/:${printerID}`, {
+                "printerName": manufacturer + " " + model,
+                "campusName": "CS2", // default campus name
+                "buildingName": building,
+                "room": room,
+                "desc": description,
+                "status": "DISABLED"
+            })
+            .then(reponse => console.log(response.data))
+            .catch(err => console.log(err))
+        } catch (error) {
+            console.log(error);
+        }
     }
+
     const options = [
         { value: 'H1', label: 'H1' },
         { value: 'H2', label: 'H2' },

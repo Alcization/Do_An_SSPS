@@ -7,12 +7,26 @@ import Contentjson from './contentjson.json';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import printer_img from '../../../assets/big-printer.png';
 
+const axios = require('axios');
+
 function Details() {
     const location = useLocation();
     const navigate = useNavigate();
     const handleViewClick = () => {
         navigate('/admin/printer_info');
     }
+
+    // TODO: Implement GetDataPrinterDB to get specify printer data replace Contentjson
+    const getDataPrinterDB = async (event) => {
+        try {
+            const response = await axios.get(`/api/printer/${printerID}`)
+            .then(reponse => console.log(response.data))
+            .catch(err => console.log(err))
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     const DisplayData = Contentjson.map((info) => {
         if (info.id === location.state.id) {
             return (

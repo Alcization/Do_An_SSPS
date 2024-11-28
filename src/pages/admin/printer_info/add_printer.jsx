@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Select from 'react-select'
 import { useNavigate } from 'react-router-dom';
 
-
+const axios = require('axios');
 
 function AddPrinter() {
     const navigate = useNavigate();
@@ -19,8 +19,25 @@ function AddPrinter() {
         const building = formData.get('building')
         const room = formData.get('room')
         const description = formData.get('description')
-        // await insertPrinter()
+
+        // TODO: Implement AddPrinter, the manufacturer and model is combined to create a printer name
+        try {
+            const response = await axios.post('/printer/create', {
+                "printerName": manufacturer + " " + model,
+                "campusName": "CS2", // default campus
+                "buildingName": building,
+                "room": room,
+                "desc": description,
+                "status": "ACTIVE" // default status
+              }
+            )
+            .then(reponse => console.log(response.data))
+            .catch(err => console.log(err))
+        } catch (error) {
+            console.log(error);
+        }
     }
+
     const options = [
         { value: 'h1', label: 'H1' },
         { value: 'h2', label: 'H2' },

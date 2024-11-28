@@ -12,7 +12,32 @@ import view_icon from '../../../assets/view.png';
 import edit_icon from '../../../assets/update.png';
 import delete_icon from '../../../assets/delete.png';
 
+const axios = require('axios');
+
 function MyTable() {
+
+    // TODO: Implement GetDataDB, transfer data to replace Contentjson
+    const GetDataDB = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await axios.get('/printer')
+            .then(reponse => console.log(response.data))
+            .catch(err => console.log(err))
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    // TODO: Implement DeletePrinter
+    const DeletePrinter = async (id_printer) => {
+        try {
+            const response = await axios.delete(`/printer/:${id_printer}`)
+            .then(reponse => console.log(response.data))
+            .catch(err => console.log(err))
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 8;
 
@@ -35,6 +60,8 @@ function MyTable() {
             </Pagination.Item>
         );
     }
+
+
 
     const navigate = useNavigate();
     const toAddPrinter = () => {
@@ -95,10 +122,7 @@ function MyTable() {
             </div>
             <div className='d-flex flex-column  align-items-center' 
             style={{ height: '62vh', width: '176vh', marginLeft: '1rem'}}>
-
                 <Search/>
- 
-
                 <div className='w-100 bg-white p-4 rounded ' style={{ borderRadius: '20px', overflow: 'hidden' }}>
                     <Table bordered hover className='mb-0' style={{ borderRadius: '20px', overflow: 'hidden', fontSize: '1.3rem'  }}>
                         <thead>
@@ -116,8 +140,6 @@ function MyTable() {
                             {DisplayData}
                         </tbody>
                     </Table>
-
-                    
                 </div>
             </div>
             <Pagination className="justify-content-end mt-3" style={{marginRight: '3rem'}}>
