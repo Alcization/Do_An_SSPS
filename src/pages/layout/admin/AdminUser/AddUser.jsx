@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Upload from '../../../../assets/upload.svg'
 const AddUser = () => {
   const [formData, setFormData] = useState({
     id: '0357',

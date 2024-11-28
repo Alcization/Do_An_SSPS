@@ -2,11 +2,8 @@ import React from 'react'
 import TablePayment from './TablePayment';
 const AdminPayment = () => {
   return (
-    <div>
-    <div style={{scale:'0.9', width: '80%'}}>
+    <div style={{width: '90vh'}}>
       <TablePayment/>
-    </div>
-   
     </div>
   )
 }

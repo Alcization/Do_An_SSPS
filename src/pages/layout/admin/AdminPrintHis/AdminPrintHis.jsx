@@ -1,14 +1,10 @@
 import React from 'react'
 
-import MyTable from '../../blank/PrintingLog/myTable';
 import FilterTable from './FilterTable';
 const AdminPrintHis = () => {
   return (
-    <div>
-    <div style={{scale:'0.9', width: '80%'}}>
+    <div style={{width: '90vh'}}>
       <FilterTable/>
-    </div>
-   
     </div>
   )
 }

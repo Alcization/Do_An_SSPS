@@ -10,13 +10,16 @@ import book from '../../../assets/book.png';
 import user from '../../../assets/user_icon.png';
 
 const navItems = [
-  { icon_: home, label_: "Trang chủ", path_: "admin_home/home", centered: true },
-  { icon_: printer, label_: "Máy in", path_: "admin_home/printer", centered: true },
-  { icon_: slider, label_: "Cấu hình", path_: "admin_home/settings", centered: true },
-  { icon_: chart, label_: "Báo cáo", path_: "admin_home/reports", centered: true },
-  { icon_: clipboard, label_: "Lịch sử", path_: "admin_home/history", centered: true },
-  { icon_: book, label_: "Thư viện", path_: "admin_home/library", marginTop: true },
-  { icon_: user, label_: "Người dùng", path_: "admin_home/users", marginTop: true }
+  { icon_: {home}, label_: "Trang chủ", centered: true, link_: "admin/admin_home" },
+  { icon_: {printer}, label_: "Trạng thái", centered: true, link_: "admin/printer_status" },
+  { icon_: {printer}, label_: "Thông tin", centered: true, link_: "admin/printer_info" },
+  { icon_: {slider}, label_: "Cấp phát", centered: true, link_: "admin/allocation" },
+  { icon_: {slider}, label_: "Định dạng", centered: true, link_: "admin/file_type" },
+  { icon_: {chart}, label_: "Báo cáo", centered: true, link_: "admin/report" },
+  { icon_: {clipboard}, label_: "Lịch sử in", centered: true, link_: "admin/history" },
+  { icon_: {clipboard}, label_: "Lịch sử mua", centered: true, link_: "admin/admin_payment" },
+  { icon_: {book}, label_: "Thư viện", marginTop: true, link_: "admin/library" },
+  { icon_: {user}, label_: "Người dùng", marginTop: true, link_: "admin/users" }
 ];
 
 const LeftSidebar = () => {
@@ -35,18 +38,15 @@ const LeftSidebar = () => {
     //   ))}
     // </nav>
     <nav className="Sidebar">
-    {navItems.map((item, index) => (
-      <NavLink
-        key={index}
-        to={`/${item.path_}`}
-        className="nav_Item"
-        activeclassname="active"
-      >
-        <img src={item.icon_} alt={item.label_} />
-        <span>{item.label_}</span>
-      </NavLink>
-    ))}
-  </nav>
+      {navItems.map((item, index) => (
+
+        <NavLink key={index} to={`/${item.link_}`} className="nav_Item">
+          <img src={Object.values(item.icon_)} alt={item.label_} />
+          <span>{item.label_}</span>
+        </NavLink>
+
+      ))}
+    </nav>
   );
 };
 

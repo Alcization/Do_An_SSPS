@@ -1,8 +1,9 @@
-.upLoadFile {
+.upLoadFile1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
+  margin-top: 10rem;
 }
 
 /*chooseFile*/

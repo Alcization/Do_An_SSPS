@@ -8,14 +8,11 @@ function MainComponent() {
     return (
         <div>
             <Header />
-            <div className="d-flex" style={{ height: 'calc(100vh - 70px)' }}>
-                <div className="sidebar" style={{ width: '250px', margin: 0, padding: 0 }}>
-                    <Sidebar />
-                </div>
-                <div className="content flex-grow-1" style={{ margin: 0, padding: 0, overflowY: 'auto' }}>
-                    <Outlet />
-                </div>
+            <div className='grid-container'>
+                <div className='grid-menu'><Sidebar /></div>
+                <div className='grid-main'><Outlet /></div>
             </div>
+
         </div>
     );
 }

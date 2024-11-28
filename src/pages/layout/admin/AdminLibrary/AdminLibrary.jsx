@@ -3,12 +3,8 @@ import TableLibrary from './TableLibrary';
 
 const AdminLibrary = () => {
   return (
-    <div>
-    <div style={{scale:'0.9', width: '80%'}}>
-      
+    <div style={{width: '90vh'}}>
       <TableLibrary/>
-    </div>
-   
     </div>
   )
 }

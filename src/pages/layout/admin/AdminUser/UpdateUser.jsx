@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Upload from '../../../../assets/upload.svg'
 const UpdateUser= () => {
   const [formData, setFormData] = useState({
     id: '0357',
@@ -47,7 +46,7 @@ const UpdateUser= () => {
         <div className="col-md-6">
           <div className="card">
             <div className="card-body">
-              <h3 className="text-center mb-4">Sửa người dùng</h3>
+              <h3 className="text-center mb-4">Cập nhật thông tin người dùng</h3>
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label className="form-label">MSSV</label>

@@ -4,7 +4,6 @@ import { createBrowserRouter,RouterProvider } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import './index.css'
 
 import Blank from './pages/layout/blank/Blank.jsx'
 import Error from './pages/ErrorPage.jsx'
@@ -27,7 +26,21 @@ import StudentAccount from './pages/layout/blank/StudentAccount/studentAccount.j
 import Library from './pages/layout/blank/Library/library.jsx';
 import WatchDocument from './pages/layout/blank/Library/watchDocument.jsx';
 // import for admin pages
-import AdminHome from './pages/layout/admin/Admin.jsx';
+import Admin from './pages/layout/admin/Admin.jsx';
+
+import AdminHome from './pages/admin/admin_home/admin_home.jsx';
+import PrinterStatus from './pages/admin/printer_operation_status/printer_status.jsx';
+import PrinterInfo from './pages/admin/printer_info/printer_info.jsx';
+import PrinterDetail from './pages/admin/printer_info/printer_detail.jsx';
+import AddPrinter from './pages/admin/printer_info/add_printer.jsx';
+import UpdatePrinter from './pages/admin/printer_info/update_printer.jsx';
+
+import Report from './pages/layout/student/components/admin/report.jsx'
+import Allocation from "./pages/layout/student/components/admin/allocation.jsx";
+import AddCalendar from "./pages/layout/student/components/admin/addCalendar.jsx";
+import FileType from "./pages/layout/student/components/admin/fileType.jsx";
+
+
 import AdminPrintHis from './pages/layout/admin/AdminPrintHis/AdminPrintHis.jsx';
 import AdminPayment from './pages/layout/admin/AdminPayment/AdminPayment.jsx';
 import AdminLibrary from './pages/layout/admin/AdminLibrary/AdminLibrary.jsx';
@@ -36,6 +49,9 @@ import UpdateDocumnet from './pages/layout/admin/AdminLibrary/UpdateDocument';
 import AddUser from './pages/layout/admin/AdminUser/AddUser';
 import AdminListUser from './pages/layout/admin/AdminUser/AdminListUser';
 import UpdateUser from './pages/layout/admin/AdminUser/UpdateUser.jsx';
+
+
+import AdminSPSO from './pages/admin/admin_home/admin_home.jsx';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -104,10 +120,49 @@ const router = createBrowserRouter([
         ]
       },
       {
-        path: 'admin_home',
-        element: <AdminHome />,
+        path: 'admin',
+        element: <Admin />,
         children: [
-          // add admin pages here
+          {
+            path: 'admin_home',
+            element: <AdminHome />,
+          },
+          {
+            path: 'printer_status',
+            element: <PrinterStatus />,
+          },
+          {
+            path: 'printer_info',
+            element: <PrinterInfo />,
+          },
+          {
+            path: 'add_printer',
+            element: <AddPrinter />,
+          },
+          {
+            path: 'update_printer',
+            element: <UpdatePrinter />,
+          },
+          {
+            path: 'printer_detail',
+            element: <PrinterDetail />,
+          },
+          {
+            path: 'allocation',
+            element: <Allocation />,
+          },
+          {
+            path: 'add_calendar',
+            element: <AddCalendar />,
+          },
+          {
+            path: 'file_type',
+            element: <FileType />,
+          },
+          {
+            path: 'report',
+            element: <Report />,
+          },
           {
             path: 'history',
             element: <AdminPrintHis />
@@ -134,18 +189,15 @@ const router = createBrowserRouter([
             element: <AdminListUser/>,
           },
           {
-            path: 'users/add_user',
+            path: 'add_user',
             element: <AddUser/>,
           },
           {
-            path: 'users/update_user',
+            path: 'update_user',
             element: <UpdateUser/>,
           }
-
-          
         ]
-      },
-     
+      }
     ],
   },
 

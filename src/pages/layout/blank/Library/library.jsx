@@ -13,7 +13,7 @@ function Library() {
     };
 
     return (
-        <div className="container p-3" style={{height: "70vh", fontSize: '1.2rem', marginTop:'10vh'}}>
+        <div className="container p-3" style={{height: "70vh", fontSize: '1.2rem', marginTop:'2vh'}}>
             <h4>Danh sách môn học</h4>
             <div className="row">
                 {subjects.map((subject) => (
