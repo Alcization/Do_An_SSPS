@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Select from 'react-select'
 import { useNavigate } from 'react-router-dom';
 
-const axios = require('axios');
+// const axios = require('axios');
 
 function AddPrinter() {
     const navigate = useNavigate();

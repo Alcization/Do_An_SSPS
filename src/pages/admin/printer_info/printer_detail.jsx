@@ -7,7 +7,7 @@ import Contentjson from './contentjson.json';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import printer_img from '../../../assets/big-printer.png';
 
-const axios = require('axios');
+// const axios = require('axios');
 
 function Details() {
     const location = useLocation();

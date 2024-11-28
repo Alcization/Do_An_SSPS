@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function MyTable() 
 {   
     // TODO: Implement DisplayDataDB
-    const axios = require('axios');
+    // const axios = require('axios');
     const DisplayDataDB = async (event) => {
         event.preventDefault();
         try {

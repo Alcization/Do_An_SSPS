@@ -12,7 +12,7 @@ import view_icon from '../../../assets/view.png';
 import edit_icon from '../../../assets/update.png';
 import delete_icon from '../../../assets/delete.png';
 
-const axios = require('axios');
+// const axios = require('axios');
 
 function MyTable() {
 

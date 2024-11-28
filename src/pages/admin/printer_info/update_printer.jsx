@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Select from 'react-select'
 import Contentjson from './contentjson.json';
 
-const axios = require('axios');
+// const axios = require('axios');
 
 function UpdatePrinter() {
     const location = useLocation();

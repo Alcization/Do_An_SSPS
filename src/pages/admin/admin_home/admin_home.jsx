@@ -4,7 +4,7 @@ import './admin_home.css';
 import Recent from './Recent/myTable.jsx';
 
 // TODO Implement GetDataDB, transfer data from server to an array name data
-const axios = require('axios');
+// const axios = require('axios');
 const GetDataDB = async (event) => {
   event.preventDefault();
   try {
