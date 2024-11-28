@@ -2,6 +2,20 @@ import React from 'react';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 import './admin_home.css';
 import Recent from './Recent/myTable.jsx';
+
+// TODO Implement GetDataDB, transfer data from server to an array name data
+// const axios = require('axios');
+const GetDataDB = async (event) => {
+  event.preventDefault();
+  try {
+      const response = await axios.get('/api/printing/frequency')
+      .then(reponse => console.log(response.data))
+      .catch(err => console.log(err))
+  } catch (error) {
+  console.log(error);
+  }
+};
+
 const data = [
   {day: '14/11', quantity: 73},
   {day: '15/11', quantity: 46},

@@ -1,11 +1,22 @@
-import  { useState } from 'react';
 import Table from 'react-bootstrap/Table';
-import Pagination from 'react-bootstrap/Pagination';
 import Contentjson from './contentjson.json';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function MyTable() 
-{
+{   
+    // TODO: Implement DisplayDataDB
+    // const axios = require('axios');
+    const DisplayDataDB = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await axios.get('/api/printing/recent')
+            .then(reponse => console.log(response.data))
+            .catch(err => console.log(err))
+        } catch (error) {
+        console.log(error);
+        }
+    };
+
     const currentItems = Contentjson.slice(0, 8);
     const DisplayData = currentItems.map((info) => {
         return (
