@@ -3,6 +3,7 @@
   width: 40vw;
   height: 65vh;
   margin: 0 auto;
+  margin-top: 3rem;
 }
 
 .buyPrintingPaper__body {
@@ -69,7 +70,7 @@
   margin-bottom: 1.5em;
 }
 
-.buyPrintingPaper-conclude .title {
+.buyPrintingPaper-conclude .title1 {
   text-align: left;
   color: #0A0D13;
   font-weight: 500;

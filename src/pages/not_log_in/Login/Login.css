@@ -13,6 +13,7 @@
   }
   
   .content {
+    margin-top: 2rem;
     display: flex;
     gap: 20px;
   }
@@ -102,6 +103,7 @@
   
   .imageSection {
     width: 50%;
+    margin-top: 4rem;
   }
   
   .loginImage {

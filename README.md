@@ -1,12 +1,12 @@
 # React + Vite
 
-Lộc - Trang chủ, Về chúng tôi, Dịch vụ, Đăng nhập, Design router
+Admin 
 
-Phát - Home, File Upload, Chọn máy in và xác nhận in, Mua trang in
+Email: admin@hcmut.edu.vn  --- Password: admin
 
-Nhi - Printing log, Thông tin tài khoản, Watch document in library
+Student
 
-Deadline task 1 : 7/11
+Email: student@hcmut.edu.vn  --- Password: student
 
 Plan task 2 : Hoàn thiện frontend 14/11C:\Users\Admin\Desktop
 Print history, Payment history, Library, User management - Nhi;
