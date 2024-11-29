@@ -21,6 +21,7 @@ import StudentHome from './pages/layout/student/components/home.jsx';
 import UploadFile from './pages/layout/student/components/uploadFiles.jsx';
 import ConfirmPrinting from './pages/layout/student/components/confirmPrinting.jsx';
 import BuyPrintingPaper from './pages/layout/student/components/buyPrintingPaper.jsx';
+import PaymentStatus from './pages/layout/student/components/paymentStatus.jsx';
 import PrintingLog from './pages/layout/blank/PrintingLog/myTable.jsx';
 import StudentAccount from './pages/layout/blank/StudentAccount/studentAccount.jsx';
 import Library from './pages/layout/blank/Library/library.jsx';
@@ -99,6 +100,10 @@ const router = createBrowserRouter([
           {
             path: 'buy_printing_paper',
             element: <BuyPrintingPaper />,
+          },
+          {
+            path: 'payment_status',
+            element: <PaymentStatus />,
           },
           {
             path: 'printingLog',

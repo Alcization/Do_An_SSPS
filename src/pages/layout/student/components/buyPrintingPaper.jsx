@@ -1,21 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./css/buyPrintingPaper/buyPrintingPaper.css";
+import {useLocation, useNavigate} from 'react-router-dom';
+
 
 function BuyPrintingPaperBody() {
   const [paperNo, setPaperNo] = useState(0);
   const paperPrice = 200;
 
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const id = queryParams.get('id');
+
+  useEffect(() => {
+    console.log('ID from query params:', id);
+    // You can use the id for further logic here
+  }, [id]);
+  
   const handleBlur = (event) => {
     const value = parseFloat(event.target.value) || 0; 
     setPaperNo(value);
     console.log(value);
   };
 
+  const navigate = useNavigate();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('Form submitted with:', { paperNo, total: paperNo * paperPrice });
+    // navigate('/student/payment_status');
+  };
+
+
   return (
     <div className="container1">
       <div className="row">
         <div className="col-12 d-flex justify-content-center align-items-center">
-          <form className="buyPrintingPaper__body">
+          <form className="buyPrintingPaper__body" onSubmit={handleSubmit}>
             <p className="infor-title">Thông tin trang mua</p>
             <div className="buyPrintingPaper-input">
               <label for="number" className="paperNo">
@@ -25,6 +45,7 @@ function BuyPrintingPaperBody() {
               <input
                 type="number"
                 className="paperNo-input"
+                defaultValue={100}
                 id="numberInput"
                 onBlur={handleBlur}
               />
