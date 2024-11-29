@@ -21,6 +21,7 @@ function BuyPrintingPaperBody() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    // Handle form submission here
     console.log('Form submitted with:', { paperNo, total: paperNo * paperPrice });
     navigate('/student/payment_status');
   };
@@ -30,6 +31,7 @@ function BuyPrintingPaperBody() {
     <div className="container1">
       <div className="row">
         <div className="col-12 d-flex justify-content-center align-items-center">
+
           <form className="buyPrintingPaper__body" onSubmit={handleSubmit}>
             <p className="infor-title">Thông tin trang mua</p>
             <div className="buyPrintingPaper-input">
@@ -40,7 +42,6 @@ function BuyPrintingPaperBody() {
               <input
                 type="number"
                 className="paperNo-input"
-                defaultValue={10}
                 id="numberInput"
                 onBlur={handleBlur}
               />
