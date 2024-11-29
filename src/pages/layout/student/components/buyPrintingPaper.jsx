@@ -1,22 +1,69 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import "./css/buyPrintingPaper/buyPrintingPaper.css";
-
+import { redirect, useNavigate } from "react-router-dom";
+import axios from "axios";
+// api
+import { updateCart, createCartUser, create_url_payment } from "../../../../api";
 function BuyPrintingPaperBody() {
   const [paperNo, setPaperNo] = useState(0);
+  const navigate = useNavigate();
+  const [cartId, setCartId] = useState("")
   const paperPrice = 200;
-
-  const handleChange = (event) => {
-    const value = event.target.value;
-    if (!isNaN(value)) {
-      setPaperNo(value);
-    }
+  let defaultPage
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        // taoj cart tuwj nhieen truocs khi render toi trả về kết quả
+        const result = await createCartUser({});
+        setCartId(result.metaData._id)
+        console.log(result); // In kết quả
+      } catch (error) {
+        // ở đây nên làm cái allert error message
+        console.error('Error fetching user:', error.message);
+      }
+    };
+    fetchUser();
+  }, []);
+  const handleFocus = (event) => {
+    event.target.value = ""; // Xóa giá trị hiển thị trong input khi focus
   };
+  const handleBlur = (event) => {
+    const value = event.target.value
+    if (value === '') return
+    setPaperNo(value);
+    const oldQuantity = paperNo
+    const newQuantity = value
 
+    const reqBody = {
+      oldQuantity,
+      newQuantity
+    } // Cập nhật giá trị tạm thời khi nhập
+    console.log(reqBody)
+    updateCart(reqBody).then(result => console.log(result))
+      .catch(err => alert(err.message))
+
+  };
+  const handleSubmitTransacation = async () => {
+    const totalPrice = paperNo * paperPrice
+    const reqBody = {
+      price: totalPrice,
+      cartId: cartId,
+      userId: "673db023ad6416223dc327ae",
+      bankCode: "",
+      language: "vn",
+    }
+    console.log(reqBody)
+    // const response = await axios.post(`http://localhost:8000/v1/order/createPaymentUrl`, reqBody)
+    // const result = await create_url_payment(reqBody)
+    // const url = result.metaData
+    // console.log(url)
+    // window.location.href = url
+  }
   return (
     <div className="container1">
       <div className="row">
         <div className="col-12 d-flex justify-content-center align-items-center">
-          <form className="buyPrintingPaper__body">
+          <form className="buyPrintingPaper__body" >
             <p className="infor-title">Thông tin trang mua</p>
             <div className="buyPrintingPaper-input">
               <label for="number" className="paperNo">
@@ -25,8 +72,12 @@ function BuyPrintingPaperBody() {
               <input
                 type="number"
                 className="paperNo-input"
-                value={paperNo}
-                onChange={handleChange}
+                // value={paperNo}
+                id="numberInput"
+                defaultValue={defaultPage}
+                // onChange={handleChange}
+                onBlur={handleBlur}
+                onFocus={handleFocus}
               />
             </div>
             <div className="buyPrintingPaper-detail">
@@ -43,7 +94,8 @@ function BuyPrintingPaperBody() {
               <p className="title1">Tổng cộng</p>
               <p className="price">{paperNo * paperPrice} VND</p>
             </div>
-            <input type="submit" value="Thanh toán" className="transaction" />
+            {/* <input type="submit" value="Thanh toán" className="transaction" /> */}
+            <button type="button" value="Thanh toán" className="transaction" onClick={handleSubmitTransacation}>Thanh toán</button>
           </form>
         </div>
       </div>

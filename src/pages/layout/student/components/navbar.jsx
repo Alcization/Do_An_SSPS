@@ -1,10 +1,23 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import "./css/navbar.css";
 import "./css/header.css";
 
 import { NavLink } from "react-router-dom";
 import "boxicons/css/boxicons.min.css";
+
+//api
+import { logoutUser } from "../../../../api";
+
+
+const Logout = async () => {
+
+  const result = await logoutUser()
+
+  console.log("logout successfull")
+  return result.meataData
+}
+
 
 function Setting() {
   return (
@@ -15,14 +28,14 @@ function Setting() {
         <p>100</p>
       </div>
       <div className="setting-block logo AccountInfo">
-        <NavLink to={'/student/student_account'} className="setting-block-link">
-          <i class="bx bx-user"></i>
+        <NavLink to={'/student/student_account'} className="setting-block-link" >
+          <i className="bx bx-user"></i>
           <p>Thông tin tài khoản</p>
         </NavLink>
       </div>
       <div className="setting-block logo logOut">
-        <NavLink to="/" className="setting-block-link">
-          <i class="bx bx-log-out"></i>
+        <NavLink to="/" className="setting-block-link" onClick={() => { Logout() }}>
+          <i className="bx bx-log-out"></i>
           <p>Đăng xuất</p>
         </NavLink>
       </div>
@@ -31,7 +44,7 @@ function Setting() {
 }
 
 function NavBar() {
-  const [showSetting, setShowSetting] = useState (false);
+  const [showSetting, setShowSetting] = useState(false);
 
   const handleShowSetting = () => {
     setShowSetting(!showSetting);

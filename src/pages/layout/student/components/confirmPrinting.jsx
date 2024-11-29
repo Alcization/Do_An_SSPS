@@ -3,7 +3,8 @@ import { useLocation } from "react-router-dom";
 import './css/uploadFiles/confirmPrinting.css';
 import Printer from "./img/multifunction-printer.png";
 import { color } from "chart.js/helpers";
-
+// api
+import { generateOTPToPrint, veriFyToPrint } from "../../../../api";
 const title = {
   fontSize: "2.2vh",
   color: "black",
@@ -11,15 +12,41 @@ const title = {
 
 function ConfirmPrinting() {
   const location = useLocation();
-
+  const [selectedPrinter, setSelectedPrinter] = useState("");
+  const [selectedBuilding, setSelectedBuilding] = useState("");
+  const [otp, setOtp] = useState("");
   const printingData = location.state.printingData;
   const fileData = location.state.fileData;
 
   const [showOTP, setShowOTP] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = async () => {
     setShowOTP(!showOTP);
+    console.log("selectedPrinter,", selectedPrinter)
+    console.log("fileData,", fileData)
+    console.log("printingData", printingData)
+    const response = await generateOTPToPrint()
+    const result = response.metaData
+    console.log("result from generateOTP", result)
   };
+  const handleOTP = async () => {
+    const isDoubleSided = printingData.printingOption === "In 1 mặt" ? false : true
+    const formData = new FormData();
+    formData.append("totalPages", parseInt(printingData.pageNumber));
+    formData.append("isDoubleSided", isDoubleSided);
+    formData.append("documentFile", fileData.file); // Nếu có file
+    formData.append("otp", otp);
+    formData.append("pageType", printingData.paperSize);
+    formData.append("numCopies", printingData.numberOfCopies);
+    formData.append("printerId", selectedPrinter);
+    formData.append("building", selectedBuilding);
+    const formDataObject = Object.fromEntries(formData.entries());
+    console.log("formDataObject", formDataObject);
+
+    const response = await veriFyToPrint(formData)
+    const result = response.metaData
+    console.log("result from veriFy", result)
+  }
 
   function OTPcode() {
     return (
@@ -35,22 +62,26 @@ function ConfirmPrinting() {
             maxlength="6"
             pattern="\d{6}"
             required
+            // value={otp}
+            onBlur={(e) => setOtp(e.target.value)}
           />
         </div>
-        <input type="submit" value="Xác nhận" className="OTP-submit" />
+        {/* <input type="submit" value="Xác nhận" className="OTP-submit" /> */}
+        <button type="button" className="OTP-submit" onClick={handleOTP}> Xác nhận </button>
       </form>
     );
   }
   return (
     <div className="confirmPrinting">
       <div className="confirmPrinting-body row">
-        <div className="confirmPrinting-infor col-8" style={{marginTop: '5rem'}}>
+        <div className="confirmPrinting-infor col-8" style={{ marginTop: '5rem' }}>
           <div className="confirmPrinting-infor_choosePrinter row">
             <div className="building col">
               <label for="options" className="building-title">
                 Tòa nhà
               </label>
-              <select className="numberOfCopies-option" name="options">
+              <select defaultValue="" className="numberOfCopies-option" name="options" onChange={(e) => setSelectedBuilding(e.target.value)}>
+                <option value="" disabled hidden>Chọn tòa </option>
                 <option value="option1">H6</option>
                 <option value="option2">H1</option>
                 <option value="option3">H2</option>
@@ -61,11 +92,12 @@ function ConfirmPrinting() {
               <label for="options" className="building-title">
                 Máy in
               </label>
-              <select className="numberOfCopies-option" name="options">
-                <option value="option1">106H6</option>
-                <option value="option2">207H6</option>
-                <option value="option3">305H6</option>
-                <option value="option3">402H6</option>
+              <select defaultValue="" className="numberOfCopies-option" name="options" onChange={(e) => setSelectedPrinter(e.target.value)}>
+                <option value="" disabled hidden>Chọn máy in</option>
+                <option value="106H6">106H6</option>
+                <option value="207H6">207H6</option>
+                <option value="305H6">305H6</option>
+                <option value="402H6">402H6</option>
               </select>
             </div>
           </div>
@@ -116,7 +148,7 @@ function ConfirmPrinting() {
           <button
             type="button"
             className="confirmPrinting-link__trigger"
-            onClick={handleClick} style={{color: 'white'}}>
+            onClick={handleClick} style={{ color: 'white' }}>
             Xác nhận in
           </button>
           {showOTP && (
@@ -125,7 +157,7 @@ function ConfirmPrinting() {
             </div>
           )}
         </div>
-        <img src={Printer} alt="Máy in" className="printer-img col-4" style={{marginTop: '5rem'}}/>
+        <img src={Printer} alt="Máy in" className="printer-img col-4" style={{ marginTop: '5rem' }} />
       </div>
     </div>
   );

@@ -1,9 +1,18 @@
-import React from 'react';
+import { useEffect } from 'react';
 import './Login.css';
 import LoginForm from './LoginForm';
 import Logo from './Logo';
 import person_paper from '../../../assets/person_with_paper.png'
-const Login = () => {
+import { useNavigate } from 'react-router-dom';
+// eslint-disable-next-line react/prop-types
+const Login = ({ user }) => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (user) {
+      navigate('/student/student_home'); // Đường dẫn sau đăng nhập
+    }
+  }, [user, navigate]);
+
   return (
     <main className="loginPage">
       <div className="container">
