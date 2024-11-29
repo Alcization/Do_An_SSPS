@@ -5,11 +5,10 @@ function BuyPrintingPaperBody() {
   const [paperNo, setPaperNo] = useState(0);
   const paperPrice = 200;
 
-  const handleChange = (event) => {
-    const value = event.target.value;
-    if (!isNaN(value)) {
-      setPaperNo(value);
-    }
+  const handleBlur = (event) => {
+    const value = parseFloat(event.target.value) || 0; 
+    setPaperNo(value);
+    console.log(value);
   };
 
   return (
@@ -22,12 +21,14 @@ function BuyPrintingPaperBody() {
               <label for="number" className="paperNo">
                 Số trang muốn mua thêm:
               </label>
+
               <input
                 type="number"
                 className="paperNo-input"
-                value={paperNo}
-                onChange={handleChange}
+                id="numberInput"
+                onBlur={handleBlur}
               />
+
             </div>
             <div className="buyPrintingPaper-detail">
               <div className="paperSum">
