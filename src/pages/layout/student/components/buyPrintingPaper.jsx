@@ -5,7 +5,6 @@ import {useLocation, useNavigate} from 'react-router-dom';
 
 function BuyPrintingPaperBody() {
   const [paperNo, setPaperNo] = useState(0);
-  const [paperCart, setPaperCart] = useState(0);
   const paperPrice = 200;
 
 
@@ -23,7 +22,7 @@ function BuyPrintingPaperBody() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('Form submitted with:', { paperNo, total: paperNo * paperPrice });
-    // navigate('/student/payment_status');
+    navigate('/student/payment_status');
   };
 
 
@@ -41,7 +40,7 @@ function BuyPrintingPaperBody() {
               <input
                 type="number"
                 className="paperNo-input"
-                defaultValue={paperCart}
+                defaultValue={10}
                 id="numberInput"
                 onBlur={handleBlur}
               />
