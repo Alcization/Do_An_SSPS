@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
 import {useLocation, useNavigate} from 'react-router-dom';
 
 function paymentStatus() {
@@ -8,11 +8,14 @@ function paymentStatus() {
   // Add variables needed from query params here
   const vnp_Amount = queryParams.get('vnp_Amount');
   const vnp_Command = queryParams.get('vnp_Command');
+  var url = window.location.href;
+  console.log(url.substring(url.lastIndexOf('?')+1));
 
 
   useEffect(() => {
     console.log('ID from query params:', vnp_Amount);
     console.log('ID from query params:', vnp_Command);
+    
   }, [vnp_Amount]);
 
   return (

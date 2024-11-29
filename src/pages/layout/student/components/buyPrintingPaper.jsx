@@ -21,9 +21,12 @@ function BuyPrintingPaperBody() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted with:', { paperNo, total: paperNo * paperPrice });
-    navigate('/student/payment_status');
+
+    // url return from vnpay
+    var link = 'http://localhost:5173/student/payment_status?vnp_Amount=146548549';
+    
+    navigate(link.substring(link.lastIndexOf('3')+1));
+
   };
 
 
