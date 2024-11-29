@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+⁶import React, { useState, useEffect } from "react";
 import "./css/buyPrintingPaper/buyPrintingPaper.css";
 import {useLocation, useNavigate} from 'react-router-dom';
 
@@ -25,7 +25,7 @@ function BuyPrintingPaperBody() {
     // url return from vnpay
     var link = 'http://localhost:5173/student/payment_status?vnp_Amount=146548549';
     
-    navigate(link.substring(link.lastIndexOf('3')+1));
+    navigate(link.substring(link.firstIndexOf('3')+1));
 
   };
 
