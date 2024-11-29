@@ -5,16 +5,12 @@ import {useLocation, useNavigate} from 'react-router-dom';
 
 function BuyPrintingPaperBody() {
   const [paperNo, setPaperNo] = useState(0);
+  const [paperCart, setPaperCart] = useState(0);
   const paperPrice = 200;
 
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const id = queryParams.get('id');
 
-  useEffect(() => {
-    console.log('ID from query params:', id);
-    // You can use the id for further logic here
-  }, [id]);
+
+
   
   const handleBlur = (event) => {
     const value = parseFloat(event.target.value) || 0; 
@@ -45,7 +41,7 @@ function BuyPrintingPaperBody() {
               <input
                 type="number"
                 className="paperNo-input"
-                defaultValue={100}
+                defaultValue={paperCart}
                 id="numberInput"
                 onBlur={handleBlur}
               />
