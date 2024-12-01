@@ -32,10 +32,10 @@ function ConfirmPrinting() {
   const handleOTP = async () => {
     const isDoubleSided = printingData.printingOption === "In 1 mặt" ? false : true
     const formData = new FormData();
+    formData.append("otp", otp);
     formData.append("totalPages", parseInt(printingData.pageNumber));
     formData.append("isDoubleSided", isDoubleSided);
     formData.append("documentFile", fileData.file); // Nếu có file
-    formData.append("otp", otp);
     formData.append("pageType", printingData.paperSize);
     formData.append("numCopies", printingData.numberOfCopies);
     formData.append("printerId", selectedPrinter);
@@ -82,10 +82,10 @@ function ConfirmPrinting() {
               </label>
               <select defaultValue="" className="numberOfCopies-option" name="options" onChange={(e) => setSelectedBuilding(e.target.value)}>
                 <option value="" disabled hidden>Chọn tòa </option>
-                <option value="option1">H6</option>
-                <option value="option2">H1</option>
-                <option value="option3">H2</option>
-                <option value="option3">H3</option>
+                <option value="H6">H6</option>
+                <option value="H1">H1</option>
+                <option value="H2">H2</option>
+                <option value="H3">H3</option>
               </select>
             </div>
             <div className="printer col">

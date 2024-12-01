@@ -12,20 +12,19 @@ function FilterForm() {
 
     const handleFilter = () => {
         console.log('MSSV:', mssv);
-  
+
         console.log('Date Range:', dateRange);
         console.log('Sort Order:', sortOrder);
         // Thực hiện các hành động lọc tại đây
     };
-
     return (
         <div
             className="justify-container-center rounded"
-            style={{ maxWidth: '400px', backgroundColor: '#fff', padding: '2vh', marginLeft:'3vh' }}
+            style={{ maxWidth: '400px', backgroundColor: '#fff', padding: '2vh', marginLeft: '3vh' }}
         >
-            
+
             <Form>
-     
+
                 <Form.Group className="mb-3">
                     <Form.Label>MSSV</Form.Label>
                     <Form.Control

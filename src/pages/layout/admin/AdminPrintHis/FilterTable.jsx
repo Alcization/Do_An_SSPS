@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import Pagination from 'react-bootstrap/Pagination';
 import Button from 'react-bootstrap/Button';
@@ -6,9 +6,12 @@ import Modal from 'react-bootstrap/Modal';
 import Contentjson from '../../blank/PrintingLog/contentjson.json';
 import FilterForm from './FilterForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+// api
+import { getAllDocument } from '../../../../api';
 function MyTable() {
     const [currentPage, setCurrentPage] = useState(1);
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = React.useState(true);
     const itemsPerPage = 10;
 
     // State để quản lý modal
@@ -21,7 +24,8 @@ function MyTable() {
     // Pagination logic
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = Contentjson.slice(indexOfFirstItem, indexOfLastItem);
+    // const currentItems = Contentjson.slice(indexOfFirstItem, indexOfLastItem);
+    const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
     const totalPages = Math.ceil(Contentjson.length / itemsPerPage);
 
     const paginationItems = [];
@@ -37,25 +41,48 @@ function MyTable() {
         );
     }
 
-    const DisplayData = currentItems.map((info) => (
-        <tr key={info.id}>
-            <td className="my-sm-3 text-center">{info.id}</td>
-            <td className="my-sm-5 text-center">{info.studentName}</td>
-            <td className="my-sm-3 text-center">{info.printingID}</td>
-            <td className="my-sm-5 text-center">{info.printingTime}</td>
+    const DisplayData = currentItems.map((info, index) => (
+        <tr key={index + 1}>
+            <td className="my-sm-3 text-center">{index + 1}</td>
+            <td className="my-sm-5 text-center">{info.studentId.givenName}</td>
+            <td className="my-sm-3 text-center">{info.printerId}</td>
+            <td className="my-sm-5 text-center">{info.printTime}</td>
             <td className="my-sm-5 text-center">{info.fileName}</td>
-            <td className="my-sm-5 text-center">{info.numberPage}</td>
-            <td className="my-sm-5 text-center">{info.paperSize}</td>
+            <td className="my-sm-5 text-center">{info.pageBefore}</td>
+            <td className="my-sm-5 text-center">{info.pageType}</td>
         </tr>
     ));
-
+    useEffect(() => {
+        const fetchUser = async () => {
+            setLoading(true); // Bắt đầu loading
+            try {
+                const result = await getAllDocument(); // Chờ hàm getUser() trả về kết quả
+                // const result = await logoutUser()
+                console.log(result.metaData); // In kết quả
+                if (result) {
+                    setData(result.metaData)// Lưu thông tin user
+                }
+            } catch (error) {
+                // ở đây nên làm cái allert error message
+                // alert(error.message);
+                console.error('Error fetching user:', error.message);
+            } finally {
+                setLoading(false); // Kết thúc loading
+            }
+        };
+        fetchUser();
+        // setLoading(false);
+    }, []);
+    if (loading) {
+        return <div>Loading...</div>; // Hiển thị màn hình loading trong khi chờ
+    }
     return (
         <div>
-            <div className='d-flex justify-content-start align-items-center p-3 border border-start-0  border-dark rounded-end-3' style={{ width: '22vh'}}>
-                <h1>Lịch sử in</h1> 
+            <div className='d-flex justify-content-start align-items-center p-3 border border-start-0  border-dark rounded-end-3' style={{ width: '22vh' }}>
+                <h1>Lịch sử in</h1>
             </div>
             <div className="d-flex flex-column justify-content-center align-items-center m-2 p-2" style={{ height: '74vh', width: '176vh' }}>
-                
+
                 <div className="d-flex justify-content-end w-100 mb-3">
                     <Button variant="info" onClick={handleShowFilter}>
                         Lọc kết quả

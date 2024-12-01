@@ -6,7 +6,16 @@ const PrivateRoute = ({ user, children }) => {
   // Nếu đang load, hiển thị một thông báo hoặc spinner
 
   // Nếu không có user (chưa đăng nhập), chuyển hướng đến trang login
-  return user ? children : <Navigate to="/login" />; // Nếu đã có user, hiển thị trang con (children)
+  // eslint-disable-next-line react/prop-types
+  if (!user) {
+    return <Navigate to="/login" />
+  }
+  // eslint-disable-next-line react/prop-types
+  if (user.admin === true) {
+    return <Navigate to="/admin/admin_home" />
+  }
+
+  return children // Nếu đã có user, hiển thị trang con (children)
 };
 
 export default PrivateRoute;

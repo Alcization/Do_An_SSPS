@@ -239,12 +239,13 @@ function AddSemester() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (isValidDate(day, month, year)) {
-      setError("");
-      alert(`Ngày cấp phát: ${day}/${month}/${year}`);
-    } else {
-      setError("Ngày không hợp lệ");
-    }
+    console.log(e)
+    // if (isValidDate(day, month, year)) {
+    //   setError("");
+    //   alert(`Ngày cấp phát: ${day}/${month}/${year}`);
+    // } else {
+    //   setError("Ngày không hợp lệ");
+    // }
   };
 
   useEffect(() => {

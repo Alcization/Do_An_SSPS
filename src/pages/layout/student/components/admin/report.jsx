@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { addMonths, startOfMonth, format } from "date-fns";
+
 
 import {
   Chart as ChartJS,
@@ -15,7 +16,8 @@ import {
 import { Bar, Pie } from "react-chartjs-2";
 
 
-import "../css/admin/report.css";
+import "../css/admin/report.css"
+import { getReport, getCountPrinters } from "../../../../../api";
 
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, ArcElement);
@@ -148,16 +150,39 @@ const PieChart2 = () => {
 function ReportBody() {
   const [selectedMonth, setSelectedMonth] = useState(null);
   const [dateRange, setDateRange] = useState(null);
+  const [dataReport, setDataReport] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const handleOpenCalendar = () => {
     setIsOpen(!isOpen);
   };
-  const handleMonthChange = (date) => {
+
+  const handleMonthChange = async (date) => {
     setSelectedMonth(date);
     const start = startOfMonth(date);
     const end = startOfMonth(addMonths(date, 1));
+    const startDate = new Date(start);
+
     setDateRange({ start, end });
     setIsOpen(false);
+    const month = startDate.getMonth() + 1; // Months are 0-indexed, so add 1
+    const year = startDate.getFullYear();
+    const reqbody = {
+      month,
+      year
+    }
+    console.log(reqbody)
+    const respose = await getReport(reqbody)
+    const counPrinter = await getCountPrinters()
+    const metaDataResponse = respose[0]
+    const result = counPrinter.metaData
+    const report = { ...metaDataResponse, countPrinter: result }
+    if (report) {
+      setDataReport(report); // Lưu thông tin user
+    }
+    console.log("report", report)
+    return report
+
   };
 
   const [isToggled, setIsToggled] = useState(false);
@@ -165,6 +190,28 @@ function ReportBody() {
   const handleButtonClick = () => {
     setIsToggled(!isToggled);
   };
+  useEffect(() => {
+    const fetchUser = async () => {
+      setLoading(true); // Bắt đầu loading
+      try {
+        const result = await handleMonthChange((new Date()).toString()); // Chờ hàm getUser() trả về kết quả
+        // const result = await logoutUser()
+        console.log("result", result); // In kết quả
+      } catch (error) {
+        // ở đây nên làm cái allert error message
+        // alert(error.message);
+        console.error('Error fetching user:', error.message);
+      } finally {
+        setLoading(false); // Kết thúc loading
+      }
+    };
+    fetchUser();
+    // setLoading(false);
+  }, []);
+
+  if (loading || (!dataReport)) {
+    return <div>Loading...</div>; // Hiển thị màn hình loading trong khi chờ
+  }
   return (
     <div className="report-body">
       <h3 className="title">Báo cáo</h3>
@@ -182,9 +229,9 @@ function ReportBody() {
         <div className="calendar d-flex justify-content-between align-items-center">
           <button onClick={handleOpenCalendar} className="calendar-btn">
             {isOpen ? (
-              <i class="bx bx-calendar"></i>
+              <i className="bx bx-calendar"></i>
             ) : (
-              <i class="bx bx-calendar"></i>
+              <i className="bx bx-calendar"></i>
             )}
           </button>{" "}
           {isOpen && (
@@ -217,11 +264,11 @@ function ReportBody() {
           <div className="col-3">
             <div className="number-of-printer">
               <p>Số máy in</p>
-              <p className="number">9</p>
+              <p className="number">{dataReport?.countPrinter[0].count + dataReport?.countPrinter[1].count}</p>
             </div>
             <div className="sum-of-printing-page">
               <p>Tổng số trang in</p>
-              <p className="number">1102</p>
+              <p className="number">{dataReport?.pageEachType["A1"] + dataReport?.pageEachType["A2"] + dataReport?.pageEachType["A3"] + dataReport?.pageEachType["A4"]}</p>
             </div>
           </div>
         </div>
@@ -230,19 +277,23 @@ function ReportBody() {
             <label>Trạng thái máy in</label>
             <div className="state d-flex justify-content-between align-items-center">
               <div className="color d-flex flex-column align-items-center justify-content-between">
-                <div className="blue" style={{ background: "#4B9CFC" }}></div>
+                {/* <div className="blue" style={{ background: "#4B9CFC" }}></div> */}
                 <div className="green" style={{ background: "#4BD396" }}></div>
                 <div className="pink" style={{ background: "#F5707A" }}></div>
               </div>
               <div className="percent d-flex flex-column align-items-start justify-content-start">
-                <p>Đang hoạt động</p>
+                {/* <p>Đang hoạt động</p> */}
                 <p>Sẵn sàng</p>
                 <p>Lỗi</p>
               </div>
               <div className="percent d-flex flex-column align-items-start justify-content-start">
-                <p>11%</p>
-                <p>56%</p>
-                <p>33%</p>
+                {/* <p>11%</p> */}
+                <p>{dataReport?.countPrinter[0]?.status === "ACTIVE"
+                  ? dataReport?.countPrinter[0]?.count
+                  : dataReport?.countPrinter[1]?.count}</p>
+                <p>{dataReport?.countPrinter[0]?.status !== "ACTIVE"
+                  ? dataReport?.countPrinter[0]?.count
+                  : dataReport?.countPrinter[1]?.count}</p>
               </div>
             </div>
           </div>
@@ -273,8 +324,8 @@ function ReportBody() {
                 <p>A3</p>
               </div>
               <div className="percent d-flex flex-column justify-content-between align-items-center">
-                <p>80%</p>
-                <p>20%</p>
+                <p>{dataReport?.pageEachType["A4"]}</p>
+                <p>{dataReport?.pageEachType["A3"]}</p>
               </div>
             </div>
           </div>
@@ -284,6 +335,7 @@ function ReportBody() {
         </div>
       </div>
     </div>
+
   );
 }
 

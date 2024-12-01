@@ -53,12 +53,15 @@ function BuyPrintingPaperBody() {
       language: "vn",
     }
     console.log(reqBody)
-    // const response = await axios.post(`http://localhost:8000/v1/order/createPaymentUrl`, reqBody)
-    // const result = await create_url_payment(reqBody)
-    // const url = result.metaData
-    // console.log(url)
-    // window.location.href = url
+    // const result = await axios.post(`http://localhost:8000/v1/order/test2`, reqBody, { withCredentials: true })
+    const result = await create_url_payment(reqBody)
+    const url = result.metaData
+
+    console.log(url)
+    const url_redirect = url.toString()
+    window.location.href = url_redirect
   }
+
   return (
     <div className="container1">
       <div className="row">

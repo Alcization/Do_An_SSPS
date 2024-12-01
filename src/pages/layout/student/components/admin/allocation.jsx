@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "boxicons/css/boxicons.min.css";
 import { NavLink } from "react-router-dom";
 import ReactPaginate from "react-paginate";
@@ -7,7 +7,8 @@ import ReactPaginate from "react-paginate";
 
 import "../css/admin/allocation.css";
 import "../css/admin/paginate.css";
-
+// api 
+import { getAllDefaultPage } from "../../../../../api";
 
 const PaginatedTable = () => {
   const infor = [
@@ -33,11 +34,36 @@ const PaginatedTable = () => {
 
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 6;
-
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   // Tính toán dữ liệu cho trang hiện tại
   const offset = currentPage * itemsPerPage;
   const currentPageData = infor.slice(offset, offset + itemsPerPage);
+  const fetchUser = async () => {
+    setLoading(true); // Bắt đầu loading
+    try {
+      const result = await getAllDefaultPage(); // Chờ hàm getUser() trả về kết quả
+      // const result = await logoutUser()
+      console.log(result); // In kết quả
+      if (result) {
+        setData(result.metaData); // Lưu thông tin user
+      }
+    } catch (error) {
+      // ở đây nên làm cái allert error message
+      // alert(error.message);
+      console.error('Error fetching user:', error.message);
+    } finally {
+      setLoading(false); // Kết thúc loading
+    }
+  };
+  useEffect(() => {
 
+    fetchUser();
+    // setLoading(false);
+  }, []);
+  if (loading) {
+    return <div>Loading...</div>; // Hiển thị màn hình loading trong khi chờ
+  }
   // Xử lý khi người dùng thay đổi trang
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);
@@ -188,7 +214,7 @@ function AllocationBody() {
 
 function Allocation() {
   return (
-    <div className="allocation" style={{width: '179vh', height: '80vh'}}>
+    <div className="allocation" style={{ width: '179vh', height: '80vh' }}>
       <AllocationBody />
     </div>
   );

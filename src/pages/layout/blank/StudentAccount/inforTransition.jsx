@@ -4,7 +4,8 @@ import Pagination from 'react-bootstrap/Pagination';
 import PrintingContent from './printingContent.json';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function InforTransition() {
+// eslint-disable-next-line react/prop-types
+function InforTransition({ infoOrder }) {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 4;
 
@@ -13,10 +14,13 @@ function InforTransition() {
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
     // Get the items for the current page
-    const currentItems = PrintingContent.slice(indexOfFirstItem, indexOfLastItem);
-
+    // const currentItems = PrintingContent.slice(indexOfFirstItem, indexOfLastItem);
+    // eslint-disable-next-line react/prop-types
+    const currentItems = infoOrder.slice(indexOfFirstItem, indexOfLastItem);
     // Calculate the total number of pages
-    const totalPages = Math.ceil(PrintingContent.length / itemsPerPage);
+    // eslint-disable-next-line react/prop-types
+    const totalPages = Math.ceil(infoOrder.length / itemsPerPage);
+
 
     // Create the pagination items
     const paginationItems = [];
@@ -32,15 +36,15 @@ function InforTransition() {
     const DisplayData = currentItems.map((info) => {
         return (
             <tr key={info.id}>
-                <td className="my-sm-4 text-center">{info.datetime}</td>
-                <td className="my-sm-4 text-center">{info.pages}</td>
-                <td className="my-sm-4 text-center">{info.total_cost}</td>
+                <td className="my-sm-4 text-center">{info.order_payment.date_transcation}</td>
+                <td className="my-sm-4 text-center">{info.quantity}</td>
+                <td className="my-sm-4 text-center">{info.order_payment.order_checkout}</td>
             </tr>
         );
     });
 
     return (
-        <div  style={{ height: '30vh', width: '90vh', marginLeft: '700px' }}>
+        <div style={{ height: '30vh', width: '90vh', marginLeft: '700px' }}>
             <div className="w-100 m-2 bg-white rounded" style={{ overflow: 'hidden' }}>
                 <Table bordered hover className="mb-0" style={{ borderRadius: '20px', overflow: 'hidden', fontSize: '1.3rem' }}>
                     <thead>
@@ -55,13 +59,13 @@ function InforTransition() {
                     </tbody>
                 </Table>
                 <Pagination className="justify-content-end mt-3">
-                    <Pagination.Prev 
-                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))} 
+                    <Pagination.Prev
+                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                         disabled={currentPage === 1}
                     />
                     {paginationItems}
-                    <Pagination.Next 
-                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))} 
+                    <Pagination.Next
+                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                         disabled={currentPage === totalPages}
                     />
                 </Pagination>

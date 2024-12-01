@@ -5,21 +5,24 @@ import "./css/header.css";
 
 import { NavLink } from "react-router-dom";
 import "boxicons/css/boxicons.min.css";
-
+import { useNavigate } from "react-router-dom";
 //api
 import { logoutUser } from "../../../../api";
 
 
-const Logout = async () => {
 
-  const result = await logoutUser()
-
-  console.log("logout successfull")
-  return result.meataData
-}
 
 
 function Setting() {
+  const navigate = useNavigate()
+  const Logout = async () => {
+
+    const result = await logoutUser()
+
+    console.log("logout successfull")
+    navigate('/')
+    return result.meataData
+  }
   return (
     <div className="setting">
       <div className="setting-block-navBar"></div>
@@ -34,10 +37,11 @@ function Setting() {
         </NavLink>
       </div>
       <div className="setting-block logo logOut">
-        <NavLink to="/" className="setting-block-link" onClick={() => { Logout() }}>
+        {/* <NavLink to="/" className="setting-block-link" onClick={() => { Logout() }}>
           <i className="bx bx-log-out"></i>
           <p>Đăng xuất</p>
-        </NavLink>
+        </NavLink> */}
+        <button className="setting-block-link" onClick={() => { Logout() }}> Đăng xuất </button>
       </div>
     </div>
   );
