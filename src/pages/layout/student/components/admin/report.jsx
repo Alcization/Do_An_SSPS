@@ -264,7 +264,10 @@ function ReportBody() {
           <div className="col-3">
             <div className="number-of-printer">
               <p>Số máy in</p>
-              <p className="number">{dataReport?.countPrinter[0].count + dataReport?.countPrinter[1].count}</p>
+              <p className="number">
+                {(dataReport?.countPrinter?.[0]?.count || 0) +
+                  (dataReport?.countPrinter?.[1]?.count || 0)}
+              </p>
             </div>
             <div className="sum-of-printing-page">
               <p>Tổng số trang in</p>
@@ -288,12 +291,14 @@ function ReportBody() {
               </div>
               <div className="percent d-flex flex-column align-items-start justify-content-start">
                 {/* <p>11%</p> */}
-                <p>{dataReport?.countPrinter[0]?.status === "ACTIVE"
-                  ? dataReport?.countPrinter[0]?.count
-                  : dataReport?.countPrinter[1]?.count}</p>
-                <p>{dataReport?.countPrinter[0]?.status !== "ACTIVE"
-                  ? dataReport?.countPrinter[0]?.count
-                  : dataReport?.countPrinter[1]?.count}</p>
+                <p>{dataReport?.countPrinter[0]._id === "ACTIVE"
+                  ? dataReport?.countPrinter[0]?.count ?? 0
+                  : dataReport?.countPrinter[1]?.count ?? 0}
+                </p>
+                <p>{dataReport?.countPrinter[0]._id !== "ACTIVE"
+                  ? dataReport?.countPrinter[0]?.count ?? 0
+                  : dataReport?.countPrinter[1]?.count ?? 0}
+                </p>
               </div>
             </div>
           </div>

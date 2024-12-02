@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import './css/uploadFiles/confirmPrinting.css';
 import Printer from "./img/multifunction-printer.png";
+import { useNavigate } from "react-router-dom";
 import { color } from "chart.js/helpers";
 // api
 import { generateOTPToPrint, veriFyToPrint } from "../../../../api";
@@ -11,6 +12,7 @@ const title = {
 }
 
 function ConfirmPrinting() {
+  const navigate = useNavigate()
   const location = useLocation();
   const [selectedPrinter, setSelectedPrinter] = useState("");
   const [selectedBuilding, setSelectedBuilding] = useState("");
@@ -46,6 +48,10 @@ function ConfirmPrinting() {
     const response = await veriFyToPrint(formData)
     const result = response.metaData
     console.log("result from veriFy", result)
+    if (result) {
+      alert("In thành công !")
+      navigate("/student/upload_file")
+    }
   }
 
   function OTPcode() {

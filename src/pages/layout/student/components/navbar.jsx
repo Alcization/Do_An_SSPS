@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./css/navbar.css";
 import "./css/header.css";
@@ -7,14 +7,13 @@ import { NavLink } from "react-router-dom";
 import "boxicons/css/boxicons.min.css";
 import { useNavigate } from "react-router-dom";
 //api
-import { logoutUser } from "../../../../api";
-
-
-
+import { logoutUser, getInFoStudent } from "../../../../api";
 
 
 function Setting() {
   const navigate = useNavigate()
+  const [infoStudent, setinfoStudent] = useState({});
+  const [loading, setLoading] = useState(true);
   const Logout = async () => {
 
     const result = await logoutUser()
@@ -23,12 +22,31 @@ function Setting() {
     navigate('/')
     return result.meataData
   }
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        // taoj cart tuwj nhieen truocs khi render toi trả về kết quả
+        const response = await getInFoStudent()
+        const result = response.metaData
+        setinfoStudent(result)
+      } catch (error) {
+        // ở đây nên làm cái allert error message
+        console.error('Error fetching user:', error.message);
+      } finally {
+        setLoading(false); // Kết thúc loading
+      }
+    };
+    fetchUser();
+  }, []);
+  if (loading) {
+    return <div>Loading...</div>; // Hiển thị màn hình loading trong khi chờ
+  }
   return (
     <div className="setting">
       <div className="setting-block-navBar"></div>
       <div className="setting-block paperNo">
         <p className="line1">Số trang in</p>
-        <p>100</p>
+        <p>{infoStudent.numberPageValid}</p>
       </div>
       <div className="setting-block logo AccountInfo">
         <NavLink to={'/student/student_account'} className="setting-block-link" >

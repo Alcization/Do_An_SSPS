@@ -2,20 +2,22 @@ import { useState } from "react";
 
 import "./navbar.css";
 import "./header.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "boxicons/css/boxicons.min.css";
 import { logoutUser } from "../../../api";
 
-const logOut = () => {
-  console.log("ddang chayj log out")
 
-  // logoutUser().then(result => {
-  //   return result.meataData
-  // }).catch(err => {
-  //   alert(err.message)
-  // })
-}
 function Setting() {
+  const navigate = useNavigate()
+  const logOut = async () => {
+    console.log("ddang chayj log out")
+
+    const result = await logoutUser()
+
+    console.log("logout successfull")
+    navigate('/')
+    return result.meataData
+  }
   return (
     <div className="setting">
       <div className="setting-block-navBar"></div>

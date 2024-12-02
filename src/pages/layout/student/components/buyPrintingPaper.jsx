@@ -59,7 +59,7 @@ function BuyPrintingPaperBody() {
 
     console.log(url)
     const url_redirect = url.toString()
-    window.location.href = url_redirect
+    window.location.href = url_redirect, false
   }
 
   return (
