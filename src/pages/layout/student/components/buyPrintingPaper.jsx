@@ -1,4 +1,4 @@
-⁶import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./css/buyPrintingPaper/buyPrintingPaper.css";
 import {useLocation, useNavigate} from 'react-router-dom';
 
