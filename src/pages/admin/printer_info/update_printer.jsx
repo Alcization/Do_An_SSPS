@@ -25,6 +25,7 @@ function UpdatePrinter() {
         const building = formData.get('building')
         const room = formData.get('room')
         const description = formData.get('description')
+        
         // await updatePrinter()
         const reqBody = {
             printerName: manufacturer,

@@ -19,14 +19,7 @@ function AddPrinter() {
         const model = formData.get('model')
         const building = formData.get('building')
         const room = formData.get('room')
-        const description = formData.get('description')
-        
-        // Log the data
-        console.log(manufacturer);
-        console.log(model);
-        console.log(building);
-        console.log(room);
-        console.log(description);
+        const description = formData.get('description')     
 
         const reqBody = {
             printerName: manufacturer,
