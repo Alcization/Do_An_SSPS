@@ -1,7 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import './css/uploadFiles/uploadFile.css';
 import chooseFile from "./img/chooseFile.png";
+import config from "../../../../assets/config.json"
 
 function ChooseFile({ setFileData }) {
   const hiddenFileInput = useRef(null); //hidden file input
@@ -9,6 +10,12 @@ function ChooseFile({ setFileData }) {
   const handleClick = (event) => {
     hiddenFileInput.current.click();
   };
+
+  const [acceptedFileTypes, setAcceptedFileTypes] = useState('');
+
+  useEffect(() => {
+    setAcceptedFileTypes(config.acceptedFileTypes);
+  }, []);
 
   const [file, setFile] = useState(null); //lưu file
   const [fileState, setFileState] = useState("nothing");
@@ -71,7 +78,7 @@ function ChooseFile({ setFileData }) {
         </button>
         <input
           type="file"
-          accept=".pdf,.doc,.docx,.txt,.rtx,.odt,.xls,.xlsx,.ppt,.pptx"
+          accept={acceptedFileTypes}
           onChange={handleFileChange}
           ref={hiddenFileInput}
           style={{ display: "none" }}
