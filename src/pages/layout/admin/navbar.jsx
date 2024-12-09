@@ -36,7 +36,7 @@ function Setting() {
           to="/"
           className="setting-block-link"
         > */}
-        <button onClick={() => { logOut(); }}>
+        <button className="setting-block-link" style={{background: "white", border:"none", height:"10px"}} onClick={() => { Logout() }}> 
           <i className="bx bx-log-out"></i>
           <p>Đăng xuất</p>
         </button>

@@ -59,7 +59,10 @@ function Setting() {
           <i className="bx bx-log-out"></i>
           <p>Đăng xuất</p>
         </NavLink> */}
-        <button className="setting-block-link" onClick={() => { Logout() }}> Đăng xuất </button>
+        <button className="setting-block-link" style={{background: "white", border:"none", height:"10px"}} onClick={() => { Logout() }}> 
+          <i className="bx bx-log-out"></i>
+          <p>Đăng xuất</p>
+        </button>
       </div>
     </div>
   );
