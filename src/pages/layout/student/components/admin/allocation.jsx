@@ -1,44 +1,50 @@
 import React, { useState, useEffect } from "react";
 import "boxicons/css/boxicons.min.css";
 import { NavLink } from "react-router-dom";
-import ReactPaginate from "react-paginate";
-
-
+import { Pagination } from "react-bootstrap";
+import Table from 'react-bootstrap/Table';
 
 import "../css/admin/allocation.css";
 import "../css/admin/paginate.css";
+
 // api 
-import { getAllDefaultPage } from "../../../../../api";
+// import { getAllDefaultPage } from "../../../../../api";
+import paperHistory from "./paperHistory.json";
 
-const PaginatedTable = () => {
-  const infor = [
-    ["HK242", "2024-2025", "1/4/2025", "20", "Chưa cấp phát"],
-    ["HK242", "2024-2025", "1/2/2025", "20", "Chưa cấp phát"],
-    ["HK241", "2024-2025", "1/12/2024", "20", "Chưa cấp phát"],
-    ["HK241", "2024-2025", "1/10/2024", "20", "Đã cấp phát"],
-    ["HK233", "2023-2024", "1/8/2024", "20", "Đã cấp phát"],
-    ["HK233", "2023-2024", "1/6/2024", "20", "Đã cấp phát"],
-    ["HK242", "2024-2025", "1/4/2025", "20", "Chưa cấp phát"],
-    ["HK242", "2024-2025", "1/2/2025", "20", "Chưa cấp phát"],
-    ["HK241", "2024-2025", "1/12/2024", "20", "Chưa cấp phát"],
-    ["HK241", "2024-2025", "1/10/2024", "20", "Chưa cấp phát"],
-    ["HK242", "2024-2025", "1/4/2025", "20", "Chưa cấp phát"],
-    ["HK242", "2024-2025", "1/2/2025", "20", "Chưa cấp phát"],
-    ["HK241", "2024-2025", "1/12/2024", "20", "Chưa cấp phát"],
-    ["HK241", "2024-2025", "1/10/2024", "20", "Đã cấp phát"],
-    ["HK233", "2023-2024", "1/8/2024", "20", "Đã cấp phát"],
-    ["HK233", "2023-2024", "1/8/2024", "20", "Đã cấp phát"],
-    ["HK233", "2023-2024", "1/6/2024", "20", "Đã cấp phát"],
-    ["HK233", "2023-2024", "1/6/2024", "20", "Đã cấp phát"]
-  ];
 
-  const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 6;
+
+function PaginatedTable () {
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  // TODO : Change to get data from api
+  useEffect(() => {
+    setData(paperHistory);
+    setLoading(false);
+  }, []);
+
   // Tính toán dữ liệu cho trang hiện tại
-  const offset = currentPage * itemsPerPage;
-  const currentPageData = infor.slice(offset, offset + itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+
+  // Get the items for the current page
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+  // Calculate the total number of pages
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+
+  // Create the pagination items
+  const paginationItems = [];
+  for (let number = 1; number <= totalPages; number++) {
+      paginationItems.push(
+          <Pagination.Item key={number} active={number === currentPage} onClick={() => setCurrentPage(number)}>
+              {number}
+          </Pagination.Item>
+      );
+  }
+
   const fetchUser = async () => {
     setLoading(true); // Bắt đầu loading
     try {
@@ -64,60 +70,48 @@ const PaginatedTable = () => {
   if (loading) {
     return <div>Loading...</div>; // Hiển thị màn hình loading trong khi chờ
   }
-  // Xử lý khi người dùng thay đổi trang
-  const handlePageClick = ({ selected }) => {
-    setCurrentPage(selected);
-  };
+
+  const DisplayData = currentItems.map((info) => {
+    return (
+        <tr key={info.id}>
+            <td className="my-sm-5 text-center">{info.semester}</td>
+            <td className="my-sm-3 text-center">{info.year}</td>
+            <td className="my-sm-3 text-center">{info.date}</td>
+            <td className="my-sm-5 text-center">{info.papers}</td>
+            <td className="my-sm-5 text-center">{info.status}</td>
+        </tr>
+      );
+  });
 
   return (
     <div>
-      <div className="table-info">
-        <table className="table text-center align-middle table-responsive">
-          <thead>
-            <tr>
-              <th>Học kì</th>
-              <th>Năm học</th>
-              <th>Ngày cấp phát</th>
-              <th>Số trang A4 cấp phát</th>
-              <th>Trạng thái</th>
-            </tr>
-          </thead>
-          {currentPageData.map((row, rowIndex) => (
-            <tr key={rowIndex}>
-              {row.map((cell, cellIndex) => (
-                <td key={cellIndex}>{cell}</td>
-              ))}
-            </tr>
-          ))}
-        </table>
+      <div className='w-100 bg-white p-4 rounded ' style={{ borderRadius: '20px', overflow: 'hidden' }}>
+          <Table bordered hover className='mb-0' style={{ borderRadius: '20px', overflow: 'hidden', fontSize: '1.3rem'  }}>
+            <thead>
+              <tr>
+                <th className="my-sm-5 text-center">Học kì</th>
+                <th className="my-sm-5 text-center">Năm học</th>
+                <th className="my-sm-5 text-center">Ngày cấp phát</th>
+                <th className="my-sm-5 text-center">Số trang A4 cấp phát</th>
+                <th className="my-sm-5 text-center">Trạng thái</th>
+              </tr>
+            </thead>
+            <tbody>
+                {DisplayData}
+            </tbody>
+          </Table>
       </div>
-      <div className="chooseTable d-flex align-items-center justify-content-end">
-        <div className="pagination-container">
-          <ReactPaginate
-            previousLabel={"<"}
-            nextLabel={">"}
-            breakLabel={"..."}
-            breakClassName={"break-me"}
-            pageCount={Math.ceil(infor.length / itemsPerPage)}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={3}
-            onPageChange={handlePageClick}
-            containerClassName={"pagination"}
-            activeClassName={"active"}
-            pageClassName={"page-item"}
-            pageLinkClassName={"page-link"}
-            previousClassName={"page-item"}
-            previousLinkClassName={"page-link"}
-            nextClassName={"page-item"}
-            nextLinkClassName={"page-link"}
-            breakLinkClassName={"page-link"}
+      <Pagination className="justify-content-end mt-3" style={{ marginRight: '3rem' }}>
+          <Pagination.Prev
+              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
           />
-        </div>
-        <div className="btn btn-outline-dark btn-square"></div>
-        <div className="numOfTable">
-          của {Math.ceil(infor.length / itemsPerPage)}
-        </div>
-      </div>
+          {paginationItems}
+          <Pagination.Next
+              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+              disabled={currentPage === totalPages}
+          />
+      </Pagination>
     </div>
   );
 };
