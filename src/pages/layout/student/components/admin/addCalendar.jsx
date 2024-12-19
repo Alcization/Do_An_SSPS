@@ -53,15 +53,36 @@ function AddAllocationCalendar() {
     );
   };
 
-  const handleSubmit = (e) => {
+
+
+
+
+
+
+
+  // TODO : Get data in add calendar here
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (isValidDate(day, month, year)) {
       setError("");
-      alert(`Ngày cấp phát: ${day}/${month}/${year}`);
+      // alert(`Ngày cấp phát: ${day}/${month}/${year}`);
+      const semesters = semester;
+      const year = `${startSchoolYear}-${endSchoolYear}`;
+      const date = `${day}/${month}/${year}`;
+      const papers = numOfPaper.value;
+      console.log(semesters, year, date, papers);
+      
     } else {
-      setError("Ngày không hợp lệ");
+      setError("Lỗi nhập dữ liệu");
     }
   };
+
+
+
+
+
+
+
 
   useEffect(() => {
     // Cập nhật số ngày khi tháng hoặc năm thay đổi
@@ -159,29 +180,13 @@ function AddAllocationCalendar() {
             </div>
           </div>
           <div className="addCalendar-trigger d-flex flex-row align-items-center">
-            <NavLink
-              to="/config/allocation"
-              className="addCalendar-trigger-link"
-            >
-              <button
-                type="button"
-                className="addCalendar-trigger-btn triggerCancel"
-              >
-                Hủy
-              </button>
+            <NavLink to="/admin/allocation" className="addCalendar-trigger-link">
+              <button type="button" className="addCalendar-trigger-btn triggerCancel">Hủy</button>
             </NavLink>
-            <NavLink
-              to="/config/allocation"
-              className="addCalendar-trigger-link"
-            >
-              <button
-                type="button"
-                className="addCalendar-trigger-btn triggerAdd d-flex flex-row align-items-center justify-content-between"
-              >
-                <i class="bx bx-plus-circle"></i>
-                <p>Thêm lịch</p>
-              </button>
-            </NavLink>
+            <button type="submit" className="addCalendar-trigger-btn triggerAdd d-flex flex-row align-items-center justify-content-between">
+              <i class="bx bx-plus-circle"></i>
+              <p>Thêm lịch</p>
+            </button>
           </div>
         </div>
       </form>
@@ -239,13 +244,12 @@ function AddSemester() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e)
-    // if (isValidDate(day, month, year)) {
-    //   setError("");
-    //   alert(`Ngày cấp phát: ${day}/${month}/${year}`);
-    // } else {
-    //   setError("Ngày không hợp lệ");
-    // }
+    if (isValidDate(day, month, year)) {
+      setError("");
+      alert(`Ngày cấp phát: ${day}/${month}/${year}`);
+    } else {
+      setError("Ngày không hợp lệ");
+    }
   };
 
   useEffect(() => {
@@ -366,3 +370,4 @@ function AddCalendar() {
 }
 
 export default AddCalendar;
+
