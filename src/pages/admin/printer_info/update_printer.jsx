@@ -16,7 +16,8 @@ function UpdatePrinter() {
     };
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-    async function toUpdatePrinter(formData) {
+
+    const toUpdatePrinter = async (formData) => {
         // connect to backend
         // const printerID = formData.get('id')
         const manufacturer = formData.get('manufacturer')
@@ -24,6 +25,7 @@ function UpdatePrinter() {
         const building = formData.get('building')
         const room = formData.get('room')
         const description = formData.get('description')
+
         // await updatePrinter()
         const reqBody = {
             printerName: manufacturer,
