@@ -27,14 +27,22 @@ function UpdatePrinter() {
         // await updatePrinter()
         const reqBody = {
             printerName: manufacturer,
-            campusName: model,
+            model: model,
             buildingName: building,
             room: room,
             desc: description
         }
-        console.log(location.state.id)
-        console.log(reqBody)
+        const response = await updateInfoPrinter(location.state.id, reqBody)
+        const result = response.metaData
+        if (result) {
+            navigate("/admin/printer_info")
+        }
     }
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        toUpdatePrinter(formData);
+    };
     const options = [
         { value: 'H1', label: 'H1' },
         { value: 'H2', label: 'H2' },
@@ -69,8 +77,10 @@ function UpdatePrinter() {
     const DisplayData = data.map((info) => {
         if (info._id === location.state.id) {
             return (
+
+                // <form action={toUpdatePrinter} className='addPrinterForm'>
                 // eslint-disable-next-line react/jsx-key
-                <form action={toUpdatePrinter} className='addPrinterForm'>
+                <form onSubmit={handleSubmit} className='addPrinterForm'>
                     <h1 style={{ marginLeft: '2rem' }}>Chỉnh sửa máy in</h1>
 
                     <div className='d-flex flex-column mt-3'>

@@ -24,15 +24,17 @@ function AddPrinter() {
 
         const reqBody = {
             printerName: manufacturer,
-            campusName: model,
+            model: model,
             buildingName: building,
             room: room,
             desc: description
         }
         console.log(reqBody)
-        // const response = await createPrinter(reqBody)
-        // const result = response.metaData
-        // return result
+        const response = await createPrinter(reqBody)
+        const result = response.metaData
+        if (result) {
+            navigate("/admin/printer_info")
+        }
     }
     const options = [
         { value: 'h1', label: 'H1' },
@@ -40,10 +42,16 @@ function AddPrinter() {
         { value: 'h3', label: 'H3' },
         { value: 'h6', label: 'H6' },
     ];
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        toAddPrinter(formData);
+    };
 
     return (
         <div className='d-flex justify-content-center align-items-center m-4 p-4'>
-            <form action={toAddPrinter} className='addPrinterForm'>
+            {/* <form action={toAddPrinter} className='addPrinterForm'> */}
+            <form onSubmit={handleSubmit} className='addPrinterForm'>
                 <h1 style={{ marginLeft: '2rem' }}>Thêm máy in mới</h1>
 
                 {/* Placeholder for new printer */}

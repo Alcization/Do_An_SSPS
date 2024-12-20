@@ -63,12 +63,6 @@ const App = () => {
   const [user, setUser] = React.useState(null);
   const [loading, setLoading] = React.useState(true); // Trạng thái chờ
   // Kiểm tra hoặc đặt giá trị `user` từ API, localStorage, hoặc state management.
-  // const loggedInUser = {
-    //   message: "dangw nhap roi",
-    //   metaData: {
-    //     userId:"1001"
-    //   }
-    // }
   React.useEffect(() => {
     const fetchUser = async () => {
       setLoading(true); // Bắt đầu loading

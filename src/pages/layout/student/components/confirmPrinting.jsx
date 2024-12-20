@@ -5,7 +5,7 @@ import Printer from "./img/multifunction-printer.png";
 import { useNavigate } from "react-router-dom";
 import { color } from "chart.js/helpers";
 // api
-import { generateOTPToPrint, veriFyToPrint } from "../../../../api";
+import { generateOTPToPrint, veriFyToPrint, getAllPrinters } from "../../../../api";
 const title = {
   fontSize: "2.2vh",
   color: "black",
@@ -19,9 +19,34 @@ function ConfirmPrinting() {
   const [otp, setOtp] = useState("");
   const printingData = location.state.printingData;
   const fileData = location.state.fileData;
-
   const [showOTP, setShowOTP] = useState(false);
-
+  const [infoPrinters, setInfoPrinters] = React.useState([]);
+  const [loading, setLoading] = React.useState(true); // Trạng thái chờ
+  // Kiểm tra hoặc đặt giá trị `user` từ API, localStorage, hoặc state management.
+  React.useEffect(() => {
+    const fetchUser = async () => {
+      setLoading(true); // Bắt đầu loading
+      try {
+        const result = await getAllPrinters(); // Chờ hàm getUser() trả về kết quả
+        // const result = await logoutUser()
+        console.log(result); // In kết quả
+        if (result) {
+          setInfoPrinters(result.metaData); // Lưu thông tin user
+        }
+      } catch (error) {
+        // ở đây nên làm cái allert error message
+        // alert(error.message);
+        console.error('Error fetching user:', error.message);
+      } finally {
+        setLoading(false); // Kết thúc loading
+      }
+    };
+    fetchUser();
+    // setLoading(false);
+  }, []);
+  if (loading) {
+    return <div>Loading...</div>; // Hiển thị màn hình loading trong khi chờ
+  }
   const handleClick = async () => {
     setShowOTP(!showOTP);
     console.log("selectedPrinter,", selectedPrinter)
@@ -99,11 +124,17 @@ function ConfirmPrinting() {
                 Máy in
               </label>
               <select defaultValue="" className="numberOfCopies-option" name="options" onChange={(e) => setSelectedPrinter(e.target.value)}>
-                <option value="" disabled hidden>Chọn máy in</option>
+                {/* <option value="" disabled hidden>Chọn máy in</option>
                 <option value="106H6">106H6</option>
                 <option value="207H6">207H6</option>
                 <option value="305H6">305H6</option>
-                <option value="402H6">402H6</option>
+                <option value="402H6">402H6</option> */}
+                <option value="" disabled hidden>Chọn máy in</option>
+                {infoPrinters.map(item => (
+                  <option key={item._id} value={item._id}>
+                    {item.room}
+                  </option>
+                ))}
               </select>
             </div>
           </div>

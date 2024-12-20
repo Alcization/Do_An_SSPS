@@ -88,7 +88,7 @@ function MyTable() {
             <tr key={info._id}>
                 <td className="my-sm-3 text-center">{info._id}</td>
                 <td className="my-sm-5 text-center">{info.printerName}</td>
-                <td className="my-sm-3 text-center">{info.campusName}</td>
+                <td className="my-sm-3 text-center">{info.model}</td>
                 <td className="my-sm-3 text-center">{info.desc}</td>
                 <td className="my-sm-5 text-center">{info.buildingName}</td>
                 <td className="my-sm-5 text-center">{info.room}</td>

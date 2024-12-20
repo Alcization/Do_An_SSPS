@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import "boxicons/css/boxicons.min.css";
-
-
 import "../css/admin/fileType.css";
+import ConfigType from "../../../../../assets/config.json";
 
 function FileTypeBody() {
   const [fileSize, setFileSize] = useState(0);
@@ -33,17 +32,19 @@ function FileTypeBody() {
           </div>
         </div>
         {/* {thêm một số dữ liệu nhờ arr của arr sau} */}
-        <div className="filesName-body d-flex align-items-center justify-content-between">
-          <div className="fileExtension col-5 d-flex align-items-center justify-content-center">
-            <p>.docx</p>
+        {ConfigType.acceptedFileTypes.split(',').map((type) => (
+          <div key={type} className="filesName-body d-flex align-items-center justify-content-between">
+            <div className="fileExtension col-5 d-flex align-items-center justify-content-center">
+              <p>{type}</p>
+            </div>
+            <div className="fileTypical col-5 d-flex align-items-center justify-content-center">
+              <p>Văn bản</p>
+            </div>
+            <div className="deleteIcon col-2 d-flex align-items-center justify-content-center">
+              <i className="bx bx-trash"></i>
+            </div>
           </div>
-          <div className="fileTypical col-5 d-flex align-items-center justify-content-center">
-            <p>Văn bản</p>
-          </div>
-          <div className="deleteIcon col-2 d-flex align-items-center justify-content-center">
-            <i class="bx bx-trash"></i>
-          </div>
-        </div>
+        ))}
       </div>
       <div className="editFileConstraint d-flex flex-column align-items-center justify-content-between">
         <div className="fileType-add">

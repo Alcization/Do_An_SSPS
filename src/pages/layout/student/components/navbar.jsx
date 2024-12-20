@@ -19,9 +19,18 @@ function Setting() {
     const result = await logoutUser()
 
     console.log("logout successfull")
-    navigate('/')
-    return result.meataData
+    if (result.metaData) {
+      // navigate('/')
+      window.location.href = `${window.location.origin}?redirectTo=/`;
+    }
   }
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const redirectTo = params.get('redirectTo');
+    if (redirectTo) {
+      navigate(redirectTo);
+    }
+  }, [navigate]);
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -41,6 +50,7 @@ function Setting() {
   if (loading) {
     return <div>Loading...</div>; // Hiển thị màn hình loading trong khi chờ
   }
+
   return (
     <div className="setting">
       <div className="setting-block-navBar"></div>
@@ -55,11 +65,10 @@ function Setting() {
         </NavLink>
       </div>
       <div className="setting-block logo logOut">
-        {/* <NavLink to="/" className="setting-block-link" onClick={() => { Logout() }}>
+        <button className="setting-block-link" style={{ background: "white", border: "none", height: "10px" }} onClick={() => { Logout() }}>
           <i className="bx bx-log-out"></i>
           <p>Đăng xuất</p>
-        </NavLink> */}
-        <button className="setting-block-link" onClick={() => { Logout() }}> Đăng xuất </button>
+        </button>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./navbar.css";
 import "./header.css";
@@ -15,9 +15,19 @@ function Setting() {
     const result = await logoutUser()
 
     console.log("logout successfull")
-    navigate('/')
-    return result.meataData
+    if (result.metaData) {
+
+      // navigate('/')
+      window.location.href = `${window.location.origin}?redirectTo=/`;
+    }
   }
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const redirectTo = params.get('redirectTo');
+    if (redirectTo) {
+      navigate(redirectTo);
+    }
+  }, [navigate]);
   return (
     <div className="setting">
       <div className="setting-block-navBar"></div>
@@ -36,7 +46,7 @@ function Setting() {
           to="/"
           className="setting-block-link"
         > */}
-        <button onClick={() => { logOut(); }}>
+        <button className="setting-block-link" style={{ background: "white", border: "none", height: "10px" }} onClick={() => { logOut(); }}>
           <i className="bx bx-log-out"></i>
           <p>Đăng xuất</p>
         </button>
