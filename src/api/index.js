@@ -85,7 +85,47 @@ export const getUrl = async (queryParams) => {
   return response.data
 }
 
+
+// -----------------LIBRARY
+
+export const getLibraryStructure = async () => {
+  const response = await axios.get(`http://localhost:8000/v1/library/structure`, {
+    withCredentials: true
+  });
+  return response.data;
+}
+
+export const getSubjectDocuments = async (subjectCode, filters = {}) => {
+  const { documentType, semester } = filters;
+  const params = {};
+  if (documentType) params.documentType = documentType;
+  if (semester) params.semester = semester;
+
+  const response = await axios.get(
+    `http://localhost:8000/v1/library/subject/${subjectCode}/documents`,
+    {
+      params,
+      withCredentials: true
+    }
+  );
+  return response.data;
+}
+
+export const getDocumentPreview = async (documentId) => {
+  const response = await axios.get(
+    `http://localhost:8000/v1/library/document/${documentId}/preview`,
+    {
+      withCredentials: true
+    }
+  );
+  return response.data;
+}
+
+
+
+
 // ++++++++++++++++++++ ADMIN ++++++++++++++++++++++++
+
 //---------------------------document  
 export const getAllDocument = async () => {
   const response = await axios.get(`http://localhost:8000/v1/document`, {
@@ -174,4 +214,70 @@ export const getReport = async (reqBody) => {
     withCredentials: true
   })
   return response.data
+}
+
+// -----------------LIBRARY
+export const getAllDocumentsByAdmin = async () => {
+  const response = await axios.get(
+    `http://localhost:8000/v1/library/getByAdmin`,
+    {
+      withCredentials: true
+    }
+  );
+  return response.data;
+}
+export const createDocument = async (formData) => {
+  try {
+    const response = await axios.post(
+      `http://localhost:8000/v1/library/`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        withCredentials: true,
+        onUploadProgress: (progressEvent) => {
+          const percentCompleted = Math.round(
+            (progressEvent.loaded * 100) / progressEvent.total
+          );
+          console.log(`Upload Progress: ${percentCompleted}%`);
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    if (error.response?.status === 413) {
+      throw new Error('File size too large. Maximum size is 50MB.');
+    }
+    if (error.response?.status === 415) {
+      throw new Error('Invalid file type. Supported types: PDF, DOC, DOCX, TXT');
+    }
+    throw error;
+  }
+};
+
+export const updateDocument = async (documentId, formData) => {
+  console.log("formData---->", formData)
+  const response = await axios.patch(
+    `http://localhost:8000/v1/library/${documentId}`,
+    formData,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      withCredentials: true
+    }
+  );
+  return response.data;
+}
+
+export const deleteDocument = async (documentId) => {
+  const response = await axios.delete(
+    `http://localhost:8000/v1/library/${documentId}`,
+    {
+      withCredentials: true
+    }
+  );
+  return response.data;
 }

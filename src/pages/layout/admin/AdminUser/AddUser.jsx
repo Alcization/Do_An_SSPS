@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const AddUser = () => {
   const [formData, setFormData] = useState({
     id: '0357',
-    courseCode: '',
+    code: '',
     semester: '',
     documentName: '',
     file: null
@@ -53,7 +53,7 @@ const AddUser = () => {
                   <input
                     type="text"
                     className="form-control"
-                    name="id"
+                    name="code"
                     value={formData.id}
                     onChange={handleInputChange}
                     readOnly
@@ -92,8 +92,17 @@ const AddUser = () => {
                     onChange={handleInputChange}
                   />
                 </div>
+                <div className="mb-3">
+                  <label className="form-label">SDT</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="documentName"
+                    value={formData.documentName}
+                    onChange={handleInputChange}
+                  />
+                </div>
 
-               
 
                 <div className="d-flex justify-content-center gap-3">
                   <button type="submit" className="btn btn-primary px-4">

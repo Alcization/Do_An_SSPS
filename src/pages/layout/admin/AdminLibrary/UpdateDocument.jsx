@@ -1,22 +1,30 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Upload from '../../../../assets/upload.svg'
+import { useSearchParams } from 'react-router-dom';
+//api 
+import { updateDocument } from '../../../../api';
 const UpdateDocumnet = () => {
+  const [searchParams] = useSearchParams();
   const [formData, setFormData] = useState({
-    id: '0357',
-    courseCode: '',
-    semester: '',
-    documentName: '',
+    maxCopies: '',
+    costPerPage: '',
+    status: 'active',
+    title: '',
     file: null
   });
-
+  const id = searchParams.get('id'); // "123"
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
+
+    setFormData((prevState) => {
+      return {
+        ...prevState,
+        [name]: name === "costPerPage" || name === "maxCopies" ? parseFloat(value) || 0 : value,
+      };
+    });
   };
+
 
   const handleFileChange = (e) => {
     setFormData(prevState => ({
@@ -25,18 +33,34 @@ const UpdateDocumnet = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Xử lý logic upload tại đây
-    console.log('Form data:', formData);
+    const data = {
+      ...formData,
+      status: formData.status,
+      title: formData.title,
+      file: formData.file,
+      printSettings: {
+        ...(formData.maxCopies != '' && { maxCopies: formData.maxCopies }),
+        ...(formData.costPerPage != '' && { costPerPage: formData.costPerPage })
+      }
+    }
+    console.log('Form data:', data);
+    console.log('Form id:', id);
+
+    const result = await updateDocument(id, data)
+    if (result.metaData) {
+      alert("Chinh sua thanh cong !")
+    }
   };
 
   const handleCancel = () => {
     setFormData({
-      id: '0357',
-      courseCode: '',
-      semester: '',
-      documentName: '',
+      maxCopies: '',
+      costPerPage: '',
+      status: 'active',
+      title: '',
       file: null
     });
   };
@@ -49,57 +73,54 @@ const UpdateDocumnet = () => {
             <div className="card-body">
               <h3 className="text-center mb-4">Chỉnh sửa tài liệu</h3>
               <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                  <label className="form-label">Mã số (ID)</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="id"
-                    value={formData.id}
-                    onChange={handleInputChange}
-                    readOnly
-                  />
-                </div>
 
                 <div className="mb-3">
-                  <label className="form-label">Mã môn học</label>
+                  <label className="form-label">Số bản sao tối đa</label>
                   <input
                     type="text"
                     className="form-control"
-                    name="courseCode"
-                    value={formData.courseCode}
+                    name="maxCopies"
+                    value={formData.maxCopies}
                     onChange={handleInputChange}
                   />
                 </div>
 
                 <div className="mb-3">
-                  <label className="form-label">Học kỳ</label>
+                  <label className="form-label">Giá tiền của 1 trang giấy</label>
                   <input
                     type="text"
                     className="form-control"
-                    name="semester"
-                    value={formData.semester}
+                    name="costPerPage"
+                    value={formData.costPerPage}
                     onChange={handleInputChange}
                   />
                 </div>
-
                 <div className="mb-3">
                   <label className="form-label">Tên tài liệu</label>
                   <input
                     type="text"
                     className="form-control"
-                    name="documentName"
-                    value={formData.documentName}
+                    name="title"
+                    value={formData.title}
                     onChange={handleInputChange}
                   />
                 </div>
-
+                <select
+                  className="printingOption-option"
+                  name="status"
+                  value={formData.status}
+                  onChange={handleInputChange}
+                >
+                  <option value="">Chia sẻ</option>
+                  <option value="active">Bật</option>
+                  <option value="inactive">tắt</option>
+                </select>
                 <div className="mb-4">
                   <label className="form-label">Upload</label>
                   <div className="border rounded p-3 text-center">
                     <div className="mb-3">
                       <img
-                      src={Upload}
+                        src={Upload}
                         alt="Upload icon"
                         style={{ width: '64px', height: '64px' }}
                       />
@@ -115,7 +136,7 @@ const UpdateDocumnet = () => {
 
                 <div className="d-flex justify-content-center gap-3">
                   <button type="submit" className="btn btn-primary px-4">
-                    Thêm tài liệu
+                    Chỉnh sửa tài liệu
                   </button>
                   <button
                     type="button"

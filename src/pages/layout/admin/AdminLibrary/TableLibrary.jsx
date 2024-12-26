@@ -10,36 +10,65 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 // import 'font-awesome/css/font-awesome.min.css';
 import Search from '../../blank/PrintingLog/search';
 import FilterForm from './FilterLibrary';
+// api
+import { getAllDocumentsByAdmin, deleteDocument } from '../../../../api';
+
+
 
 // Dữ liệu mẫu
-const documents = [
-  { id: "0356", courseCode: "MT1003", courseName: "Giải tích 1", semester: "241", docName: "Đề thi cuối kỳ" },
-  { id: "0355", courseCode: "MT1003", courseName: "Giải tích 1", semester: "241", docName: "Đề thi giữa kỳ" },
-  { id: "0354", courseCode: "PH1003", courseName: "Vật lý 1", semester: "241", docName: "Đề thi cuối kỳ" },
-  { id: "0353", courseCode: "PH1003", courseName: "Vật lý 1", semester: "241", docName: "Đề thi giữa kỳ" },
-  { id: "0352", courseCode: "CH1002", courseName: "Hóa học cơ bản", semester: "241", docName: "Bài tập thực hành" },
-  { id: "0351", courseCode: "CH1002", courseName: "Hóa học cơ bản", semester: "241", docName: "Bài tập về nhà" },
-  { id: "0", courseCode: "CH1002", courseName: "Hóa học cơ bản", semester: "241", docName: "Bài tập thực hành" },
-  { id: "03156", courseCode: "MT1003", courseName: "Giải tích 1", semester: "241", docName: "Đề thi cuối kỳ" },
-  { id: "03525", courseCode: "MT1003", courseName: "Giải tích 1", semester: "241", docName: "Đề thi giữa kỳ" },
-  { id: "03542", courseCode: "PH1003", courseName: "Vật lý 1", semester: "241", docName: "Đề thi cuối kỳ" },
-  { id: "03532", courseCode: "PH1003", courseName: "Vật lý 1", semester: "241", docName: "Đề thi giữa kỳ" },
-  { id: "03522", courseCode: "CH1002", courseName: "Hóa học cơ bản", semester: "241", docName: "Bài tập thực hành" },
-  { id: "03512", courseCode: "CH1002", courseName: "Hóa học cơ bản", semester: "241", docName: "Bài tập về nhà" },
-  { id: "02", courseCode: "CH1002", courseName: "Hóa học cơ bản", semester: "241", docName: "Bài tập thực hành" },
-];
+// const documents = [
+//   { id: "0356", courseCode: "MT1003", courseName: "Giải tích 1", semester: "241", docName: "Đề thi cuối kỳ" },
+//   { id: "0355", courseCode: "MT1003", courseName: "Giải tích 1", semester: "241", docName: "Đề thi giữa kỳ" },
+//   { id: "0354", courseCode: "PH1003", courseName: "Vật lý 1", semester: "241", docName: "Đề thi cuối kỳ" },
+//   { id: "0353", courseCode: "PH1003", courseName: "Vật lý 1", semester: "241", docName: "Đề thi giữa kỳ" },
+//   { id: "0352", courseCode: "CH1002", courseName: "Hóa học cơ bản", semester: "241", docName: "Bài tập thực hành" },
+//   { id: "0351", courseCode: "CH1002", courseName: "Hóa học cơ bản", semester: "241", docName: "Bài tập về nhà" },
+//   { id: "0", courseCode: "CH1002", courseName: "Hóa học cơ bản", semester: "241", docName: "Bài tập thực hành" },
+//   { id: "03156", courseCode: "MT1003", courseName: "Giải tích 1", semester: "241", docName: "Đề thi cuối kỳ" },
+//   { id: "03525", courseCode: "MT1003", courseName: "Giải tích 1", semester: "241", docName: "Đề thi giữa kỳ" },
+//   { id: "03542", courseCode: "PH1003", courseName: "Vật lý 1", semester: "241", docName: "Đề thi cuối kỳ" },
+//   { id: "03532", courseCode: "PH1003", courseName: "Vật lý 1", semester: "241", docName: "Đề thi giữa kỳ" },
+//   { id: "03522", courseCode: "CH1002", courseName: "Hóa học cơ bản", semester: "241", docName: "Bài tập thực hành" },
+//   { id: "03512", courseCode: "CH1002", courseName: "Hóa học cơ bản", semester: "241", docName: "Bài tập về nhà" },
+//   { id: "02", courseCode: "CH1002", courseName: "Hóa học cơ bản", semester: "241", docName: "Bài tập thực hành" },
+// ];
 
 // Hàm chính
 function MyTable() {
-  const navigate = useNavigate();
-  const [documentsList, setDocumentsList] = useState(documents); // Manage the documents state
+  const [documentsList, setDocumentsList] = useState([]);
+  const [loading, setLoading] = React.useState(true);
+
+  const navigate = useNavigate(); // Manage the documents state
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const [showFilter, setShowFilter] = useState(false);
+  React.useEffect(() => {
+    const fetchUser = async () => {
+      setLoading(true); // Bắt đầu loading
+      try {
+        const result = await getAllDocumentsByAdmin();
+        console.log(result); // In kết quả
+        if (result) {
+          setDocumentsList(result.metaData); // Lưu thông tin user
+        }
+      } catch (error) {
+        // ở đây nên làm cái allert error message
+        // alert(error.message);
+        console.error('Error fetching user:', error.message);
+      } finally {
+        setLoading(false); // Kết thúc loading
+      }
+    };
+    fetchUser();
+    // setLoading(false);
+  }, []);
+  if (loading) {
+    return <div>Loading...</div>; // Hiển thị màn hình loading trong khi chờ
+  }
 
   const handleShowFilter = () => setShowFilter(true);
   const handleCloseFilter = () => setShowFilter(false);
-
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = documentsList.slice(indexOfFirstItem, indexOfLastItem);
@@ -62,14 +91,18 @@ function MyTable() {
     navigate('add_document');
   };
 
-  const handleUpdateClick = () => {
-    navigate('update_document');
+  const handleUpdateClick = (id) => {
+    navigate(`update_document?id=${id}`);
   };
 
-  const handleRemoveClick = (id) => {
+  const handleRemoveClick = async (id) => {
     if (window.confirm('Bạn có chắc muốn xóa tài liệu này?')) {
-      setDocumentsList((prevDocuments) => prevDocuments.filter((doc) => doc.id !== id));
+      setDocumentsList((prevDocuments) => prevDocuments.filter((doc) => doc._id !== id));
       // Reset to the first page if the current page becomes empty after deletion
+      const result = await deleteDocument(id)
+      if (result.metaData) {
+        alert("Xoa thanh cong !")
+      }
       if (currentItems.length === 1 && currentPage > 1) {
         setCurrentPage((prev) => prev - 1);
       }
@@ -77,17 +110,22 @@ function MyTable() {
   };
 
   const DisplayData = currentItems.map((info) => (
-    <tr key={info.id}>
-      <td className="text-center">{info.id}</td>
+    <tr key={info._id}>
+      {/* <td className="text-center">{info.id}</td>
       <td className="text-center">{info.courseCode}</td>
       <td className="text-center">{info.courseName}</td>
       <td className="text-center">{info.semester}</td>
-      <td className="text-center">{info.docName}</td>
+      <td className="text-center">{info.docName}</td> */}
+      <td className="text-center">{info._id}</td>
+      <td className="text-center">{info.subject.code}</td>
+      <td className="text-center">{info.subject.name}</td>
+      <td className="text-center">{info.semester}</td>
+      <td className="text-center">{info.title}</td>
       <td className="text-center">
-        <Button variant="primary" className="me-2" onClick={handleUpdateClick}>
+        <Button variant="primary" className="me-2" onClick={() => handleUpdateClick(info._id)}>
           <i className="bi bi-pencil"></i>
         </Button>
-        <Button variant="danger" className="me-2" onClick={() => handleRemoveClick(info.id)}>
+        <Button variant="danger" className="me-2" onClick={() => handleRemoveClick(info._id)}>
           <i className="bi bi-trash"></i>
         </Button>
       </td>
@@ -97,16 +135,16 @@ function MyTable() {
   return (
     <div>
       <div className='d-flex justify-content-start align-items-center p-3 border 
-      border-start-0  border-dark rounded-end-3' style={{ width: '60vh'}}>
-        <h1>Thông tin thư viện tài liệu</h1> 
+      border-start-0  border-dark rounded-end-3' style={{ width: '60vh' }}>
+        <h1>Thông tin thư viện tài liệu</h1>
       </div>
-      <div className="d-flex align-items-center justify-content-end" style={{ width: '175vh'}}>
-          <Button variant="info" onClick={handleShowFilter}>
-            <i className="bi bi-funnel"></i> Lọc kết quả
-          </Button>
-          <Button variant="primary" style={{marginLeft:'1rem'}} onClick={handleAddClick}>
-            <i class="bi bi-file-earmark-plus-fill"></i> Thêm tài liệu
-          </Button>
+      <div className="d-flex align-items-center justify-content-end" style={{ width: '175vh' }}>
+        <Button variant="info" onClick={handleShowFilter}>
+          <i className="bi bi-funnel"></i> Lọc kết quả
+        </Button>
+        <Button variant="primary" style={{ marginLeft: '1rem' }} onClick={handleAddClick}>
+          <i class="bi bi-file-earmark-plus-fill"></i> Thêm tài liệu
+        </Button>
       </div>
       <div className="container">
         <div className="d-flex flex-column justify-content-center align-items-center p-2" style={{ height: '50vh', width: '175vh' }}>
