@@ -12,10 +12,6 @@ function Home() {
   return (
     <div className="home container">
       <div className="Home row">
-<<<<<<< HEAD
-=======
-
->>>>>>> 218219c61f15fc8894b64ad0166b473635b86678
         <div className="home-block printingDocument col-md-3">
           <NavLink to={'/student/upload_file'} className="link printingDocument-nav-link">
             <img
@@ -59,10 +55,6 @@ function Home() {
             <p className="homeblocktitle">LỊCH SỬ IN ẤN</p>
           </NavLink>
         </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 218219c61f15fc8894b64ad0166b473635b86678
       </div>
     </div>
   );
