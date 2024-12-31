@@ -1,7 +1,5 @@
 .Sidebar {
     background-color: #fff;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    border-right: 1px solid #000;
     align-self: stretch;
     display: flex;
     padding-bottom: 493px;
@@ -10,17 +8,19 @@
     text-align: right;
     font: 500 24px Inter, sans-serif;
     max-width: 230px;
-    max-height: 848px;
+    max-height: 840px;
+    margin-top: 5px;
 }
 
 .nav_Item {
     background-color: #fff;
     display: flex;
     gap: 11px;
-    padding: 20px 23px 12px;
+    padding: 15px 10px 15px;
+    margin-left: 5px;
+    margin-right: 5px;
     text-decoration: none;
     color: black;
-    
 }
 
 a.nav_Item:hover {
@@ -39,4 +39,9 @@ a.nav_Item:hover {
 .label_ {
     flex-grow: 1;
     width: 153px;
+}
+.nav_Item.active {
+    background-color: #8B9373;
+    color: white;
+    border-radius: 10px;
 }

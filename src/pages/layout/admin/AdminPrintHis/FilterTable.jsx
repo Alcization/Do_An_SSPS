@@ -78,7 +78,7 @@ function MyTable() {
     }
     return (
         <div>
-            <div className='d-flex justify-content-start align-items-center p-3 border border-start-0  border-dark rounded-end-3' style={{ width: '22vh' }}>
+            <div className='d-flex justify-content-start align-items-center p-3 border border-dark' style={{ width: '22vh', borderRadius: '15px' }}>
                 <h1>Lịch sử in</h1>
             </div>
             <div className="d-flex flex-column justify-content-center align-items-center m-2 p-2" style={{ height: '74vh', width: '176vh' }}>
