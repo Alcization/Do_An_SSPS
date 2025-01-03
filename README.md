@@ -1,6 +1,6 @@
-# CNPM_SSPS
+# Do_An_SSPS
 
-CNPM_SSPS là một hệ thống quản lý dịch vụ in ấn thông minh dành cho sinh viên Đại học Bách Khoa TP.HCM (HCMUT), được xây dựng để tối ưu hóa quá trình in ấn và tiết kiệm thời gian cho sinh viên.
+Do_An_SSPS là một hệ thống quản lý dịch vụ in ấn thông minh dành cho sinh viên Đại học Bách Khoa TP.HCM (HCMUT), được xây dựng để tối ưu hóa quá trình in ấn và tiết kiệm thời gian cho sinh viên.
 
 ## Công nghệ sử dụng
 
@@ -15,7 +15,7 @@ Làm theo các bước dưới đây để cài đặt hệ thống trên máy c
 ### 1. Clone repository
 ```bash
 git clone https://github.com/Alcization/Do_An_SSPS.git
-cd CNPM_SSPS
+cd Do_An_SSPS
 ```
 ### 2. Cài đặt dependencies
 NodeJS: Nếu chưa có NodeJS, tải và cài đặt từ trang chủ NodeJS.
