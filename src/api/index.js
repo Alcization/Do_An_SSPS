@@ -30,8 +30,8 @@ export const getDocumentOfUser = async () => {
   const response = await axios.get(`http://localhost:8000/v1/document/getDocumentOfUser`, { withCredentials: true })
   return response.data
 }
-export const generateOTPToPrint = async () => {
-  const response = await axios.post(`http://localhost:8000/v1/document/generateOtpForUser`, {}, {
+export const generateOTPToPrint = async (pageNumber) => {
+  const response = await axios.post(`http://localhost:8000/v1/document/generateOtpForUser`, { pageNumber: pageNumber }, {
     withCredentials: true
   })
   return response.data
@@ -165,14 +165,12 @@ export const updatePrinter = async (printer_id, infoStatus) => {
   else {
     reqBody = { status: 'ACTIVE' }
   }
-  console.log("reqBody", reqBody)
   const response = await axios.patch(`http://localhost:8000/v1/printer/${printer_id}`, reqBody, {
     withCredentials: true
   })
   return response.data
 }
 export const updateInfoPrinter = async (printer_id, reqBody) => {
-  console.log("reqBody", reqBody)
   const response = await axios.patch(`http://localhost:8000/v1/printer/${printer_id}`, reqBody, {
     withCredentials: true
   })
@@ -193,7 +191,6 @@ export const getCountPrinters = async () => {
 //----------------------defaultPage
 
 export const createDefaultPage = async (reqBody) => {
-  console.log("reqBody", reqBody)
   const response = await axios.post(`http://localhost:8000/v1/defaultPage`, reqBody, {
     withCredentials: true
   })

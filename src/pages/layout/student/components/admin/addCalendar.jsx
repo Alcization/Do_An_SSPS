@@ -438,14 +438,14 @@ function AddAllocationCalendar() {
     if (isValidDate(day, month, year)) {
       setError("");
       // alert(`Ngày cấp phát: ${day}/${month}/${year}`);
+      const newMonth = month < 10 ? `0${month}` : month
+      const newDay = day < 10 ? `0${day}` : day
       const semesters = semester;
-      // const year = `${startSchoolYear}-${endSchoolYear}`;
-      // Tạo một đối tượng Date với thứ tự yyyy-mm-dd
-      // const dateObject = new Date(`${startSchoolYear}-${month}-${day}T00:00:00.000Z`);
-      const dateObject = new Date(`${startSchoolYear}-${month}-${day}T00:00:00.000Z`);
+      const dateObject = new Date(`${year}-${newMonth}-${newDay}T00:00:00.000Z`);
+      console.log("dateObject", dateObject)
       // Chuyển sang chuỗi ISO
       const isoDate = dateObject.toISOString();
-
+      console.log(isoDate)
       const papers = numOfPaper.value;
       // console.log(semesters, year, date, papers);
       const dataBody = {
@@ -623,15 +623,15 @@ function AddSemester() {
     );
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (isValidDate(day, month, year)) {
-      setError("");
-      alert(`Ngày cấp phát: ${day}/${month}/${year}`);
-    } else {
-      setError("Ngày không hợp lệ");
-    }
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (isValidDate(day, month, year)) {
+  //     setError("");
+  //     alert(`Ngày cấp phát: ${day}/${month}/${year}`);
+  //   } else {
+  //     setError("Ngày không hợp lệ");
+  //   }
+  // };
 
   useEffect(() => {
     // Cập nhật số ngày khi tháng hoặc năm thay đổi

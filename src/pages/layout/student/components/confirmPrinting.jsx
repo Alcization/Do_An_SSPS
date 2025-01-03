@@ -48,13 +48,18 @@ function ConfirmPrinting() {
     return <div>Loading...</div>; // Hiển thị màn hình loading trong khi chờ
   }
   const handleClick = async () => {
-    setShowOTP(!showOTP);
+
     console.log("selectedPrinter,", selectedPrinter)
     console.log("fileData,", fileData)
     console.log("printingData", printingData)
-    const response = await generateOTPToPrint()
+    // const response = await generateOTPToPrint()
+    const response = await generateOTPToPrint(parseInt(printingData.pageNumber))
     const result = response.metaData
-    console.log("result from generateOTP", result)
+    if (!result) {
+      alert(`${response.message}`)
+      return
+    }
+    setShowOTP(!showOTP);
   };
   const handleOTP = async () => {
     const isDoubleSided = printingData.printingOption === "In 1 mặt" ? false : true
