@@ -4,9 +4,6 @@
 }
 
 .file-type-body {
-  border-left: 1px solid rgba(0, 0, 0, 0.282);
-  border-top: 1px solid rgba(0, 0, 0, 0.282);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   width: 90vw;
   height: 89vh;
   padding: 2em 5em 0 3em;

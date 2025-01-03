@@ -100,8 +100,8 @@ function MyTable() {
 
   return (
     <div>
-      <div className='d-flex justify-content-start align-items-center p-3 border border-start-0  border-dark rounded-end-3' style={{ width: '36vh'}}>
-        <h1>Thông tin máy in</h1> 
+      <div className='d-flex justify-content-start align-items-center p-3 border border-dark' style={{ width: '52vh', borderRadius: '15px'}}>
+        <h1>Thông tin người dùng</h1> 
       </div>
       <div className="d-flex align-items-center justify-content-end" style={{ width: '175vh'}}>
           <Button variant="info" onClick={handleShowFilter}>

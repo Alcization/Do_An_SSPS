@@ -59,9 +59,6 @@
 }
 
 .report-body {
-  border-left: 1px solid rgba(0, 0, 0, 0.282);
-  border-top: 1px solid rgba(0, 0, 0, 0.282);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   width: 90vw;
   height: 89vh;
 }
@@ -69,8 +66,7 @@
 /* tiêu đề */
 .report-body .title {
   padding: 0.4em 2em;
-  border-bottom: 1px solid black;
-  border-right: 1px solid black;
+  border: 1px solid black;
   border-radius: 15px;
   width: fit-content;
   margin: 0;
