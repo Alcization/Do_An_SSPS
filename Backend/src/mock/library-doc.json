@@ -1,0 +1,174 @@
+{
+  "subjects": [
+    {
+      "code": "MTH00090",
+      "name": "Toán cao cấp A1",
+      "category": "general",
+      "description": "Môn học đại cương về toán cao cấp"
+    },
+    {
+      "code": "MTH00091",
+      "name": "Toán cao cấp A2",
+      "category": "general",
+      "description": "Môn học đại cương về toán cao cấp phần 2"
+    },
+    {
+      "code": "POL00123",
+      "name": "Tư tưởng Hồ Chí Minh",
+      "category": "political",
+      "description": "Môn học về tư tưởng Hồ Chí Minh"
+    },
+    {
+      "code": "POL00124",
+      "name": "Triết học Mác-Lênin",
+      "category": "political",
+      "description": "Môn học về triết học Mác-Lênin"
+    },
+    {
+      "code": "CSE00001",
+      "name": "Nhập môn lập trình",
+      "category": "basic",
+      "description": "Môn học cơ sở về lập trình"
+    },
+    {
+      "code": "CSE00002",
+      "name": "Cấu trúc dữ liệu và giải thuật",
+      "category": "basic",
+      "description": "Môn học về cấu trúc dữ liệu và giải thuật cơ bản"
+    },
+    {
+      "code": "CSE00003",
+      "name": "Công nghệ phần mềm",
+      "category": "specialized",
+      "description": "Môn học chuyên ngành về công nghệ phần mềm"
+    },
+    {
+      "code": "CSE00004",
+      "name": "Trí tuệ nhân tạo",
+      "category": "specialized",
+      "description": "Môn học chuyên ngành về AI"
+    }
+  ],
+  "documents": [
+    {
+      "title": "Giáo trình Toán cao cấp A1",
+      "description": "Giáo trình chính thức môn Toán cao cấp A1",
+      "subject": {
+        "code": "MTH00090",
+        "name": "Toán cao cấp A1",
+        "category": "general"
+      },
+      "documentType": "theory",
+      "semester": "2023-2024-1",
+      "fileName": "toan_cao_cap_a1.pdf",
+      "fileType": "application/pdf",
+      "fileUrl": "https://example.com/files/toan_cao_cap_a1.pdf",
+      "previewUrl": "https://example.com/previews/toan_cao_cap_a1.pdf",
+      "totalPages": 45,
+      "status": "active",
+      "printSettings": {
+        "allowedPaperSizes": ["A4"],
+        "allowColor": false,
+        "maxCopies": 10,
+        "costPerPage": 1000,
+        "doubleSidedAllowed": true
+      }
+    },
+    {
+      "title": "Đề thi giữa kỳ Toán cao cấp A1 2023",
+      "description": "Đề thi giữa kỳ môn Toán cao cấp A1 năm 2023",
+      "subject": {
+        "code": "MTH00090",
+        "name": "Toán cao cấp A1",
+        "category": "general"
+      },
+      "documentType": "exam",
+      "semester": "2023-2024-1",
+      "fileName": "de_thi_toan_cao_cap_a1_2023.pdf",
+      "fileType": "application/pdf",
+      "fileUrl": "https://example.com/files/de_thi_toan_cao_cap_a1_2023.pdf",
+      "previewUrl": "https://example.com/previews/de_thi_toan_cao_cap_a1_2023.pdf",
+      "totalPages": 4,
+      "status": "active",
+      "printSettings": {
+        "allowedPaperSizes": ["A4"],
+        "allowColor": false,
+        "maxCopies": 5,
+        "costPerPage": 1000,
+        "doubleSidedAllowed": false
+      }
+    },
+    {
+      "title": "Giáo trình Tư tưởng Hồ Chí Minh",
+      "description": "Giáo trình môn Tư tưởng Hồ Chí Minh",
+      "subject": {
+        "code": "POL00123",
+        "name": "Tư tưởng Hồ Chí Minh",
+        "category": "political"
+      },
+      "documentType": "theory",
+      "semester": "2023-2024-1",
+      "fileName": "tu_tuong_ho_chi_minh.pdf",
+      "fileType": "application/pdf",
+      "fileUrl": "https://example.com/files/tu_tuong_ho_chi_minh.pdf",
+      "previewUrl": "https://example.com/previews/tu_tuong_ho_chi_minh.pdf",
+      "totalPages": 60,
+      "status": "active",
+      "printSettings": {
+        "allowedPaperSizes": ["A4"],
+        "allowColor": false,
+        "maxCopies": 10,
+        "costPerPage": 1000,
+        "doubleSidedAllowed": true
+      }
+    },
+    {
+      "title": "Slide bài giảng CTDL-GT",
+      "description": "Slide bài giảng môn Cấu trúc dữ liệu và giải thuật",
+      "subject": {
+        "code": "CSE00002",
+        "name": "Cấu trúc dữ liệu và giải thuật",
+        "category": "basic"
+      },
+      "documentType": "theory",
+      "semester": "2023-2024-1",
+      "fileName": "slide_ctdl_gt.pdf",
+      "fileType": "application/pdf",
+      "fileUrl": "https://example.com/files/slide_ctdl_gt.pdf",
+      "previewUrl": "https://example.com/previews/slide_ctdl_gt.pdf",
+      "totalPages": 30,
+      "status": "active",
+      "printSettings": {
+        "allowedPaperSizes": ["A4"],
+        "allowColor": true,
+        "maxCopies": 10,
+        "costPerPage": 2000,
+        "doubleSidedAllowed": true
+      }
+    },
+    {
+      "title": "Đề cương Công nghệ phần mềm",
+      "description": "Đề cương chi tiết môn Công nghệ phần mềm",
+      "subject": {
+        "code": "CSE00003",
+        "name": "Công nghệ phần mềm",
+        "category": "specialized"
+      },
+      "documentType": "theory",
+      "semester": "2023-2024-1",
+      "fileName": "de_cuong_cnpm.pdf",
+      "fileType": "application/pdf",
+      "fileUrl": "https://example.com/files/de_cuong_cnpm.pdf",
+      "previewUrl": "https://example.com/previews/de_cuong_cnpm.pdf",
+      "totalPages": 15,
+      "status": "active",
+      "printSettings": {
+        "allowedPaperSizes": ["A4"],
+        "allowColor": false,
+        "maxCopies": 10,
+        "costPerPage": 1000,
+        "doubleSidedAllowed": true
+      }
+    }
+  ]
+}
