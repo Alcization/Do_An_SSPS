@@ -2,6 +2,14 @@
 
 Do_An_SSPS là một hệ thống quản lý dịch vụ in ấn thông minh dành cho sinh viên Đại học Bách Khoa TP.HCM (HCMUT), được xây dựng để tối ưu hóa quá trình in ấn và tiết kiệm thời gian cho sinh viên.
 
+# Contributor
+ * Nguyễn Khánh Lộc- 2211927
+ * Đinh Công Minh- 2212027
+ * Nguyễn Thị Hiền Hạnh- 2210920
+ * Lê Nguyễn Yến Nhi- 2212432
+ * Lê Thuận Phát- 2212512
+ * Nguyễn Huy Hoàng- 2211093
+
 ## Công nghệ sử dụng
 
 - **Front-end**: ReactJS với Vite.
